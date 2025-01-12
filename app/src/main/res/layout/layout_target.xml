@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="@dimen/scale_25dp"
+    android:paddingEnd="@dimen/scale_25dp">
+
+    <TextView
+        android:id="@+id/custom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tap to Create Activity"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/avenirnext_medium"
+        android:layout_above="@id/arrowImage"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/arrowImage"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="175dp"
+        android:src="@drawable/arrow_image" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/close_spotlight"
+        style="@style/MyProgressButton"
+        android:layout_width="@dimen/scale_100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/scale_50dp"
+        android:text="Ok" />
+
+</RelativeLayout>

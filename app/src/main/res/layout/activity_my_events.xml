@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/RootLayout"
+        android:background="@color/backgroundBlue"
+        android:orientation="vertical"
+        tools:context=".homeScreen.drawerNavigation.activity.MyEventsActivity">
+
+
+        <include
+            android:id="@+id/custom_toolbar"
+            layout="@layout/toolbar"
+            ads:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/noDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            ads:layout_constraintBottom_toTopOf="@id/adView"
+            ads:layout_constraintTop_toBottomOf="@id/custom_toolbar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_medium"
+                android:text="@string/no_events_available"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recViewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/backgroundBlue"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/scale_20dp"
+            android:paddingEnd="@dimen/scale_20dp"
+            android:paddingBottom="@dimen/scale_14dp"
+            android:visibility="visible"
+            ads:layout_constraintBottom_toTopOf="@id/adView"
+            ads:layout_constraintTop_toBottomOf="@id/custom_toolbar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="2"
+                tools:listitem="@layout/event_card_layout" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary"
+            android:secondaryProgressTint="@color/colorPrimary"
+            android:visibility="gone"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddEvent"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="@dimen/scale_16dp"
+            android:layout_marginBottom="@dimen/scale_18dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:scaleType="center"
+            ads:fabCustomSize="46dp"
+            ads:layout_constraintBottom_toTopOf="@id/adView"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:maxImageSize="@dimen/scale_35dp"
+            ads:srcCompat="@drawable/ic_add"
+            ads:tint="@android:color/white" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_unit_id"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

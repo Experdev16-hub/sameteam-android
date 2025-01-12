@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/white"
+    android:elevation="1dp"
+    android:theme="@style/Toolbar"
+    app:contentInsetEnd="@dimen/scale_0dp"
+    app:contentInsetLeft="@dimen/scale_0dp"
+    app:contentInsetRight="@dimen/scale_0dp"
+    app:contentInsetStart="@dimen/scale_0dp"
+    app:contentInsetStartWithNavigation="@dimen/scale_0dp">
+
+    <ImageView
+        android:id="@+id/left_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/scale_16dp"
+        android:padding="@dimen/scale_5dp"
+        android:src="@drawable/ic_arrow_left_1" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Profile" />
+
+
+    <ImageView
+        android:id="@+id/right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="@dimen/scale_17dp"
+        android:padding="@dimen/scale_5dp"
+        android:src="@drawable/ic_user" />
+
+    <!--    Icon for Chat Attachment Download-->
+    <ImageView
+        android:id="@+id/download_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="@dimen/scale_17dp"
+        android:padding="@dimen/scale_5dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_download" />
+
+
+</com.google.android.material.appbar.MaterialToolbar>

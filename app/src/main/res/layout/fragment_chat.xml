@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <RelativeLayout style="@style/RootLayout">
+
+        <LinearLayout
+            android:id="@+id/noDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_medium"
+                android:text="@string/no_chats_available"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20sp" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnFAB"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/scale_18dp"
+            android:layout_marginBottom="@dimen/scale_22dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:contentDescription="Add Chat"
+            android:scaleType="center"
+            app:fabCustomSize="46dp"
+            app:maxImageSize="@dimen/scale_35dp"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@android:color/white" />
+
+        <LinearLayout
+            android:id="@+id/recViewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".homeScreen.bottomNavigation.chatModule.ChatFragment">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_20dp"
+                android:layout_marginTop="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_20dp"
+                android:hint="@string/search"
+                android:visibility="gone"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:hintTextColor="@color/colorPrimary"
+                app:placeholderText="@string/search_by_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:theme="@style/MyEditTextHint" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="15"
+                tools:listitem="@layout/chat_list_layout" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary"
+            android:secondaryProgressTint="@color/colorPrimary"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+
+</layout>
+

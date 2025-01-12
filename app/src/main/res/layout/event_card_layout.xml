@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data></data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scale_14dp"
+        app:cardCornerRadius="@dimen/scale_12dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scale_15dp"
+            android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_15dp">
+
+                <TextView
+                    android:id="@+id/initials"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/circle_background_event"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="SD"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/eventName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@id/initials"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="SameTeam - Daily Standups"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/initials"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/eventColor"
+                    android:layout_width="@dimen/scale_15dp"
+                    android:layout_height="@dimen/scale_15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/scale_10dp"
+                    android:layout_toStartOf="@id/img_edit"
+                    android:src="@drawable/circle_background_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/img_edit"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/img_edit"
+                    android:layout_width="@dimen/scale_15dp"
+                    android:layout_height="@dimen/scale_15dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/eventDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:fontFamily="@font/avenirnext_regular"
+                android:text="Daily updates, Requirements discussion, design brainstorming"
+                android:textColor="@color/darkGrey"
+                android:textSize="@dimen/text_size_13sp" />
+
+            <RelativeLayout
+                android:id="@+id/participantsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:layout_marginStart="@dimen/scale_15dp"
+
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/scale_36dp"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="@dimen/scale_30dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="RtlSymmetry"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/row_image" />
+
+                <ImageView
+                    android:id="@+id/ivCreateActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_add"
+                    app:tint="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/scale_1dp"
+                android:layout_marginTop="@dimen/scale_14dp"
+                android:background="#e0e0e0" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:layout_marginBottom="@dimen/scale_15dp">
+
+                <TextView
+                    android:id="@+id/txtStarts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:text="@string/starts2"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+                <TextView
+                    android:id="@+id/startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_3dp"
+                    android:layout_toEndOf="@id/txtStarts"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="Jan 05, 2021"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+                <TextView
+                    android:id="@+id/txtEnds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/endDate"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:text="@string/ends2"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+                <TextView
+                    android:id="@+id/endDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="Jan 05, 2021"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
+

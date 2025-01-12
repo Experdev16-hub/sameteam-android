@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/RootLayout"
+        app:behavior_hideable="true"
+        android:background="@drawable/rounded_sheet"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/scale_22dp"
+            android:paddingTop="@dimen/scale_22dp"
+            android:paddingEnd="@dimen/scale_22dp"
+            android:paddingBottom="@dimen/scale_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders"
+                android:id="@+id/txtRemind"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:textSize="@dimen/text_size_20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:layout_width="@dimen/scale_25dp"
+                android:layout_height="@dimen/scale_25dp"
+                android:id="@+id/btnCross"
+                android:src="@drawable/ic_cross"
+                android:padding="@dimen/scale_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtRemind"
+                app:layout_constraintBottom_toBottomOf="@id/txtRemind"
+                app:tint="@color/darkGrey" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNotRemind"
+            android:text="@string/dont_remind"
+            android:textColor="@color/darkGrey"
+            android:fontFamily="@font/avenirnext_regular"
+            android:textSize="@dimen/text_size_16sp"
+            android:paddingStart="@dimen/scale_22dp"
+            android:paddingEnd="@dimen/scale_22dp"
+            android:layout_marginTop="@dimen/scale_5dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:id="@+id/recView"
+            tools:listitem="@layout/remind_me_card_layout"
+            tools:itemCount="5"
+            android:layout_marginTop="@dimen/scale_10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingStart="@dimen/scale_20dp"
+            android:paddingEnd="@dimen/scale_20dp"
+            android:layout_marginTop="@dimen/scale_10dp"
+            android:layout_marginBottom="@dimen/scale_20dp"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/scale_50dp"
+                android:layout_height="@dimen/scale_50dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/border_grey_rectangle_background"
+                android:backgroundTint="@color/lightBlue"
+                android:src="@drawable/ic_chevron_left" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/scale_60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/scale_12dp"
+                android:layout_toEndOf="@id/btnBack"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:letterSpacing="0.00"
+                android:text="@string/done"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_size_16sp"
+                app:cornerRadius="@dimen/scale_7dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
+

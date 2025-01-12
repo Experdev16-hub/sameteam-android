@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="model"
+            type="com.example.sameteam.homeScreen.bottomNavigation.taskModule.model.TaskParticipantsModel" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/scale_6dp"
+        android:onClick="@{(v) -> click.onClick(v)}">
+
+        <com.example.sameteam.widget.CircleImageView
+            android:layout_width="@dimen/scale_36dp"
+            android:layout_height="@dimen/scale_36dp"
+            android:id="@+id/profileImage"
+            loadProfilePicture="@{model.user.profile_picture}" />
+
+        <ImageView
+            android:layout_width="@dimen/scale_10dp"
+            android:layout_height="@dimen/scale_10dp"
+            android:id="@+id/status"
+            android:layout_marginStart="@dimen/scale_26dp"
+            android:layout_marginTop="@dimen/scale_26dp"
+            loadUserResponse="@{model.response}"/>
+
+    </RelativeLayout>
+
+</layout>
+

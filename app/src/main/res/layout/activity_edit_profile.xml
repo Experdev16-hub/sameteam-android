@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sameteam.homeScreen.bottomNavigation.userDirectoryModule.viewModel.EditProfileVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/RootLayout"
+        tools:context=".homeScreen.bottomNavigation.userDirectoryModule.activity.EditProfileActivity"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/custom_toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/adView"
+            app:layout_constraintTop_toBottomOf="@+id/custom_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/scale_25dp"
+                android:paddingTop="@dimen/scale_24dp"
+                android:paddingEnd="@dimen/scale_25dp"
+                android:paddingBottom="@dimen/scale_30dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/profile_photo"
+                    app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_28dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/scale_16dp"
+                        android:layout_weight="1"
+                        android:hint="@string/first_name"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/firstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModel.loginResponseModel.first_name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/last_name"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModel.loginResponseModel.last_name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:hint="@string/role"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp">-->
+
+                <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:id="@+id/txtRole"-->
+                <!--                        android:text="UI &amp; UX Designer"-->
+                <!--                        android:enabled="false" />-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_26dp"
+                    android:hint="@string/title_optional"
+                    android:theme="@style/MyEditTextHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="25"
+                        android:text="@={viewModel.loginResponseModel.title}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_26dp"
+                    android:orientation="horizontal">
+
+                    <com.example.sameteam.widget.ccp.CountryCodePicker
+                        android:id="@+id/ccp_loadFullNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/scale_5dp"
+                        android:layout_marginBottom="@dimen/scale_2dp"
+                        android:background="@drawable/border_grey_rectangle_background"
+                        android:gravity="center_vertical"
+                        app:ccp_contentColor="@color/darkGrey"
+                        app:ccp_countryPreference="us"
+                        app:ccp_defaultNameCode="us"
+                        app:ccp_hintExampleNumber="true"
+                        app:ccp_textSize="@dimen/text_size_16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/scale_10dp"
+                        android:gravity="center_vertical"
+                        android:hint="@string/mobile_number"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:text="@={viewModel.loginResponseModel.mobile_number}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:id="@+id/timeZone"-->
+                <!--                    android:hint="@string/time_zone"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    app:endIconMode="dropdown_menu"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp">-->
+
+                <!--                    <AutoCompleteTextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id="@+id/txtTimeZone"-->
+                <!--                        android:padding="@dimen/scale_16dp"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:focusable="false"-->
+                <!--                        android:inputType="none"/>-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:id="@+id/language"-->
+                <!--                    android:hint="@string/language"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    app:endIconMode="dropdown_menu"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp">-->
+
+                <!--                    <AutoCompleteTextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id="@+id/txtLanguage"-->
+                <!--                        android:padding="@dimen/scale_16dp"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:focusable="false"-->
+                <!--                        android:inputType="none"/>-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp"-->
+                <!--                    android:hint="@string/password"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    app:endIconMode="password_toggle">-->
+
+                <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id="@+id/txtPassword"-->
+                <!--                        android:text="DummyPassword"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:inputType="textPassword"/>-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDone"
+                    style="@style/MyProgressButton"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/done" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_unit_id" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

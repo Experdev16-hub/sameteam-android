@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.sameteam.authScreens.model.LoginResponseModel.User" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/scale_8dp">
+
+        <!--                <com.example.sameteam.widget.CircleImageView-->
+        <!--                    android:layout_width="@dimen/scale_40dp"-->
+        <!--                    android:layout_height="@dimen/scale_40dp"-->
+        <!--                    android:id="@+id/imageView"-->
+        <!--                    app:imageResource="@{model.image}"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+        <com.example.sameteam.widget.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/scale_40dp"
+            android:layout_height="@dimen/scale_40dp"
+            app:layout_constraintBottom_toBottomOf="@id/centerLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/centerLayout"
+            loadProfilePicture="@{model.profile_picture}"
+            android:src="@drawable/profile_photo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/centerLayout"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/endLayout"
+            app:layout_constraintBottom_toTopOf="@id/lineView"
+            android:orientation="vertical"
+            app:layout_constrainedWidth="true"
+            android:layout_marginEnd="@dimen/scale_10dp"
+            android:layout_marginStart="@dimen/scale_14dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:text="@{model.first_name+ ` ` + model.last_name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16sp"
+                tools:text="Name"
+                android:includeFontPadding="false"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_regular"
+                android:text="@{model.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_13sp"
+                tools:text="Title"
+                android:includeFontPadding="false"
+                android:layout_marginTop="@dimen/scale_3dp"/>
+
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/endLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/centerLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/centerLayout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnVideoCall"
+                android:src="@drawable/ic_video"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:onClick="@{(v) -> click.onClick(v)}"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAudioCall"
+                android:src="@drawable/ic_phone_2"
+                app:layout_constraintEnd_toStartOf="@id/btnVideoCall"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="@dimen/scale_18dp"
+                android:onClick="@{(v) -> click.onClick(v)}" />
+            <TextView
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/oval_grey_border"
+                android:fontFamily="@font/avenirnext_medium"
+                android:paddingStart="@dimen/scale_12dp"
+                android:paddingTop="@dimen/scale_4dp"
+                android:paddingEnd="@dimen/scale_12dp"
+                android:layout_marginEnd="@dimen/scale_18dp"
+                android:paddingBottom="@dimen/scale_4dp"
+                android:text="@string/add"
+                hideIfAlreadyAdded="@{model.isTeamContact}"
+                android:textColor="@color/darkGrey"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintEnd_toStartOf="@id/btnAudioCall"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:onClick="@{(v) -> click.onClick(v)}"
+                android:visibility="gone"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scale_1dp"
+            android:id="@+id/lineView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/grey"
+            android:layout_marginTop="@dimen/scale_8dp"
+            app:layout_constraintTop_toBottomOf="@id/centerLayout"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

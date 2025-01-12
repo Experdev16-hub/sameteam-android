@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.sameteam.authScreens.model.LoginResponseModel.User" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/scale_8dp"
+        android:paddingBottom="@dimen/scale_8dp"
+        android:onClick="@{(v) -> click.onClick(v)}">
+
+        <!--                <com.example.sameteam.widget.CircleImageView-->
+        <!--                    android:layout_width="@dimen/scale_40dp"-->
+        <!--                    android:layout_height="@dimen/scale_40dp"-->
+        <!--                    android:id="@+id/imageView"-->
+        <!--                    app:imageResource="@{model.image}"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+        <com.example.sameteam.widget.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/scale_40dp"
+            android:layout_height="@dimen/scale_40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            loadProfilePicture="@{model.profile_picture}"
+            android:src="@drawable/profile_photo"
+            android:onClick="@{(v) -> click.onClick(v)}"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/scale_14dp"
+            android:fontFamily="@font/avenirnext_medium"
+            android:text="@{model.first_name+ ` ` + model.last_name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{(v) -> click.onClick(v)}"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/endLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btnChecked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/oval_grey_border"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="@dimen/scale_15dp"
+                android:paddingTop="@dimen/scale_7dp"
+                android:paddingEnd="@dimen/scale_15dp"
+                android:paddingBottom="@dimen/scale_7dp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/oval_grey_border"
+                android:fontFamily="@font/avenirnext_medium"
+                android:paddingStart="@dimen/scale_12dp"
+                android:paddingTop="@dimen/scale_4dp"
+                android:paddingEnd="@dimen/scale_12dp"
+                android:paddingBottom="@dimen/scale_4dp"
+                android:text="@string/add"
+                android:textColor="@color/darkGrey"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

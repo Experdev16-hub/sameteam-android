@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_sheet"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/scale_22dp"
+                android:paddingTop="@dimen/scale_22dp"
+                android:paddingEnd="@dimen/scale_22dp"
+                android:paddingBottom="@dimen/scale_10dp">
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="Start Time"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--            <ImageView-->
+                <!--                android:layout_width="@dimen/scale_25dp"-->
+                <!--                android:layout_height="@dimen/scale_25dp"-->
+                <!--                android:id="@+id/btnCross"-->
+                <!--                android:src="@drawable/ic_cross"-->
+                <!--                android:padding="@dimen/scale_5dp"-->
+                <!--                app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="@id/txtRepeat"-->
+                <!--                app:layout_constraintBottom_toBottomOf="@id/txtRepeat"-->
+                <!--                app:tint="@color/darkGrey" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--                    <RelativeLayout-->
+                    <!--                        android:id="@+id/calendarLayout"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="@dimen/scale_20dp"-->
+                    <!--                        android:visibility="visible">-->
+
+                    <!--                        <RelativeLayout-->
+                    <!--                            android:id="@+id/changeMonthLayout"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginStart="@dimen/scale_18dp"-->
+                    <!--                            android:layout_marginEnd="@dimen/scale_18dp"-->
+                    <!--                            android:layout_marginBottom="20dp">-->
+
+                    <!--                            <ImageView-->
+                    <!--                                android:id="@+id/exFivePreviousMonthImage"-->
+                    <!--                                android:layout_width="wrap_content"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_alignParentStart="true"-->
+                    <!--                                android:layout_centerVertical="true"-->
+                    <!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+                    <!--                                android:padding="@dimen/scale_5dp"-->
+                    <!--                                app:srcCompat="@drawable/ic_chevron_left" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/exFiveMonthYearText"-->
+                    <!--                                android:layout_width="wrap_content"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_centerHorizontal="true"-->
+                    <!--                                android:layout_centerVertical="true"-->
+                    <!--                                android:fontFamily="@font/avenirnext_demibold"-->
+                    <!--                                android:textColor="@color/darkGrey"-->
+                    <!--                                android:textSize="@dimen/text_size_17sp"-->
+                    <!--                                tools:text="May 2020" />-->
+
+                    <!--                            <ImageView-->
+                    <!--                                android:id="@+id/exFiveNextMonthImage"-->
+                    <!--                                android:layout_width="wrap_content"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_alignParentEnd="true"-->
+                    <!--                                android:layout_centerVertical="true"-->
+                    <!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+                    <!--                                android:padding="@dimen/scale_5dp"-->
+                    <!--                                android:rotation="180"-->
+                    <!--                                app:srcCompat="@drawable/ic_chevron_left" />-->
+
+                    <!--                        </RelativeLayout>-->
+
+                    <!--                        <com.kizitonwose.calendarview.CalendarView-->
+                    <!--                            android:id="@+id/calendarView"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_below="@id/changeMonthLayout"-->
+                    <!--                            android:layout_marginStart="@dimen/scale_5dp"-->
+                    <!--                            android:layout_marginEnd="@dimen/scale_5dp"-->
+                    <!--                            app:cv_dayViewResource="@layout/calendar_day_layout"-->
+                    <!--                            app:cv_inDateStyle="allMonths"-->
+                    <!--                            app:cv_monthHeaderResource="@layout/calendar_header"-->
+                    <!--                            app:cv_orientation="horizontal"-->
+                    <!--                            app:cv_outDateStyle="endOfRow"-->
+                    <!--                            app:cv_scrollMode="paged" />-->
+
+
+                    <!--                    </RelativeLayout>-->
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/wheelPicker"
+                            android:layout_width="@dimen/scale_70dp"
+                            android:layout_height="@dimen/scale_150dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/white"
+                            aigestudio:wheel_atmospheric="true"
+                            aigestudio:wheel_curved="false"
+                            aigestudio:wheel_cyclic="true"
+                            aigestudio:wheel_item_text_color="@color/black"
+                            aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/grey"
+                            app:wheel_indicator_size="@dimen/scale_1dp"
+                            app:wheel_same_width="true"
+                            app:wheel_visible_item_count="3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/scale_10dp"
+                            android:text=":"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_20sp"
+                            android:textStyle="bold" />
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/wheelPicker2"
+                            android:layout_width="@dimen/scale_70dp"
+                            android:layout_height="@dimen/scale_150dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/scale_10dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/white"
+                            aigestudio:wheel_atmospheric="true"
+                            aigestudio:wheel_curved="false"
+                            aigestudio:wheel_cyclic="true"
+                            aigestudio:wheel_item_text_color="@color/black"
+                            aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/grey"
+                            app:wheel_indicator_size="@dimen/scale_1dp"
+                            app:wheel_same_width="true"
+                            app:wheel_visible_item_count="3" />
+
+                        <com.aigestudio.wheelpicker.WheelPicker
+                            android:id="@+id/wheelPicker3"
+                            android:layout_width="@dimen/scale_70dp"
+                            android:layout_height="@dimen/scale_150dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/scale_10dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/white"
+                            aigestudio:wheel_atmospheric="true"
+                            aigestudio:wheel_curved="false"
+                            aigestudio:wheel_cyclic="false"
+                            aigestudio:wheel_item_text_color="@color/black"
+                            aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
+                            aigestudio:wheel_selected_item_position="2"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            app:wheel_indicator="true"
+                            app:wheel_indicator_color="@color/grey"
+                            app:wheel_indicator_size="@dimen/scale_1dp"
+                            app:wheel_same_width="true"
+                            app:wheel_visible_item_count="3" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/scale_40dp"
+                android:layout_marginBottom="@dimen/scale_20dp"
+                android:gravity="center_horizontal"
+                android:paddingStart="@dimen/scale_20dp"
+                android:paddingEnd="@dimen/scale_20dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/scale_50dp"
+                    android:layout_height="@dimen/scale_50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/border_grey_rectangle_background"
+                    android:backgroundTint="@color/lightBlue"
+                    android:src="@drawable/ic_chevron_left" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scale_60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_12dp"
+                    android:layout_toEndOf="@id/btnBack"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:letterSpacing="0.00"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:cornerRadius="@dimen/scale_7dp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

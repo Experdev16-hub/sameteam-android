@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_version_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#20606060"
+    android:gravity="center_horizontal"
+    android:paddingTop="@dimen/scale_16dp"
+    android:paddingBottom="@dimen/scale_16dp"
+    android:text="QuickBlox Video Chat Kotlin
+Build version 4.0.3-kotlin"
+    android:textSize="@dimen/text_size_16sp"
+    android:textStyle="normal" />

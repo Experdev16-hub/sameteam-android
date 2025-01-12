@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentIncomeCall"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue">
+
+    <LinearLayout
+        android:id="@+id/layout_info_about_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.example.sameteam.widget.CircleImageView
+            android:id="@+id/image_caller_avatar"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/profile_photo"
+            android:background="@drawable/call_background"
+            android:padding="@dimen/_45sdp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progress_bar_opponent_name"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/text_caller_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/progress_bar_opponent_name"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#1F1F1F"
+                android:textSize="@dimen/_16ssp"
+                tools:text="Egor Pavlov" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/call_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/text_incoming_audio_call"
+            android:textColor="@color/text_color_call_type"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/text_also_on_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/also_on_call"
+            android:textColor="#6E6E6E"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/text_other_inc_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:gravity="center"
+            android:textColor="#1F1F1F"
+            android:textSize="@dimen/_13ssp"
+            tools:text="@string/user_list_on_call" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:id="@+id/image_button_reject_call"
+            android:src="@drawable/ic_call_hangup" />
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:id="@+id/image_button_accept_call"
+            android:layout_marginStart="@dimen/_60sdp"
+            android:layout_toEndOf="@id/image_button_reject_call"
+            android:src="@drawable/ic_call_pickup"
+            tools:ignore="RtlCompat" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_action_buttons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="@dimen/_13sdp"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <ToggleButton
+        android:id="@+id/toggle_mic"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/selector_toggle_mic"
+        android:checked="true"
+        android:gravity="center"
+        android:textOff=""
+        android:textOn="" />
+
+    <ImageView
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:id="@+id/button_hangup_call"
+        android:layout_marginStart="@dimen/_19sdp"
+        android:src="@drawable/ic_call_hangup" />
+
+    <ToggleButton
+        android:id="@+id/toggle_camera"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="@dimen/_19sdp"
+        android:background="@drawable/selector_video_call"
+        android:layout_gravity="center_vertical"
+        android:checked="true"
+        android:visibility="gone"
+        android:textOff=""
+        android:textOn=""
+        tools:visibility="visible" />
+
+    <ToggleButton
+        android:id="@+id/toggle_speaker"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/_19sdp"
+        android:background="@drawable/selector_toggle_speaker"
+        android:checked="true"
+        android:textOff=""
+        android:textOn=""
+        android:visibility="gone"
+        tools:visibility="visible" />
+</LinearLayout>

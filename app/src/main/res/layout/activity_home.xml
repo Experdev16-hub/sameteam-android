@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            tools:context=".homeScreen.HomeActivity">
+
+            <include
+                android:id="@+id/custom_toolbar"
+                layout="@layout/toolbar" />
+
+            <fragment
+                android:id="@+id/nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/navigation" />
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_unit_id" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/scale_50dp"
+                android:background="@color/white"
+                app:elevation="7dp"
+                app:labelVisibilityMode="unlabeled"
+                app:menu="@menu/bottom_menu" />
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_45dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profileImage"
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:src="@drawable/profile_photo"
+                            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                        <ImageView
+                            android:id="@+id/onlineStatus"
+                            android:layout_width="@dimen/scale_12dp"
+                            android:layout_height="@dimen/scale_12dp"
+                            android:layout_marginStart="46dp"
+                            android:layout_marginTop="46dp"
+                            android:background="@drawable/status_border"
+                            android:src="@drawable/ic_online"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/scale_20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/avenirnext_demibold"
+                            android:includeFontPadding="false"
+                            android:text="User"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_18sp" />
+
+                        <TextView
+                            android:id="@+id/position"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_5dp"
+                            android:fontFamily="@font/avenirnext_regular"
+                            android:includeFontPadding="false"
+                            android:lines="2"
+                            android:text="Title"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_14sp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_28dp"
+                    android:layout_marginTop="@dimen/scale_37dp"
+                    android:text="@string/events"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/myEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_20dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:padding="@dimen/scale_11dp"
+                        android:src="@drawable/ic_briefcase" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/my_events"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_35dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:padding="@dimen/scale_11dp"
+                        android:src="@drawable/ic_briefcase" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/activities"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/createTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_20dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:padding="@dimen/scale_11dp"
+                        android:src="@drawable/ic_users_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/teams"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/myProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_15dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:paddingStart="@dimen/scale_9dp"
+                        android:paddingTop="@dimen/scale_8dp"
+                        android:paddingEnd="@dimen/scale_9dp"
+                        android:paddingBottom="@dimen/scale_8dp"
+                        android:src="@drawable/ic_user" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/profile"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/upgrade_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_15dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/scale_37dp"
+                        android:layout_height="@dimen/scale_37dp"
+                        android:background="@drawable/icon_background"
+                        android:paddingTop="@dimen/scale_8dp"
+                        android:paddingBottom="@dimen/scale_8dp"
+                        android:src="@drawable/ic_upgrade" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/upgrade_account"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_28dp"
+                    android:layout_marginTop="34dp"
+                    android:text="@string/other"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_18sp" />
+
+                <LinearLayout
+                    android:id="@+id/termsAndConditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_20dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/scale_5dp"
+                    android:paddingBottom="@dimen/scale_5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:padding="@dimen/scale_11dp"
+                        android:src="@drawable/ic_more_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/terms_amp_conditions"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/privacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/scale_5dp"
+                    android:paddingBottom="@dimen/scale_5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:paddingStart="@dimen/scale_11dp"
+                        android:paddingTop="@dimen/scale_9dp"
+                        android:paddingEnd="@dimen/scale_11dp"
+                        android:paddingBottom="@dimen/scale_9dp"
+                        android:src="@drawable/ic_lock" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/privacy_policy"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/needHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_26dp"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:layout_marginEnd="@dimen/scale_26dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/scale_5dp"
+                    android:paddingBottom="@dimen/scale_5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_background"
+                        android:paddingStart="@dimen/scale_11dp"
+                        android:paddingTop="@dimen/scale_9dp"
+                        android:paddingEnd="@dimen/scale_11dp"
+                        android:paddingBottom="@dimen/scale_9dp"
+                        android:src="@drawable/ic_faq" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/text_size_14sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/need_help"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</layout>

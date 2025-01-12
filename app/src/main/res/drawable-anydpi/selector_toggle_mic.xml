@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" >
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/black"/>
+                    <size android:height="@dimen/scale_15dp" android:width="@dimen/scale_15dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_mic_on"
+                android:gravity="center"
+                android:top="@dimen/scale_10dp"
+                android:right="@dimen/scale_10dp"
+                android:left="@dimen/scale_10dp"
+                android:bottom="@dimen/scale_10dp"/>
+        </layer-list>
+    </item>
+    <item android:state_checked="false" >
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/black"/>
+                    <size android:height="@dimen/scale_15dp" android:width="@dimen/scale_15dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_mic_off"
+                android:gravity="center"
+                android:top="@dimen/scale_10dp"
+                android:right="@dimen/scale_10dp"
+                android:left="@dimen/scale_10dp"
+                android:bottom="@dimen/scale_10dp"/>
+        </layer-list>
+    </item>
+</selector>

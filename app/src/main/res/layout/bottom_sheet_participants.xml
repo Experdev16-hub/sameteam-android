@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <RelativeLayout
+            style="@style/RootLayout"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingStart="@dimen/scale_20dp"
+            android:paddingTop="@dimen/scale_18dp"
+            android:paddingEnd="@dimen/scale_20dp"
+            android:background="@drawable/rounded_sheet">
+
+            <TextView
+                android:id="@+id/txtInvite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:text="@string/participants"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20sp" />
+
+            <ImageView
+                android:layout_width="@dimen/scale_25dp"
+                android:layout_height="@dimen/scale_25dp"
+                android:id="@+id/btnCross"
+                android:src="@drawable/ic_cross"
+                android:padding="@dimen/scale_5dp"
+                android:layout_alignParentEnd="true"
+                app:tint="@color/darkGrey" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputSearch"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtInvite"
+                android:layout_marginTop="@dimen/scale_17dp"
+                android:hint="@string/search"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:hintTextColor="@color/colorPrimary"
+                app:placeholderText="@string/search_by_email"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:theme="@style/MyEditTextHint" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtInputSearch"
+                android:orientation="vertical"
+                android:id="@+id/scrollLayout"
+                android:layout_marginBottom="@dimen/scale_18dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/usersRecView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/user_directory_card_layout" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary"
+                android:secondaryProgressTint="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

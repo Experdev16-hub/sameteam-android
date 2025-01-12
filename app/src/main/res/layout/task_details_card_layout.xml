@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.sameteam.homeScreen.bottomNavigation.taskModule.model.TaskModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scale_14dp"
+        app:cardCornerRadius="@dimen/scale_12dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scale_15dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_15dp">
+
+                <RelativeLayout
+                    android:id="@+id/imgLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/initials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/circle_background_event"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="SD"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:visibility="visible" />
+
+                    <com.example.sameteam.widget.CircleImageView
+                        android:id="@+id/taskImage"
+                        android:layout_width="@dimen/scale_30dp"
+                        android:layout_height="@dimen/scale_30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_placeholder"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/taskName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@id/imgLayout"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="SameTeam - Daily Standups"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16sp" />
+
+                <ImageView
+                    android:id="@+id/eventColor"
+                    android:layout_width="@dimen/scale_15dp"
+                    android:layout_height="@dimen/scale_15dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/circle_background_notification"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/teamNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_9dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:maxLines="1"
+                android:text="Teams:"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_13sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_9dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:fontFamily="@font/avenirnext_regular"
+                android:text="Event 1"
+                android:textColor="@color/darkGrey"
+                android:textSize="@dimen/text_size_13sp" />
+
+
+            <TextView
+                android:id="@+id/taskDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_9dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:fontFamily="@font/avenirnext_regular"
+                android:text="Daily updates, Requirements discussion, design brainstorming"
+                android:textColor="@color/darkGrey"
+                android:textSize="@dimen/text_size_13sp" />
+
+            <LinearLayout
+                android:id="@+id/locationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_location_green" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="9dp"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="Bangalore, Karnataka"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_creator_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/created_by"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16sp" />
+
+                <TextView
+                    android:id="@+id/textActivityCreator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_7dp"
+                    android:fontFamily="@font/avenirnext_regular"
+                    android:includeFontPadding="false"
+                    android:text="User Name"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_16sp" />
+
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/slot_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/slotsIcon"
+                    android:layout_width="@dimen/scale_30dp"
+                    android:layout_height="@dimen/scale_30dp"
+                    android:background="@drawable/icon_background"
+                    android:paddingLeft="@dimen/scale_8dp"
+                    android:paddingTop="@dimen/scale_6dp"
+                    android:paddingRight="@dimen/scale_8dp"
+                    android:paddingBottom="@dimen/scale_6dp"
+                    android:src="@drawable/ic_users_selected"
+                    app:layout_constraintBottom_toBottomOf="@id/txtSlots"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtSlots"
+                    app:tint="@color/colorPrimary" />
+
+
+                <TextView
+                    android:id="@+id/txtSlots"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/scale_9dp"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/slotsIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/participantsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/scale_35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/arrowNext"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="RtlSymmetry"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/row_image" />
+
+                <ImageView
+                    android:id="@+id/arrowNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_round_arrow_forward" />
+
+                <RelativeLayout
+                    android:id="@+id/clickLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scale_36dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/participantsStatusLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:layout_marginEnd="@dimen/scale_15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:layout_marginEnd="@dimen/scale_15dp">
+
+                    <ImageView
+                        android:id="@+id/status_accepted"
+                        android:layout_width="@dimen/scale_24dp"
+                        android:layout_height="@dimen/scale_24dp"
+                        android:src="@drawable/ic_check_color"
+                        app:layout_constraintBottom_toBottomOf="@id/txtSlots"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtSlots" />
+
+                    <TextView
+                        android:id="@+id/txt_accepted_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/scale_3dp"
+                        android:layout_marginEnd="@dimen/scale_10dp"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/text_size_13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/status_accepted"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/status_pending"
+                        android:layout_width="@dimen/scale_24dp"
+                        android:layout_height="@dimen/scale_24dp"
+                        android:src="@drawable/ic_time_left"
+                        app:layout_constraintBottom_toBottomOf="@id/txtSlots"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtSlots" />
+
+                    <TextView
+                        android:id="@+id/txt_pending_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/scale_3dp"
+                        android:layout_marginEnd="@dimen/scale_10dp"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textColor="@color/toolbar_subtitle_color"
+                        android:textSize="@dimen/text_size_13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/status_pending"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/status_canceled"
+                        android:layout_width="@dimen/scale_24dp"
+                        android:layout_height="@dimen/scale_24dp"
+                        android:src="@drawable/ic_cancel_red"
+                        app:layout_constraintBottom_toBottomOf="@id/txtSlots"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtSlots" />
+
+                    <TextView
+                        android:id="@+id/txt_cancel_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/scale_3dp"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_size_13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/status_canceled"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/arrowRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_round_arrow_forward" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/scale_1dp"
+                android:layout_marginTop="@dimen/scale_14dp"
+                android:background="#e0e0e0" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/scale_15dp"
+                android:layout_marginTop="@dimen/scale_15dp"
+                android:layout_marginEnd="@dimen/scale_11dp"
+                android:layout_marginBottom="@dimen/scale_15dp">
+
+                <TextView
+                    android:id="@+id/txtStarts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:text="@string/date"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+                <TextView
+                    android:id="@+id/start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_3dp"
+                    android:layout_toEndOf="@id/txtStarts"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="Jan 05, 2021"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+
+                <ImageView
+                    android:id="@+id/clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/endTime"
+                    android:src="@drawable/ic_clock" />
+
+                <TextView
+                    android:id="@+id/endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="10:00 AM - 12:00 PM"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_13sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

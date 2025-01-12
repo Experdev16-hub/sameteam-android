@@ -1,0 +1,190 @@
+{
+  "project_info": {
+    "project_number": "307972975073",
+    "project_id": "sameteam-2c64b",
+    "storage_bucket": "sameteam-2c64b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307972975073:android:e6133a2cbc6238d48d0aa0",
+        "android_client_info": {
+          "package_name": "com.app.sameteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307972975073-5bj7jsaldso09la34oqeq5aj0s9tgbgf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sameteam",
+            "certificate_hash": "5561e40a95a0bb5f46adc51bcff15b973f12a9c8"
+          }
+        },
+        {
+          "client_id": "307972975073-6dficgu6dnvlt5tu0p5cvs9rnmhtkv8v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sameteam",
+            "certificate_hash": "3ea38261d7a83cad509adb49d5d5113cf2774225"
+          }
+        },
+        {
+          "client_id": "307972975073-jhcr7llb7ut8ef7jg5ppgftutjjlg3fo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sameteam",
+            "certificate_hash": "797869013fb74535edc72057887305b17d9498ee"
+          }
+        },
+        {
+          "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCRD1-qJ87m4WtcQqQx_E8o_VFhgTq_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "307972975073-rtqqtmvg9ciesmjso90ruv88eh9fd1f8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.SameTeam"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307972975073:android:455db1fd762f67098d0aa0",
+        "android_client_info": {
+          "package_name": "com.example.sameteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307972975073-6bhdvaeunojo47m3s1kts3a9on8b6nvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sameteam",
+            "certificate_hash": "5561e40a95a0bb5f46adc51bcff15b973f12a9c8"
+          }
+        },
+        {
+          "client_id": "307972975073-n0t80ndr6bcoemr3edfbda35jf0itnc7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sameteam",
+            "certificate_hash": "3ea38261d7a83cad509adb49d5d5113cf2774225"
+          }
+        },
+        {
+          "client_id": "307972975073-nekk8lmsv9sc7hiklt4118dnefn86g9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sameteam",
+            "certificate_hash": "797869013fb74535edc72057887305b17d9498ee"
+          }
+        },
+        {
+          "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCRD1-qJ87m4WtcQqQx_E8o_VFhgTq_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "307972975073-rtqqtmvg9ciesmjso90ruv88eh9fd1f8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.SameTeam"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307972975073:android:0621f80bb0c70a428d0aa0",
+        "android_client_info": {
+          "package_name": "com.quickblox.sample.videochat.kotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307972975073-e24limulgv9v6v23v35qhndrim05dlns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quickblox.sample.videochat.kotlin",
+            "certificate_hash": "3ea38261d7a83cad509adb49d5d5113cf2774225"
+          }
+        },
+        {
+          "client_id": "307972975073-go6p2kr9iah9sjno102eqco9ibbqp6qp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quickblox.sample.videochat.kotlin",
+            "certificate_hash": "797869013fb74535edc72057887305b17d9498ee"
+          }
+        },
+        {
+          "client_id": "307972975073-i69pi9cfrmgu1gugbfd474163jr2vtb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quickblox.sample.videochat.kotlin",
+            "certificate_hash": "5561e40a95a0bb5f46adc51bcff15b973f12a9c8"
+          }
+        },
+        {
+          "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCRD1-qJ87m4WtcQqQx_E8o_VFhgTq_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307972975073-9je041doic797vjflg8eqmf45v2tk3ts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "307972975073-rtqqtmvg9ciesmjso90ruv88eh9fd1f8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.SameTeam"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

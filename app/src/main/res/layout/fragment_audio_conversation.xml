@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentIncomeCall"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue">
+
+    <LinearLayout
+        android:id="@+id/layout_info_about_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.example.sameteam.widget.CircleImageView
+            android:id="@+id/image_caller_avatar"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/profile_photo"
+            android:background="@drawable/call_background"
+            android:padding="@dimen/_45sdp"/>
+
+        <TextView
+            android:id="@+id/text_caller_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="@dimen/_15sdp"
+            android:textColor="#1F1F1F"
+            android:text="User"
+            android:textSize="@dimen/_18ssp" />
+
+        <TextView
+            android:id="@+id/timer_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#6E6E6E"
+            android:textSize="@dimen/_16ssp"
+            android:visibility="invisible"
+            tools:text="08:17"
+            tools:visibility="visible"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/text_also_on_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="@string/also_on_call"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/text_other_inc_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:textColor="#1F1F1F"
+            android:textSize="@dimen/_13ssp"
+            tools:text="@string/user_list_on_call" />
+    </LinearLayout>
+
+    <include layout="@layout/view_outgoing_screen" />
+
+    <include layout="@layout/view_action_buttons_conversation_fragment" />
+</RelativeLayout>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".homeScreen.bottomNavigation.chatModule.activity.ChatActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            android:elevation="1dp"
+            android:theme="@style/Toolbar"
+            app:contentInsetEnd="@dimen/scale_0dp"
+            app:contentInsetLeft="@dimen/scale_0dp"
+            app:contentInsetRight="@dimen/scale_0dp"
+            app:contentInsetStart="@dimen/scale_0dp"
+            app:contentInsetStartWithNavigation="@dimen/scale_0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/left_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_16dp"
+                    android:padding="@dimen/scale_7dp"
+                    android:src="@drawable/ic_chevron_left"
+                    app:tint="@color/darkGrey" />
+
+                <RelativeLayout
+                    android:id="@+id/ImageLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:layout_toEndOf="@id/left_icon">
+
+                    <com.example.sameteam.widget.CircleImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="@dimen/scale_36dp"
+                        android:layout_height="@dimen/scale_36dp"
+                        android:src="@drawable/profile_photo" />
+
+                    <TextView
+                        android:id="@+id/initials"
+                        android:layout_width="@dimen/scale_36dp"
+                        android:layout_height="@dimen/scale_36dp"
+                        android:background="@drawable/circle_background_event"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="SD"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/onlineStatus"
+                        android:layout_width="@dimen/scale_10dp"
+                        android:layout_height="@dimen/scale_10dp"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="27dp"
+                        android:background="@drawable/status_border"
+                        android:src="@drawable/ic_online"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/nameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="@dimen/scale_10dp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/clCallOptions"
+                    android:layout_toRightOf="@id/ImageLayout">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="1dp"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16sp"
+                        tools:text="@tools:sample/lorem/random" />
+
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/online"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:visibility="gone" />
+
+
+                </RelativeLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clCallOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/scale_17dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnInfo"
+                        android:src="@drawable/ic_event"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/scale_20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnEdit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:tint="@color/primary_blue_icon" />
+
+                    <ImageView
+                        android:id="@+id/btnEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/scale_20dp"
+                        android:src="@drawable/ic_edit"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnAudioCall"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/btnAudioCall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/scale_20dp"
+                        android:src="@drawable/ic_phone_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnVideoCall"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/btnVideoCall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_video"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tv_typing_status"
+            android:layout_below="@id/toolbar"
+            android:background="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary"
+            android:secondaryProgressTint="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_typing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_attachment_preview_container"
+            android:fontFamily="@font/avenirnext_medium"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/darkGrey"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:text="Alexparvus is typing..." />
+
+        <LinearLayout
+            android:id="@+id/ll_attachment_preview_container"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_above="@+id/rl_chat_send_container"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <View
+                android:id="@+id/divider_chat_attachments"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/scale_1dp"
+                android:background="@color/colorInactive" />
+
+            <com.example.sameteam.quickBlox.views.AttachmentPreviewAdapterView
+                android:id="@+id/adapter_attachment_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider_chat"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/rl_chat_send_container"
+            android:background="@color/colorInactive"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/rl_chat_send_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scale_80dp"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="@dimen/scale_10dp"
+            android:paddingBottom="@dimen/scale_10dp">
+
+            <ImageView
+                android:id="@+id/iv_chat_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="9dp"
+                android:paddingTop="7dp"
+                android:paddingRight="9dp"
+                android:paddingBottom="7dp"
+                android:src="@drawable/ic_paperclip" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_chat_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/iv_chat_send"
+                android:layout_toEndOf="@+id/iv_chat_attachment"
+                android:background="@drawable/edit_text_chat_background"
+                android:fontFamily="@font/avenirnext_regular"
+                android:gravity="center_vertical"
+                android:hint="Write a reply..."
+                android:imeOptions="actionSend"
+                android:inputType="textShortMessage"
+                android:maxLength="1000"
+                android:padding="@dimen/scale_15dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_14sp"
+                android:theme="@style/MyEditTextHint" />
+
+            <ImageView
+                android:id="@+id/iv_chat_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/scale_4dp"
+                android:paddingStart="2.5dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="8dp"
+                android:src="@drawable/ic_send_message" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

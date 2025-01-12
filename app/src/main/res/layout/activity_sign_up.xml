@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sameteam.authScreens.viewModel.SignUpVM" />
+    </data>
+
+    <LinearLayout
+        style="@style/RootLayout"
+        android:orientation="vertical"
+        tools:context=".authScreens.SignUpActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/scale_28dp"
+            android:paddingTop="@dimen/scale_15dp"
+            android:paddingEnd="@dimen/scale_28dp"
+            android:paddingBottom="@dimen/scale_10dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_arrow"
+                android:paddingHorizontal="@dimen/scale_8dp"
+                android:paddingVertical="@dimen/scale_6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="back button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:text="@string/create_profile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/scale_25dp"
+                android:paddingTop="@dimen/scale_10dp"
+                android:paddingEnd="@dimen/scale_25dp"
+                android:paddingBottom="@dimen/scale_16dp">
+
+                <!--                <com.example.sameteam.widget.CircleImageView-->
+                <!--                    android:layout_width="@dimen/scale_100dp"-->
+                <!--                    android:layout_height="@dimen/scale_100dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:id="@+id/imgView"-->
+                <!--                    android:src="@drawable/profile_photo"/>-->
+
+                <RelativeLayout
+                    android:id="@+id/imgLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <com.example.sameteam.widget.CircleImageView
+                        android:id="@+id/profilePic"
+                        android:layout_width="@dimen/scale_100dp"
+                        android:layout_height="@dimen/scale_100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profile_photo" />
+
+                    <com.example.sameteam.widget.CircleImageView
+                        android:layout_width="@dimen/scale_30dp"
+                        android:layout_height="@dimen/scale_30dp"
+                        android:layout_marginStart="@dimen/scale_70dp"
+                        android:layout_marginTop="@dimen/scale_70dp"
+                        android:src="@drawable/ic_camera_icon" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_28dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/scale_8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/first_name"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/firstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModel.registerRequestModel.first_name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/scale_8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/last_name"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModel.registerRequestModel.last_name}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/title"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_26dp"
+                    android:hint="@string/title_optional"
+                    android:theme="@style/MyEditTextHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:text="@={viewModel.registerRequestModel.title}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_26dp"
+                    android:hint="@string/company_email_id"
+                    android:theme="@style/MyEditTextHint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.registerRequestModel.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/scale_26dp">
+
+                    <com.example.sameteam.widget.ccp.CountryCodePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ccp_loadFullNumber"
+                        app:ccp_defaultNameCode="us"
+                        app:ccp_hintExampleNumber="true"
+                        app:ccp_countryPreference="us"
+                        app:ccp_textSize="@dimen/text_size_16sp"
+                        app:ccp_contentColor="@color/darkGrey"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/scale_5dp"
+                        android:layout_marginBottom="@dimen/scale_2dp"
+                        android:background="@drawable/border_grey_rectangle_background"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mobile_number"
+                        android:theme="@style/MyEditTextHint"
+                        android:layout_marginStart="@dimen/scale_10dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:text="@={viewModel.registerRequestModel.mobile_number}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:id="@+id/role"-->
+                <!--                    android:hint="@string/role"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    app:endIconMode="dropdown_menu"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp">-->
+
+                <!--                    <AutoCompleteTextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id="@+id/txtRole"-->
+                <!--                        android:padding="@dimen/scale_16dp"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:focusable="false"-->
+                <!--                        android:inputType="none"/>-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--                <com.google.android.material.textfield.TextInputLayout-->
+                <!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:hint="@string/employee_code"-->
+                <!--                    android:theme="@style/MyEditTextHint"-->
+                <!--                    android:layout_marginTop="@dimen/scale_26dp">-->
+
+                <!--                    <com.google.android.material.textfield.TextInputEditText-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:imeOptions="actionNext"-->
+                <!--                        android:id="@+id/txtEmployeeCode"/>-->
+
+                <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/passwordInput"
+                    android:layout_marginTop="@dimen/scale_26dp"
+                    android:hint="@string/create_password"
+                    android:theme="@style/MyEditTextHint"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.registerRequestModel.password}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmit"
+                    style="@style/MyProgressButton"
+                    android:layout_marginTop="@dimen/scale_30dp"
+                    android:text="@string/submit" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>
+

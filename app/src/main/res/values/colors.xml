@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ic_launcher_background">#ffffff</color>
+
+    <color name="colorPrimary">#2F88D6</color>
+    <color name="colorSecondary">#f3f8fd</color>
+    <color name="colorPrimaryDark">#0261BF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorInactive">#e4e4e4</color>
+    <color name="grey">#BCB0BA</color>
+    <color name="darkGrey">#333333</color>
+    <color name="lightBlue">#e0efff</color>
+    <!--    <color name="extraLightBlue">#c0dbf3</color>-->
+    <color name="blue">#cfecff</color>
+    <color name="backgroundBlue">#f1f4fa</color>
+    <color name="lightYellow">#fdf1db</color>
+    <color name="green">#4CAF50</color>
+    <color name="spotlightBackground">#BF000000</color>
+    <color name="red">#FF0000</color>
+
+    <color name="text_color_outgoing_opponents_names_audio_call">#1f1f1f</color>
+    <color name="toolbar_title_color">#1f1f1f</color>
+    <color name="toolbar_subtitle_color">#6e6e6e</color>
+    <color name="text_color_call_type">#6e6e6e</color>
+    <color name="grey_transparent_50">#50606060</color>
+    <color name="black_transparent_50">#50000000</color>
+    <color name="primary_blue_icon">#2f88d6</color>
+
+</resources>

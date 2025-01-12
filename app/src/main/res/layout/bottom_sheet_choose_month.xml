@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data></data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/RootLayout"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_sheet"
+        app:behavior_hideable="true"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        android:padding="@dimen/scale_22dp"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_month"
+                android:id="@+id/txtChoose"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:textSize="@dimen/text_size_20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:layout_width="@dimen/scale_25dp"
+                android:layout_height="@dimen/scale_25dp"
+                android:id="@+id/btnCross"
+                android:src="@drawable/ic_cross"
+                android:padding="@dimen/scale_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtChoose"
+                app:layout_constraintBottom_toBottomOf="@id/txtChoose"
+                app:tint="@color/darkGrey" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scale_10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/jan"
+                    android:text="@string/JAN"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:id="@+id/feb"
+                    android:text="@string/FEB"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/mar"
+                    android:text="@string/MAR"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/apr"
+                    android:text="@string/APR"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scale_10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/may"
+                    android:text="@string/MAY"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/jun"
+                    android:text="@string/JUN"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/jul"
+                    android:text="@string/JUL"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/aug"
+                    android:text="@string/AUG"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scale_10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/sep"
+                    android:text="@string/SEP"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/oct"
+                    android:text="@string/OCT"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/nov"
+                    android:text="@string/NOV"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/dec"
+                    android:text="@string/DEC"
+                    style="@style/MonthTextView"
+                    android:background="@drawable/rounded_rectangle"
+                    android:backgroundTint="@color/lightBlue"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</layout>

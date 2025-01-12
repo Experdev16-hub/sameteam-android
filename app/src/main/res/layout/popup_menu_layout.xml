@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/scale_3dp"
+        app:cardUseCompatPadding="true"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/scale_10dp">
+
+            <LinearLayout
+                android:layout_width="@dimen/scale_110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/complete"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/scale_14dp"
+                    android:layout_height="@dimen/scale_14dp"
+                    android:id="@+id/completeImage"
+                    android:src="@drawable/ic_check_circle"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/complete"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:textColor="@color/darkGrey"
+                    android:layout_marginStart="@dimen/scale_7dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/edit"
+                android:layout_width="@dimen/scale_110dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/complete"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/scale_14dp"
+                    android:layout_height="@dimen/scale_14dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_edit_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_7dp"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:text="@string/edit"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/text_size_14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/scale_110dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/edit"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:id="@+id/delete">
+
+                <ImageView
+                    android:layout_width="@dimen/scale_14dp"
+                    android:layout_height="@dimen/scale_14dp"
+                    android:src="@drawable/ic_trash"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:fontFamily="@font/avenirnext_medium"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:textColor="@color/darkGrey"
+                    android:layout_marginStart="@dimen/scale_7dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

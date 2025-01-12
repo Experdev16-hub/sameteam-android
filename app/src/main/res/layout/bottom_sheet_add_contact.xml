@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            style="@style/RootLayout"
+            android:background="@drawable/rounded_sheet"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingStart="@dimen/scale_20dp"
+            android:paddingTop="@dimen/scale_18dp"
+            android:paddingEnd="@dimen/scale_20dp"
+            app:layout_anchor="@+id/relativeLayout"
+            app:layout_anchorGravity="center">
+
+            <LinearLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtInvite"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:text="@string/add_contact"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20sp" />
+
+                <ImageView
+                    android:id="@+id/btnCross"
+                    android:layout_width="@dimen/scale_25dp"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/scale_25dp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:padding="@dimen/scale_5dp"
+                    android:src="@drawable/ic_cross"
+                    app:tint="@color/darkGrey" />
+            </LinearLayout>
+
+            <include
+                android:id="@+id/searchLayout"
+                layout="@layout/search_contact_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleLayout"
+                android:layout_marginTop="@dimen/scale_17dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/userRecView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/searchLayout"
+                android:layout_alignParentBottom="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/user_directory_card_layout" />
+
+
+            <TextView
+                android:id="@+id/txtUserNotFound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/searchLayout"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:gravity="center"
+                android:text="@string/search_with_email"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary"
+                android:secondaryProgressTint="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+

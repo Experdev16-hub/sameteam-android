@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data></data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/scale_7dp"
+            android:layout_marginBottom="@dimen/scale_7dp"
+            android:background="@color/white"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/startParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/scale_7dp"
+            android:layout_marginTop="@dimen/scale_7dp"
+            android:layout_marginBottom="@dimen/scale_7dp"
+            android:background="@drawable/selected_date_background"
+            android:backgroundTint="@color/lightBlue"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/endParent"
+            android:layout_marginTop="@dimen/scale_7dp"
+            android:layout_marginBottom="@dimen/scale_7dp"
+            android:background="@drawable/selected_date_background"
+            android:backgroundTint="@color/lightBlue"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/calendarDayText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/scale_7dp"
+            android:fontFamily="@font/avenirnext_demibold"
+            android:gravity="center"
+            android:text="22"
+            android:textColor="@color/darkGrey"
+            android:textSize="@dimen/text_size_16sp" />
+
+        <View
+            android:id="@+id/dotView"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/scale_10dp"
+            android:background="@drawable/circle_background_event"
+            android:backgroundTint="@color/colorPrimary"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/dotView2"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/circle_background_event"
+            android:backgroundTint="@color/colorPrimary"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+</layout>
+

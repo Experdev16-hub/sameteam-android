@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/scale_35dp"
+        android:layout_height="@dimen/scale_35dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true">
+
+        <com.example.sameteam.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:src="@drawable/profile_photo"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/scale_2dp"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+</layout>
+

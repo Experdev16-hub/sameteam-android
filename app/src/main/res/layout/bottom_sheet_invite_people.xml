@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            style="@style/RootLayout"
+            android:background="@drawable/rounded_sheet"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingStart="@dimen/scale_20dp"
+            android:paddingTop="@dimen/scale_18dp"
+            android:paddingEnd="@dimen/scale_20dp"
+            app:layout_anchor="@+id/relativeLayout"
+            app:layout_anchorGravity="center">
+
+            <TextView
+                android:id="@+id/txtInvite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenirnext_demibold"
+                android:text="@string/invite_people"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20sp" />
+
+            <include layout="@layout/search_contact_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtInputSearch"
+                android:layout_below="@id/txtInvite"
+                android:layout_marginTop="@dimen/scale_17dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/scrollLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/txtInputSearch"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:orientation="vertical">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/teamLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/txtTeamLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtTeam"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/avenirnext_demibold"
+                                    android:text="@string/teams"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_16sp" />
+
+                                <ImageView
+                                    android:id="@+id/btnInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|center_vertical"
+                                    android:layout_marginStart="@dimen/scale_2dp"
+                                    android:scaleX="0.8"
+                                    android:scaleY="0.8"
+                                    android:src="@drawable/ic_info" />
+
+                            </LinearLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/teamRecView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/txtTeamLayout"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:itemCount="3"
+                                tools:listitem="@layout/user_directory_card_layout" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/individualsLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_24dp"
+                            android:visibility="visible">
+
+                            <RelativeLayout
+                                android:id="@+id/individualTextLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/txtIndividual"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/avenirnext_demibold"
+                                    android:text="@string/individual"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_16sp" />
+
+                                <ImageView
+                                    android:id="@+id/btnSelectAll"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_select_all"
+                                    android:tag="0"
+                                    android:visibility="gone" />
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/userRecView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/individualTextLayout"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:itemCount="5"
+                                tools:listitem="@layout/user_directory_card_layout" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/scale_20dp"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="@dimen/scale_50dp"
+                        android:layout_height="@dimen/scale_50dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/border_grey_rectangle_background"
+                        android:backgroundTint="@color/lightBlue"
+                        android:src="@drawable/ic_chevron_left" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/scale_60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/scale_12dp"
+                        android:layout_toEndOf="@id/btnBack"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:letterSpacing="0.00"
+                        android:text="@string/done"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/text_size_16sp"
+                        app:cornerRadius="@dimen/scale_7dp" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txtUserNotFound"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/relativeLayout2"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:gravity="center"
+                    android:text="@string/search_with_email"
+                    android:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary"
+                android:secondaryProgressTint="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+

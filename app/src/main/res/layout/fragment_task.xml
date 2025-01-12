@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <RelativeLayout
+        style="@style/RootLayout"
+        android:background="@color/backgroundBlue"
+        tools:context=".homeScreen.bottomNavigation.taskModule.TaskFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bottom_rectangle"
+            android:elevation="@dimen/scale_10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutTab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/scale_10dp"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:padding="@dimen/scale_5dp"
+                    android:text="Me"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/btnCalendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/scale_10dp"
+                    android:padding="@dimen/text_size_7sp"
+                    android:src="@drawable/ic_calendar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/me"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/scale_10dp"
+                    android:layout_marginStart="@dimen/scale_10dp"
+                    android:background="@android:color/transparent"
+                    android:clipToPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnCalendar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabGravity="start"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMinWidth="@dimen/scale_30dp"
+                    app:tabMode="scrollable"
+                    app:tabTextColor="@color/black" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/calendarLayout"
+                app:layout_constraintTop_toBottomOf="@+id/layoutTab"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                tools:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/calendarRangeLayout"
+                    android:paddingTop="@dimen/scale_7dp"
+                    android:background="#f7f7f7">
+
+                    <TextView
+                        android:id="@+id/txtCalendarRange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:text="Activities Invited To"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_18sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/changeMonthLayout"
+                    android:layout_below="@id/calendarRangeLayout"
+                    android:paddingBottom="@dimen/scale_7dp"
+                    android:background="#f7f7f7">
+
+                    <ImageView
+                        android:id="@+id/exFivePreviousMonthImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/scale_5dp"
+                        android:layout_marginStart="@dimen/scale_18dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_chevron_left"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/exFiveMonthYearText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_17sp"
+                        tools:text="May 2020" />
+
+                    <ImageView
+                        android:id="@+id/exFiveNextMonthImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/scale_18dp"
+                        android:padding="@dimen/scale_5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_chevron_left"
+                        android:rotation="180"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+<!--                <include-->
+<!--                    android:id="@+id/legendLayout"-->
+<!--                    layout="@layout/calendar_day_legend"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_below="@id/changeMonthLayout"-->
+<!--                    />-->
+
+
+                <com.kizitonwose.calendarview.CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cv_orientation="horizontal"
+                    app:cv_monthHeaderResource="@layout/calendar_header"
+                    app:cv_dayViewResource="@layout/calendar_day_layout"
+                    app:cv_inDateStyle="allMonths"
+                    app:cv_outDateStyle="endOfRow"
+                    app:cv_scrollMode="paged"
+                    android:layout_below="@id/changeMonthLayout"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:layout_marginEnd="@dimen/scale_5dp"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:longClickable="false"/>
+
+                <RelativeLayout
+                    android:id="@+id/expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/calendarView">
+
+                    <View
+                        android:layout_width="32dp"
+                        android:layout_height="3dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/scale_10dp"
+                        android:layout_marginBottom="@dimen/scale_11dp"
+                        android:background="#dadef0" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddTask"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/scale_16dp"
+            android:layout_marginBottom="@dimen/scale_18dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:scaleType="center"
+            app:fabCustomSize="46dp"
+            app:maxImageSize="@dimen/scale_35dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@android:color/white" />
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/searchLayout"-->
+<!--            android:layout_marginTop="@dimen/scale_10dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:hint="@string/search"-->
+<!--            app:boxStrokeColor="@color/colorPrimary"-->
+<!--            app:hintTextColor="@color/colorPrimary"-->
+<!--            app:placeholderText="@string/search_by_name"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_below="@id/topLayout"-->
+<!--            android:layout_marginStart="@dimen/scale_20dp"-->
+<!--            android:layout_marginEnd="@dimen/scale_20dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/txtSearch"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:imeOptions="actionNext"-->
+<!--                android:inputType="text"-->
+<!--                android:theme="@style/MyEditTextHint" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topLayout"
+            android:focusableInTouchMode="true"
+            android:visibility="visible"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topLayout"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frameLayout"
+            android:layout_below="@id/topLayout"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/noDataLayout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_activities_available"
+                        android:textSize="@dimen/text_size_20sp"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/backgroundBlue"
+                    android:id="@+id/recViewLayout"
+                    android:visibility="visible">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/task_details_card_layout"
+                        android:layout_marginStart="@dimen/scale_20dp"
+                        android:layout_marginEnd="@dimen/scale_20dp" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/colorPrimary"
+                    android:secondaryProgressTint="@color/colorPrimary"
+                    android:progressTint="@color/colorPrimary"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+
+    </RelativeLayout>
+</layout>

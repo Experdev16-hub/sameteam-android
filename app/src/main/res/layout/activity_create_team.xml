@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".homeScreen.bottomNavigation.chatModule.activity.UserDirectoryActivity">
+
+    <data></data>
+
+    <RelativeLayout
+        android:id="@+id/teamLayout"
+        style="@style/RootLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/custom_toolbar"
+                layout="@layout/toolbar" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/scale_20dp"
+                android:layout_marginEnd="@dimen/scale_20dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_15dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/imgView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <com.example.sameteam.widget.CircleImageView
+                            android:id="@+id/teamPhoto"
+                            android:layout_width="86dp"
+                            android:layout_height="86dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/image_placeholder" />
+
+                        <com.example.sameteam.widget.CircleImageView
+                            android:layout_width="@dimen/scale_30dp"
+                            android:layout_height="@dimen/scale_30dp"
+                            android:layout_marginStart="58dp"
+                            android:layout_marginTop="58dp"
+                            android:src="@drawable/ic_camera_icon" />
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/scale_15dp"
+                        android:hint="@string/team_name"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/teamName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/scale_15dp"
+                        android:hint="@string/description"
+                        android:theme="@style/MyEditTextHint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/scale_20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/avenirnext_demibold"
+                            android:text="@string/people_in_team"
+                            android:textColor="@color/darkGrey"
+                            android:textSize="@dimen/text_size_16sp" />
+
+                        <ImageView
+                            android:id="@+id/btnSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="end"
+                            android:padding="@dimen/scale_6dp"
+                            android:src="@drawable/ic_search"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <include
+                        android:id="@+id/searchLayout"
+                        layout="@layout/search_contact_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/scale_10dp"
+                        android:visibility="visible" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/scale_15dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="7"
+                        tools:listitem="@layout/user_directory_card_layout" />
+
+                    <TextView
+                        android:id="@+id/txtUserNotFound"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_15sdp"
+                        android:gravity="center"
+                        android:text="@string/search_with_email"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/scale_20dp"
+                android:layout_marginTop="@dimen/scale_10dp"
+                android:layout_marginEnd="@dimen/scale_20dp"
+                android:layout_marginBottom="@dimen/scale_10dp"
+                android:gravity="center_horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    style="@style/MyProgressButton"
+                    android:text="@string/create_team" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary"
+            android:secondaryProgressTint="@color/colorPrimary"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+
+</layout>

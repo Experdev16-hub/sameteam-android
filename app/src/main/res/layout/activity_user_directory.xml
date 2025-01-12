@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/RootLayout"
+        tools:context=".homeScreen.bottomNavigation.chatModule.activity.UserDirectoryActivity">
+
+        <include
+            android:id="@+id/custom_toolbar"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/adView"
+            android:layout_below="@id/custom_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/scale_20dp"
+                android:id="@+id/users_layout">
+
+                <include layout="@layout/search_contact_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchLayout"
+                    android:layout_marginTop="@dimen/scale_15dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:id="@+id/createGroup">
+                    <ImageView
+                        android:id="@+id/ivCreateTeam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/scale_10dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_add"
+                        app:tint="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:padding="@dimen/scale_10dp"
+                        android:layout_toEndOf="@+id/ivCreateTeam"
+                        android:text="@string/create_new_team"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_18sp" />
+
+                    <ImageView
+                        android:id="@+id/btnInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/scale_15dp"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:src="@drawable/ic_info" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/scale_10dp"
+                    android:id="@+id/addContact">
+
+                    <ImageView
+                        android:id="@+id/iAddContact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/scale_10dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_add"
+                        app:tint="@color/colorPrimary" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:padding="@dimen/scale_10dp"
+                        android:layout_toEndOf="@+id/iAddContact"
+                        android:text="@string/add_contact"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_18sp" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/recViewLayout"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtIndividual"
+                        android:text="@string/teams"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textSize="@dimen/text_size_16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="@dimen/scale_10dp" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userRecView"
+                        android:layout_marginTop="@dimen/scale_10dp"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/team_list_layout"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/colorPrimary"
+                android:secondaryProgressTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/txtUserNotFound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/users_layout"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/search_with_email"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_unit_id" />
+
+
+    </RelativeLayout>
+
+</layout>
+

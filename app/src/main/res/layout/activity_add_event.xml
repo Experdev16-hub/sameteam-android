@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.sameteam.homeScreen.drawerNavigation.viewModel.AddEventVM" />
+    </data>
+
+    <LinearLayout
+        style="@style/RootLayout"
+        android:orientation="vertical"
+        tools:context=".homeScreen.bottomNavigation.calendarModule.activity.CreateTaskActivity">
+
+        <include
+            android:id="@+id/custom_toolbar"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/scale_20dp"
+                        android:paddingTop="@dimen/scale_10dp"
+                        android:paddingEnd="@dimen/scale_20dp"
+                        android:paddingBottom="@dimen/scale_20dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_10dp"
+                            android:hint="@string/event_name"
+                            android:theme="@style/MyEditTextHint">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/event_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_10dp"
+                            android:hint="@string/description"
+                            android:theme="@style/MyEditTextHint">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences|textMultiLine"
+                                android:lines="3"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="23dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenirnext_demibold"
+                                android:text="@string/event_starts"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                android:hint="@string/start_date"
+                                android:theme="@style/MyEditTextHint">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/event_start_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="none" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                android:hint="@string/start_time"
+                                android:theme="@style/MyEditTextHint">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/event_start_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="none" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="23dp"
+                                android:fontFamily="@font/avenirnext_demibold"
+                                android:text="@string/event_ends"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                android:hint="@string/end_date"
+                                android:theme="@style/MyEditTextHint">
+
+                                <com.google.android.material.textfield.TextInputEditText
+
+                                    android:id="@+id/event_end_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="none" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/scale_10dp"
+                                android:hint="@string/end_time"
+                                android:theme="@style/MyEditTextHint">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/event_end_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="none" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="23dp"
+                            android:fontFamily="@font/avenirnext_demibold"
+                            android:text="@string/add_users"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_12dp"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/btnInvite"
+                                android:layout_width="@dimen/scale_50dp"
+                                android:layout_height="@dimen/scale_50dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/border_blue_rectangle_background"
+                                android:src="@drawable/ic_add"
+                                app:tint="@color/colorPrimary" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/scale_11dp"
+                                android:orientation="horizontal"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/participants_user_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="@dimen/scale_10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/scale_25dp"
+                                android:layout_height="@dimen/scale_25dp"
+                                android:src="@drawable/add_users_logo" />
+
+                            <TextView
+                                android:id="@+id/txt_add_user_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/add_user_info"
+                                android:layout_marginStart="@dimen/scale_10dp"
+                                android:fontFamily="@font/avenirnext_demibold"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="23dp"
+                            android:fontFamily="@font/avenirnext_demibold"
+                            android:includeFontPadding="false"
+                            android:text="@string/change_or_choose_color"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/color"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:hint="@string/choose_color"
+                                android:theme="@style/MyEditTextHint"
+                                app:hintAnimationEnabled="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/cv_color"
+                                app:layout_constraintHorizontal_weight="7"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtColor"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="none"
+                                    android:text="#000000" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cv_color"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/scale_8dp"
+                                app:cardBackgroundColor="@android:color/black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_weight="3"
+                                app:layout_constraintStart_toEndOf="@id/color"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="@dimen/scale_10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/scale_25dp"
+                                android:layout_height="@dimen/scale_25dp"
+                                android:src="@drawable/color_text" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/scale_10dp"
+                                android:fontFamily="@font/avenirnext_demibold"
+                                android:text="@string/choose_color_info"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/startTeamLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/scale_15dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <CheckBox
+                                android:id="@+id/startTeamCheckBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="-7dp"
+                                android:buttonTint="@color/colorPrimary"
+                                android:fontFamily="@font/avenirnext_demibold"
+                                android:includeFontPadding="false"
+                                android:minWidth="@dimen/scale_0dp"
+                                android:minHeight="@dimen/scale_0dp"
+                                android:text="@string/start_team"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/btnInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/scale_2dp"
+                                android:scaleX="0.7"
+                                android:scaleY="0.7"
+                                android:src="@drawable/ic_info" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCreateTask"
+                    style="@style/MyProgressButton"
+                    android:layout_marginStart="@dimen/scale_20dp"
+                    android:layout_marginEnd="@dimen/scale_20dp"
+                    android:layout_marginBottom="@dimen/scale_10dp" />
+
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary"
+                android:secondaryProgressTint="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</layout>
+

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:theme="@style/Toolbar"
+            android:id="@+id/toolbar"
+            app:contentInsetEnd="@dimen/scale_0dp"
+            app:contentInsetLeft="@dimen/scale_0dp"
+            app:contentInsetRight="@dimen/scale_0dp"
+            app:contentInsetStart="@dimen/scale_0dp"
+            app:contentInsetStartWithNavigation="@dimen/scale_0dp"
+            android:elevation="1dp"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/left_icon"
+                    android:padding="@dimen/scale_7dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:layout_marginStart="@dimen/scale_16dp"
+                    app:tint="@color/darkGrey"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:id="@+id/ImageLayout"
+                    android:layout_toEndOf="@id/left_icon"
+                    android:layout_centerVertical="true">
+
+                    <com.example.sameteam.widget.CircleImageView
+                        android:layout_width="@dimen/scale_36dp"
+                        android:layout_height="@dimen/scale_36dp"
+                        android:id="@+id/profileImage"
+                        android:src="@drawable/profile_photo" />
+
+                    <TextView
+                        android:layout_width="@dimen/scale_36dp"
+                        android:layout_height="@dimen/scale_36dp"
+                        android:text="SD"
+                        android:id="@+id/initials"
+                        android:textSize="@dimen/text_size_17sp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/circle_background_event"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/scale_10dp"
+                        android:layout_height="@dimen/scale_10dp"
+                        android:src="@drawable/ic_online"
+                        android:background="@drawable/status_border"
+                        android:id="@+id/onlineStatus"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="27dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nameLayout"
+                    android:layout_toEndOf="@id/ImageLayout"
+                    android:layout_marginStart="@dimen/scale_10dp"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:text="Caroline"
+                        android:textSize="@dimen/text_size_16sp"
+                        android:textColor="@color/black"
+                        android:includeFontPadding="false" />
+
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_medium"
+                        android:text="@string/online"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/name"
+                        android:includeFontPadding="false"
+                        android:visibility="gone"/>
+
+
+                </RelativeLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/scale_17dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnVideoCall"
+                        android:src="@drawable/ic_video"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnAudioCall"
+                        android:src="@drawable/ic_phone_2"
+                        app:layout_constraintEnd_toStartOf="@id/btnVideoCall"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="@dimen/scale_20dp"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_above="@+id/tv_typing_status"
+            android:layout_below="@id/toolbar" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:secondaryProgressTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_typing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_attachment_preview_container"
+            android:textSize="13sp"
+            android:fontFamily="@font/avenirnext_medium"
+            android:textColor="@color/darkGrey"
+            android:paddingBottom="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            tools:text="Alexparvus is typing..."/>
+
+        <LinearLayout
+            android:id="@+id/ll_attachment_preview_container"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_above="@+id/rl_chat_send_container"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <View
+                android:id="@+id/divider_chat_attachments"
+                android:layout_height="@dimen/scale_1dp"
+                android:layout_width="match_parent"
+                android:background="@color/colorInactive"/>
+
+            <com.example.sameteam.quickBlox.views.AttachmentPreviewAdapterView
+                android:id="@+id/adapter_attachment_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider_chat"
+            android:layout_height="1dp"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:background="@color/colorInactive"
+            android:layout_above="@+id/rl_chat_send_container" />
+
+        <RelativeLayout
+            android:id="@+id/rl_chat_send_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scale_80dp"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="@dimen/scale_10dp"
+            android:paddingBottom="@dimen/scale_10dp">
+
+            <ImageView
+                android:id="@+id/iv_chat_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/ic_paperclip" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_chat_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textCapSentences"
+                android:hint="Write a reply..."
+                android:textSize="@dimen/text_size_14sp"
+                android:layout_toEndOf="@+id/iv_chat_attachment"
+                android:layout_toStartOf="@+id/iv_chat_send"
+                android:maxLength="1000"
+                android:background="@drawable/edit_text_chat_background"
+                android:theme="@style/MyEditTextHint"
+                android:fontFamily="@font/avenirnext_regular"
+                android:textColor="@color/black"
+                android:padding="@dimen/scale_15dp"
+                android:gravity="center_vertical"/>
+
+            <ImageView
+                android:id="@+id/iv_chat_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="7dp"
+                android:paddingStart="2.5dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginStart="@dimen/scale_4dp"
+                android:src="@drawable/ic_send_message" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
+

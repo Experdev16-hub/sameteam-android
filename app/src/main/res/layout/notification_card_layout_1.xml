@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingStart="@dimen/scale_16dp"
+        android:paddingTop="@dimen/scale_16dp"
+        android:paddingEnd="@dimen/scale_14dp"
+        android:paddingBottom="@dimen/scale_16dp"
+        tools:ignore="RtlSymmetry">
+
+        <RelativeLayout
+            android:layout_width="@dimen/scale_30dp"
+            android:layout_height="@dimen/scale_30dp"
+            android:background="@drawable/circle_background_notification"
+            android:id="@+id/iconLayout">
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/monthName"-->
+<!--                android:text="May"-->
+<!--                android:textSize="@dimen/text_size_10sp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="@dimen/scale_3dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:fontFamily="@font/avenirnext_medium"-->
+<!--                android:includeFontPadding="false"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/monthName"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="-3dp"-->
+<!--                android:fontFamily="@font/avenirnext_demibold"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:text="10"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="@dimen/text_size_16sp" />-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bell"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/scale_18dp"
+            android:layout_marginEnd="@dimen/scale_15dp"
+            android:layout_toStartOf="@id/time"
+            android:layout_toEndOf="@id/iconLayout"
+            android:fontFamily="@font/avenirnext_medium"
+            android:text="Andrew is accepted your task"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/avenirnext_medium"
+            android:text="time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_12sp" />
+
+    </RelativeLayout>
+
+</layout>

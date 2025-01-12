@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data></data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/rounded_sheet"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/scale_22dp"
+                android:paddingTop="@dimen/scale_22dp"
+                android:paddingEnd="@dimen/scale_22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDate"
+                    android:text="@string/specific_date"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!--            <ImageView-->
+                <!--                android:layout_width="@dimen/scale_25dp"-->
+                <!--                android:layout_height="@dimen/scale_25dp"-->
+                <!--                android:id="@+id/btnCross"-->
+                <!--                android:src="@drawable/ic_cross"-->
+                <!--                android:padding="@dimen/scale_5dp"-->
+                <!--                app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="@id/txtRepeat"-->
+                <!--                app:layout_constraintBottom_toBottomOf="@id/txtRepeat"-->
+                <!--                app:tint="@color/darkGrey" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/calendarLayout"
+                android:layout_marginTop="@dimen/scale_20dp"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/changeMonthLayout"
+                    android:layout_marginStart="@dimen/scale_18dp"
+                    android:layout_marginEnd="@dimen/scale_18dp"
+                    android:layout_marginBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/exFivePreviousMonthImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/scale_5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_chevron_left"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/exFiveMonthYearText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/avenirnext_demibold"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="@dimen/text_size_17sp"
+                        tools:text="May 2020" />
+
+                    <ImageView
+                        android:id="@+id/exFiveNextMonthImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/scale_5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_chevron_left"
+                        android:rotation="180"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+                <com.kizitonwose.calendarview.CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cv_orientation="horizontal"
+                    app:cv_monthHeaderResource="@layout/calendar_header"
+                    app:cv_dayViewResource="@layout/calendar_day_layout"
+                    app:cv_inDateStyle="allMonths"
+                    app:cv_outDateStyle="endOfRow"
+                    app:cv_scrollMode="paged"
+                    android:layout_below="@id/changeMonthLayout"
+                    android:layout_marginStart="@dimen/scale_5dp"
+                    android:layout_marginEnd="@dimen/scale_5dp"/>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingStart="@dimen/scale_20dp"
+                android:paddingEnd="@dimen/scale_20dp"
+                android:layout_marginTop="@dimen/scale_40dp"
+                android:layout_marginBottom="@dimen/scale_20dp"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/scale_50dp"
+                    android:layout_height="@dimen/scale_50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/border_grey_rectangle_background"
+                    android:backgroundTint="@color/lightBlue"
+                    android:src="@drawable/ic_chevron_left" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scale_60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/scale_12dp"
+                    android:layout_toEndOf="@id/btnBack"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/avenirnext_demibold"
+                    android:letterSpacing="0.00"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:cornerRadius="@dimen/scale_7dp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

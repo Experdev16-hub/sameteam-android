@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!--pin view-->
+    <dimen name="pv_pin_view_item_size">48dp</dimen>
+    <dimen name="pv_pin_view_item_radius">5dp</dimen>
+    <dimen name="pv_pin_view_item_spacing">5dp</dimen>
+    <dimen name="pv_pin_view_item_line_width">2dp</dimen>
+    <dimen name="pv_pin_view_cursor_width">2dp</dimen>
+
+    <dimen name="google_1x">8dp</dimen>
+    <!--Dimensions-->
+    <dimen name="scale_0dp">0dp</dimen>
+    <dimen name="scale_0_5dp">0.5dp</dimen>
+    <dimen name="scale_1dp">1dp</dimen>
+    <dimen name="scale_2dp">2dp</dimen>
+    <dimen name="scale_3dp">3dp</dimen>
+    <dimen name="scale_4dp">4dp</dimen>
+    <dimen name="scale_5dp">5dp</dimen>
+    <dimen name="scale_6dp">6dp</dimen>
+    <dimen name="scale_7dp">7dp</dimen>
+    <dimen name="scale_8dp">8dp</dimen>
+    <dimen name="scale_9dp">9dp</dimen>
+    <dimen name="scale_10dp">10dp</dimen>
+    <dimen name="scale_11dp">11dp</dimen>
+    <dimen name="scale_12dp">12dp</dimen>
+    <dimen name="scale_13dp">13dp</dimen>
+    <dimen name="scale_14dp">14dp</dimen>
+    <dimen name="scale_15dp">15dp</dimen>
+    <dimen name="scale_16dp">16dp</dimen>
+    <dimen name="scale_17dp">17dp</dimen>
+    <dimen name="scale_18dp">18dp</dimen>
+    <dimen name="scale_20dp">20dp</dimen>
+    <dimen name="scale_40dp">40dp</dimen>
+    <dimen name="scale_45dp">45dp</dimen>
+    <dimen name="scale_22dp">22dp</dimen>
+    <dimen name="scale_25dp">25dp</dimen>
+    <dimen name="scale_26dp">26dp</dimen>
+    <dimen name="scale_28dp">28dp</dimen>
+    <dimen name="scale_30dp">30dp</dimen>
+    <dimen name="scale_32dp">32dp</dimen>
+    <dimen name="scale_35dp">35dp</dimen>
+    <dimen name="scale_36dp">36dp</dimen>
+    <dimen name="scale_37dp">37dp</dimen>
+    <dimen name="scale_48dp">48dp</dimen>
+    <dimen name="scale_50dp">50dp</dimen>
+    <dimen name="scale_55dp">55dp</dimen>
+    <dimen name="scale_56dp">56dp</dimen>
+    <dimen name="scale_60dp">60dp</dimen>
+    <dimen name="scale_64dp">64dp</dimen>
+    <dimen name="scale_65dp">65dp</dimen>
+    <dimen name="scale_70dp">70dp</dimen>
+    <dimen name="scale_80dp">80dp</dimen>
+    <dimen name="scale_100dp">100dp</dimen>
+    <dimen name="scale_110dp">110dp</dimen>
+    <dimen name="scale_120dp">120dp</dimen>
+    <dimen name="scale_125dp">125dp</dimen>
+    <dimen name="scale_135dp">135dp</dimen>
+    <dimen name="scale_150dp">150dp</dimen>
+    <dimen name="scale_164dp">164dp</dimen>
+    <dimen name="scale_300dp">300dp</dimen>
+    <dimen name="scale_350dp">350dp</dimen>
+    <dimen name="scale_385dp">385dp</dimen>
+    <dimen name="scale_400dp">400dp</dimen>
+    <dimen name="scale_500dp">500dp</dimen>
+
+    <!--TextSize-->
+    <dimen name="text_size_7sp">7sp</dimen>
+    <dimen name="text_size_8sp">8sp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
+    <dimen name="text_size_11sp">11sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_13sp">13sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_15sp">15sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_19sp">19sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_21sp">21sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_25sp">25sp</dimen>
+    <dimen name="text_size_30sp">30sp</dimen>
+    <dimen name="text_size_32sp">32sp</dimen>
+    <dimen name="text_size_34sp">34sp</dimen>
+    <dimen name="text_size_35sp">35sp</dimen>
+    <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="signUpLoginButton">55dp</dimen>
+    <dimen name="loginHorizontalMargin">30dp</dimen>
+    <dimen name="lineHeight">0.5dp</dimen>
+    <dimen name="profileMenuDividerHeight">50dp</dimen>
+
+    <dimen name="text_size_m">20sp</dimen>
+    <dimen name="text_size_s">16sp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="spacing">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">24dp</dimen>
+    <dimen name="spacing_xsmall">4dp</dimen>
+
+    <dimen name="profileBanner">150dp</dimen>
+    <dimen name="profileView">200dp</dimen>
+    <dimen name="itemPopupImage">190dp</dimen>
+    <dimen name="rowListingProfilePic">50dp</dimen>
+    <dimen name="profilePic">90dp</dimen>
+    <dimen name="reviewThumb">70dp</dimen>
+    <dimen name="story">50dp</dimen>
+    <dimen name="storyScreenUser">40dp</dimen>
+    <dimen name="profilePicSmall">50dp</dimen>
+    <dimen name="searchItemImage">60dp</dimen>
+    <dimen name="profilePicVerySmall">40dp</dimen>
+    <dimen name="profilePicComment">30dp</dimen>
+    <dimen name="dealImage">55dp</dimen>
+    <dimen name="menuImage">90dp</dimen>
+    <dimen name="menuImageDishDetail">50dp</dimen>
+    <dimen name="imageInComment">60dp</dimen>
+    <dimen name="itemCollectionViewpagerHeight">250</dimen>
+    <dimen name="chatTextSize">13.5sp</dimen>
+    <dimen name="itemCardImage">150dp</dimen>
+    <dimen name="viewpager">190dp</dimen>
+    <dimen name="imageRadius">50dp</dimen>
+    <dimen name="reviewThumbCorner">5dp</dimen>
+    <dimen name="restaurantImageBanner">180dp</dimen>
+    <dimen name="highestRatedRestaurantHeight">200dp</dimen>
+    <dimen name="roundCorner">5dp</dimen>
+    <dimen name="scale_38dp">38dp</dimen>
+    <dimen name="sacle_91_dp">91dp</dimen>
+    <dimen name="scale_24dp">24dp</dimen>
+    <dimen name="scale_90dp">90dp</dimen>
+    <dimen name="scale_66dp">66dp</dimen>
+
+    <!--Integers-->
+    <integer name="divider_padding">0</integer>
+    <integer name="minLineOnCreateExNYoga">5</integer>
+    <integer name="slide_animation_duration">250</integer>
+
+    <dimen name="thumb_width">24dp</dimen>
+    <dimen name="thumb_height">24dp</dimen>
+
+    <dimen name="bubble_thumb_width">70dp</dimen>
+    <dimen name="bubble_thumb_height">70dp</dimen>
+    <dimen name="scale_200dp">200dp</dimen>
+    <dimen name="scale_272dp">272dp</dimen>
+    <dimen name="text_size_28sp">28sp</dimen>
+    <dimen name="design_fab_image_size" tools:override="true">@dimen/scale_70dp</dimen>
+    <dimen name="scale_250dp">250dp</dimen>
+
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="placeholder_image">50dp</dimen>
+    <dimen name="placeholder_text_height">8dp</dimen>
+    <dimen name="activity_padding_horizontal">16dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="name">15dp</dimen>
+    <dimen name="chef">12dp</dimen>
+    <dimen name="timestamp">11dp</dimen>
+    <dimen name="description">15dp</dimen>
+    <dimen name="price">13dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>
