@@ -21,9 +21,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven {
             url "https://jitpack.io"
+        }
+        maven {
+            url "https://maven.scijava.org/content/repositories/public/"
         }
         maven {
             url "https://github.com/QuickBlox/quickblox-android-sdk-releases/raw/master/"
@@ -40,5 +42,5 @@ project.ext {
     appMinSdkVersion = 26
     appTargetSdkVersion = 34
     appVersionCode = 21
-    appVersionName = "1.0.21"
+    appVersionName = "1.0.0"
 }
