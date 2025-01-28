@@ -7,7 +7,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.14'
 
@@ -41,6 +41,6 @@ project.ext {
     compileSdkVersion = 33
     appMinSdkVersion = 26
     appTargetSdkVersion = 34
-    appVersionCode = 21
+    appVersionCode = 25
     appVersionName = "1.0.0"
 }

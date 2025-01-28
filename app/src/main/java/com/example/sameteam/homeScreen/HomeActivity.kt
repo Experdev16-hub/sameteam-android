@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -147,10 +148,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), ConfirmDialog.ConfirmC
 
     }
 
+    fun Context.showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     override fun initActivity(mBinding: ViewDataBinding) {
 
         homeVM = getViewModel() as HomeVM
         binding = mBinding as ActivityHomeBinding
+
+        this.showToast("Hello from Toast!")
 
         val local = SimpleDateFormat("Z", Locale.getDefault()).format(System.currentTimeMillis())
         Log.d(TAG, "initActivity Timezone: $local")

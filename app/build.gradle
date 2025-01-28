@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
 
-        applicationId "com.app.sameteam"
+        applicationId "com.app.sameteamapp"
         minSdkVersion appMinSdkVersion
         targetSdkVersion appTargetSdkVersion
         versionCode appVersionCode
@@ -145,11 +145,11 @@ android {
 
         coreLibraryDesugaringEnabled = true
 
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     namespace 'com.example.sameteam'
 
@@ -250,8 +250,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
 
     //lifecycle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
 
     //S3 Bucket
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.13'
@@ -285,6 +285,12 @@ dependencies {
     // Declare the dependencies for the Crashlytics and Analytics libraries
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Billing in-app purchase
+    implementation ('com.android.billingclient:billing:6.0.1')
+
+    //InmutableList
+    implementation("com.google.guava:guava:33.4.0-jre")
 
     //Spotlight
     implementation 'com.github.takusemba:spotlight:2.0.5'
