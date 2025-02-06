@@ -1,5 +1,8 @@
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.childFragment
 
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -9,6 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.QueryProductDetailsParams
 import com.example.sameteam.MyApplication
 import com.example.sameteam.R
 import com.example.sameteam.authScreens.LoginActivity
@@ -29,7 +39,7 @@ import com.quickblox.messages.services.SubscribeService
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.TextStyle
-import java.util.*
+import java.util.Locale
 
 
 class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding>(),
@@ -52,7 +62,8 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
     lateinit var adapter: TaskListAdapter
     val today = LocalDate.now()
 
-    var isCalled = false
+    private lateinit var billingClient: BillingClient
+    private var isBillingClientReady = false
 
     override fun onResume() {
         super.onResume()
@@ -84,6 +95,7 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
 
             0 -> {
                 getTaskList(today)
+                setupBillingClient()
             }
 
             1 -> {
@@ -114,13 +126,167 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
         allTasksFragVM.callMyProfile()
     }
 
+    private fun setupBillingClient() {
+        billingClient = BillingClient.newBuilder(requireContext())
+            .enablePendingPurchases()
+            .setListener { billingResult, purchases ->
+                // Purchase updates listener: not used in this example since we're only querying product details.
+            }
+            .build()
+
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    isBillingClientReady = true
+                    Log.d("SubscriptionBilling", "Billing Client connected.")
+                    val subscriptionIds = listOf("yearly_subscription")
+
+                    billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS){ billingResult, list ->
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                            if (list.size > 0) {
+                                // Activate premium feature
+                                println("[Purchase] - Premium user validated")
+                                // Process each purchase if needed
+                            } else {
+                                // De-activated premium feature
+                                fetchSubscriptionProducts(
+                                    subscriptionIds = subscriptionIds,
+                                    onResult = { productDetailsList ->
+                                        // Handle the list of ProductDetails (e.g., update UI, etc.)
+                                        Log.d("SubscriptionFragment", "Fetched product details: $productDetailsList")
+                                        if (productDetailsList.isNotEmpty() and isBillingClientReady) {
+                                            val selectedProductDetails = productDetailsList.first()
+                                            Handler(Looper.getMainLooper()).postDelayed({
+                                                launchSubscriptionBillingFlow(selectedProductDetails)
+                                            }, 800)
+                                        }
+                                    },
+                                    onError = { errorMessage ->
+                                        // Handle error (e.g., show a Toast, log the error, etc.)
+                                        Log.e("SubscriptionFragment", "Error fetching products: $errorMessage")
+                                    }
+                                )
+                            }
+                        }
+                    }
+                } else {
+                    Log.e("SubscriptionBilling", "Billing Client connection failed: ${billingResult.debugMessage}")
+                }
+            }
+
+            override fun onBillingServiceDisconnected() {
+                isBillingClientReady = false
+                Log.e("SubscriptionBilling", "Billing Service disconnected.")
+                // Optionally, implement reconnection logic here.
+            }
+        })
+        // Check for active subscription entitlements.
+    }
+
+    fun launchSubscriptionBillingFlow(productDetails: ProductDetails) {
+
+        if (!isBillingClientReady) {
+            Log.e("SubscriptionBilling", "Billing Client is not ready")
+            return
+        }
+
+        val subscriptionOffers = productDetails.subscriptionOfferDetails
+
+        // Check if there is at least one offer available.
+        if (subscriptionOffers.isNullOrEmpty()) {
+            Log.e("SubscriptionBilling", "No subscription offers available for this product.")
+            return
+        }
+
+        // For this example, we'll choose the first available offer.
+        // In a real app, you might let the user select an offer or implement additional logic.
+        val selectedOffer = subscriptionOffers.first()
+        val offerToken = selectedOffer.offerToken
+
+        val productDetailsParamsList = listOf(
+            BillingFlowParams.ProductDetailsParams.newBuilder()
+                // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+                .setProductDetails(productDetails)
+                // For One-time products, "setOfferToken" method shouldn't be called.
+                // For subscriptions, to get an offer token, call ProductDetails.subscriptionOfferDetails()
+                // for a list of offers that are available to the user
+                .setOfferToken(offerToken)
+                .build()
+        )
+
+        val billingFlowParams = BillingFlowParams.newBuilder()
+            .setProductDetailsParamsList(productDetailsParamsList)
+            .build()
+        // Launch the billing flow
+        val bResult = billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+
+        if (bResult.responseCode == BillingClient.BillingResponseCode.OK) {
+            Log.d("SubscriptionBilling", "Billing flow launched successfully.")
+        } else {
+            Log.e("SubscriptionBilling", "Failed to launch billing flow: ${bResult.debugMessage}")
+        }
+    }
+
+    /**
+     * Public method to query product details for a list of subscription product IDs.
+     *
+     * @param subscriptionIds List of subscription product IDs defined in the Play Console.
+     * @param onResult Callback returning a list of [ProductDetails] on success.
+     * @param onError Optional callback returning an error message if the query fails.
+     */
+    fun fetchSubscriptionProducts(
+        subscriptionIds: List<String>,
+        onResult: (List<ProductDetails>) -> Unit,
+        onError: ((String) -> Unit)? = null
+    ) {
+        if (!isBillingClientReady) {
+            onError?.invoke("Billing Client is not ready")
+            return
+        }
+
+        // Build a list of Product query objects for subscriptions.
+        val productList = subscriptionIds.map { productId ->
+            QueryProductDetailsParams.Product.newBuilder()
+                .setProductId(productId)
+                .setProductType(BillingClient.ProductType.SUBS)
+                .build()
+        }
+
+        val params = QueryProductDetailsParams.newBuilder()
+            .setProductList(productList)
+            .build()
+
+        billingClient.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                onResult(productDetailsList)
+            } else {
+                onError?.invoke("Error fetching product details: ${billingResult.debugMessage}")
+            }
+        }
+    }
+
+    /**
+     * Optional public method to end the billing client connection.
+     * Call this when the billing functionality is no longer needed.
+     */
+    fun endBillingConnection() {
+        if (this::billingClient.isInitialized && billingClient.isReady) {
+            billingClient.endConnection()
+            isBillingClientReady = false
+            Log.d("SubscriptionBilling", "Billing Client connection ended.")
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        endBillingConnection()
+    }
 
     override fun initFragment(mBinding: ViewDataBinding) {
         allTasksFragVM = getViewModel() as AllTasksFragVM
         binding = mBinding as FragmentAllTasksBinding
 
         Log.d(TAG, "initFragment: $position")
-
         binding.recView.layoutManager = LinearLayoutManager(requireContext())
         adapter = TaskListAdapter(this, requireContext())
         binding.recView.adapter = adapter

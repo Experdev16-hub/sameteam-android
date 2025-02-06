@@ -157,8 +157,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), ConfirmDialog.ConfirmC
         homeVM = getViewModel() as HomeVM
         binding = mBinding as ActivityHomeBinding
 
-        this.showToast("Hello from Toast!")
-
         val local = SimpleDateFormat("Z", Locale.getDefault()).format(System.currentTimeMillis())
         Log.d(TAG, "initActivity Timezone: $local")
 
