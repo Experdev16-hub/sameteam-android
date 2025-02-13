@@ -41,6 +41,6 @@ project.ext {
     compileSdkVersion = 33
     appMinSdkVersion = 26
     appTargetSdkVersion = 34
-    appVersionCode = 46
+    appVersionCode = 47
     appVersionName = "1.1.1"
 }
