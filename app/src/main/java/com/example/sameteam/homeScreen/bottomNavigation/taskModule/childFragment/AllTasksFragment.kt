@@ -6,6 +6,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.example.sameteam.MyApplication
 import com.example.sameteam.R
 import com.example.sameteam.authScreens.LoginActivity
+import com.example.sameteam.authScreens.SubscriptionActivity
 import com.example.sameteam.base.BaseFragment
 import com.example.sameteam.databinding.FragmentAllTasksBinding
 import com.example.sameteam.helper.Constants
@@ -100,10 +102,12 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
 
             1 -> {
                 getTaskList(today.plusDays(1))
+                setupBillingClient()
             }
 
             2 -> {
                 getWeekTaskList()
+                setupBillingClient()
             }
 
             3 -> {
@@ -116,6 +120,7 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
                             adapter.submitData(it)
                         }
                     })
+                    setupBillingClient()
                 } else {
                     showMessage(getString(R.string.no_internet))
                 }
@@ -149,23 +154,8 @@ class AllTasksFragment(val position: Int) : BaseFragment<FragmentAllTasksBinding
                                 // Process each purchase if needed
                             } else {
                                 // De-activated premium feature
-                                fetchSubscriptionProducts(
-                                    subscriptionIds = subscriptionIds,
-                                    onResult = { productDetailsList ->
-                                        // Handle the list of ProductDetails (e.g., update UI, etc.)
-                                        Log.d("SubscriptionFragment", "Fetched product details: $productDetailsList")
-                                        if (productDetailsList.isNotEmpty() and isBillingClientReady) {
-                                            val selectedProductDetails = productDetailsList.first()
-                                            Handler(Looper.getMainLooper()).postDelayed({
-                                                launchSubscriptionBillingFlow(selectedProductDetails)
-                                            }, 800)
-                                        }
-                                    },
-                                    onError = { errorMessage ->
-                                        // Handle error (e.g., show a Toast, log the error, etc.)
-                                        Log.e("SubscriptionFragment", "Error fetching products: $errorMessage")
-                                    }
-                                )
+                                val intent = Intent(requireContext(), SubscriptionActivity::class.java)
+                                startActivity(intent)
                             }
                         }
                     }

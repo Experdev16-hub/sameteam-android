@@ -9,6 +9,7 @@ import android.graphics.drawable.shapes.Shape
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -26,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.PurchasesUpdatedListener
@@ -64,6 +66,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     lateinit var loginVM: LoginVM
     lateinit var binding: ActivityLoginBinding
 
+    private lateinit var billingClient: BillingClient
+    private var isBillingClientReady = false
+
 
     override fun initActivity(mBinding: ViewDataBinding) {
 
@@ -77,6 +82,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         //Edit Text Emoji filter
         binding.txtEmail.filters = arrayOf(Utils.EMOJI_FILTER)
         binding.txtPassword.filters = arrayOf(Utils.EMOJI_FILTER)
+
+        setupBillingClient()
 
         /**
          * General Observer
@@ -126,6 +133,48 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             }
             mHandled
         }
+    }
+
+    private fun setupBillingClient() {
+        billingClient = BillingClient.newBuilder(this)
+            .enablePendingPurchases()
+            .setListener { billingResult, purchases ->
+                // Purchase updates listener: not used in this example since we're only querying product details.
+            }
+            .build()
+
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    isBillingClientReady = true
+                    Log.d("SubscriptionBilling", "Billing Client connected.")
+                    val subscriptionIds = listOf("yearly_subscription")
+
+                    billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS){ billingResult, list ->
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                            if (list.size > 0) {
+                                // Activate premium feature
+                                println("[Purchase] - Premium user validated")
+                                // Process each purchase if needed
+                            } else {
+                                // De-activated o push to premium feature
+                                val intent = Intent(this@LoginActivity, SubscriptionActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }
+                    }
+                } else {
+                    Log.e("SubscriptionBilling", "Billing Client connection failed: ${billingResult.debugMessage}")
+                }
+            }
+
+            override fun onBillingServiceDisconnected() {
+                isBillingClientReady = false
+                Log.e("SubscriptionBilling", "Billing Service disconnected.")
+                // Optionally, implement reconnection logic here.
+            }
+        })
+        // Check for active subscription entitlements.
     }
 
 }

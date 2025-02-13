@@ -119,6 +119,8 @@
             android:name=".authScreens.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".authScreens.SubscriptionActivity"/>
+        <activity
             android:name=".homeScreen.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
