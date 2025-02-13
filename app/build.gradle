@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
 
-        applicationId "com.app.sameteamapp"
+        applicationId "com.app.sameteam"
         minSdkVersion appMinSdkVersion
         targetSdkVersion appTargetSdkVersion
         versionCode appVersionCode
