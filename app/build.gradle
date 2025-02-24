@@ -145,12 +145,13 @@ android {
 
         coreLibraryDesugaringEnabled = true
 
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
+    namespace 'com.example.sameteam'
 
 }
 
@@ -206,7 +207,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
     //Download QuickBlox File
-    implementation 'com.mindorks.android:prdownloader:0.6.0'
+    implementation 'com.github.amitshekhariitbhu:PRDownloader:1.0.1'
 
     //Image loader
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -249,8 +250,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
 
     //lifecycle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
 
     //S3 Bucket
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.13'
@@ -284,6 +285,13 @@ dependencies {
     // Declare the dependencies for the Crashlytics and Analytics libraries
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Billing in-app purchase for Kotlin
+    implementation ('com.android.billingclient:billing:7.1.1')
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+
+    //InmutableList
+    implementation("com.google.guava:guava:33.4.0-jre")
 
     //Spotlight
     implementation 'com.github.takusemba:spotlight:2.0.5'

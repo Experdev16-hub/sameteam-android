@@ -9,7 +9,7 @@ class API {
         // BASE URL is in Retrofit.kt class
         val BASE_URL =
             if (BuildConfig.FLAVOR == "client") "https://api.sameteam.app/sameteam-api/"
-            else ""
+            else "https://api.sameteam.app/sameteam-api/"
 
 
 

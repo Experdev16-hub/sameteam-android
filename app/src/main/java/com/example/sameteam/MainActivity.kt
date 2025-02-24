@@ -125,7 +125,6 @@ class MainActivity : BaseActivity2(), QBMessageStatusListener,
         SharedPrefsHelper.delete(IS_IN_BACKGROUND)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         if (!ChatHelper.isLogged()) {
             reloginToChat()
         }
