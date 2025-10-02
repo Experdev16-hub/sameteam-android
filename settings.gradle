@@ -1,2 +1,19 @@
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+            credentials {
+                username = "Experdev16-hub"
+                password = "ghp_xxxxxxxxxxxxxxxxxxxxx" // your PAT token
+            }
+        }
+    }
+}
+
+
+
+
 rootProject.name = "SameTeam"
 include ':app'
