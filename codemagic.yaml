@@ -1,0 +1,14 @@
+workflows:
+  android-build:
+    name: Build Android APK
+    scripts:
+      - name: Clean project
+        script: sh gradlew clean
+      - name: Build Debug APK
+        script: sh gradlew assembleDebug
+    artifacts:
+      - build/app/outputs/apk/debug/*.apk
+    publishing:
+      email:
+        recipients:
+          - your@email.com
