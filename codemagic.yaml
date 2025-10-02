@@ -5,7 +5,7 @@ workflows:
       - name: Clean project
         script: sh gradlew clean
       - name: Build Debug APK
-        script: sh gradlew assembleDebug
+        script: sh gradlew assembleDebug --stacktrace --info
     artifacts:
       - build/app/outputs/apk/debug/*.apk
     publishing:
