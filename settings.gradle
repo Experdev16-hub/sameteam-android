@@ -6,7 +6,7 @@ dependencyResolutionManagement {
             url "https://jitpack.io"
             credentials {
                 username = "Experdev16-hub"
-                password = "ghp_xxxxxxxxxxxxxxxxxxxxx" // your PAT token
+                password = "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" // your PAT token
             }
         }
     }
