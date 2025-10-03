@@ -16,13 +16,31 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
 
+        // JitPack with credentials
+        maven {
+            url "https://jitpack.io"
+            credentials {
+                username = "YOUR_GITHUB_USERNAME"
+                password = "YOUR_PERSONAL_ACCESS_TOKEN"
+            }
+        }
+    }
+}
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven {
             url "https://jitpack.io"
+            credentials {
+                username = "Experdev16-hub"
+                password = "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"
+            }
         }
         maven {
             url "https://maven.scijava.org/content/repositories/public/"

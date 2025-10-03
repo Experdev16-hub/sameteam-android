@@ -1,3 +1,20 @@
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+            credentials {
+                username = "Experdev16-hub"
+                password = "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" // your PAT token
+            }
+        }
+    }
+}
+
+
+
+
 rootProject.name = "SameTeam"
 include ':app'
 include ':WheelPicker:WheelPicker'
