@@ -17,7 +17,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "SameTeam"
 include ':app'
-include ':WheelPicker:WheelPicker'
-include ':PRDownloader:prdownloader'
-include ':ProgressButton:progressbutton'
-include ':recycler-fast-scroll:fastscroll'
