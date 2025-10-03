@@ -1,2 +1,6 @@
 rootProject.name = "SameTeam"
 include ':app'
+include ':WheelPicker:WheelPicker'
+include ':PRDownloader:prdownloader'
+include ':ProgressButton:progressbutton'  # or whatever the module name is
+include ':recycler-fast-scroll:fastscroll' # or whatever the module name is
