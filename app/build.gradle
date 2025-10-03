@@ -191,10 +191,6 @@ dependencies {
     //Crop Image
     implementation 'com.github.yalantis:ucrop:2.2.4'
 
-
-    //Recycler view & Sticky RecyclerView
-    
-
     //Retrofit
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
@@ -260,9 +256,6 @@ dependencies {
 
     //Country code
     implementation 'io.michaelrocks:libphonenumber-android:8.12.31'
-    implementation('com.futuremind.recyclerfastscroll:fastscroll:0.2.5', {
-        exclude group: 'com.android.support'
-    })
 
     //Pagination
     implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha01"
@@ -301,5 +294,4 @@ dependencies {
    implementation 'com.google.android.gms:play-services-ads:22.0.0'
 
 }
-
 
