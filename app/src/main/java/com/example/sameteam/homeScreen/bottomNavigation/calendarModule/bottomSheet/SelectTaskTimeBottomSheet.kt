@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sameteam.R
 import com.example.sameteam.databinding.BottomSheetTaskTimeBinding
 import com.example.sameteam.helper.Constants
@@ -59,18 +58,20 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
         else
             binding.txtDate.text = "End Time"
 
+// NumberPicker doesn't support custom typeface directly
+binding.numberPicker1.minValue = 1
+binding.numberPicker1.maxValue = 12
+binding.numberPicker1.value = 1  // Default to 1
 
-        val selectedTF = ResourcesCompat.getFont(requireContext(), R.font.avenirnext_demibold)
-        binding.wheelPicker.typeface = selectedTF
-        binding.wheelPicker2.typeface = selectedTF
-        binding.wheelPicker3.typeface = selectedTF
-        binding.wheelPicker.data = (1..12).toList()
+binding.numberPicker2.minValue = 0
+binding.numberPicker2.maxValue = 59
+binding.numberPicker2.value = 0  // Default to 0
 
-        val temp = arrayListOf("00", "01", "02", "03", "04", "05", "06", "07", "08", "09")
-        (10..59).forEach { temp.add(it.toString()) }
-        binding.wheelPicker2.data = temp
-        binding.wheelPicker3.data = listOf("AM", "PM")
-        return binding.root
+binding.numberPicker3.minValue = 0
+binding.numberPicker3.maxValue = 1
+binding.numberPicker3.displayedValues = arrayOf("AM", "PM")
+binding.numberPicker3.value = 1  // Default to PM
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -95,112 +96,76 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
         /**
          * Hours wheel picker
          */
-        binding.wheelPicker.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
-            override fun onWheelScrolled(offset: Int) {
-                if (firstTimeHour) {
-                    moveToCurrentHour()
-                }
-            }
 
-            override fun onWheelSelected(position: Int) {
-                hours = position + 1
-            }
 
-            override fun onWheelScrollStateChanged(state: Int) {
-            }
-
-        })
+// CHANGE TO:
+binding.numberPicker1.setOnValueChangedListener { picker, oldVal, newVal ->
+    if (firstTimeHour) {
+        moveToCurrentHour()
+    }
+    hours = newVal
+}
 
         /**
          * Minutes wheel picker
          */
-        binding.wheelPicker2.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
-            override fun onWheelScrolled(offset: Int) {
-                if (firstTimeMinutes) {
-                    moveToCurrentMinute()
-                }
-            }
 
 
-            override fun onWheelSelected(position: Int) {
-                minutes = position
-            }
-
-            override fun onWheelScrollStateChanged(state: Int) {
-            }
-        })
+// C
+HANGE TO:
+binding.numberPicker2.setOnValueChangedListener { picker, oldVal, newVal ->
+    if (firstTimeMinutes) {
+        moveToCurrentMinute()
+    }
+    minutes = newVal
+}
 
         /**
          * AM_PM wheel picker
          */
-        binding.wheelPicker3.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
-            override fun onWheelScrolled(offset: Int) {
-                if (firstTimeAMPM)
-                    moveToCurrentAMPM()
 
-            }
-
-            override fun onWheelSelected(position: Int) {
-                ampm = if (position == 0)
-                    "AM"
-                else
-                    "PM"
-            }
-
-            override fun onWheelScrollStateChanged(state: Int) {
-
-            }
-        })
+binding.numberPicker3.setOnValueChangedListener { picker, oldVal, newVal ->
+    if (firstTimeAMPM) {
+        moveToCurrentAMPM()
+    }
+    ampm = if (newVal == 0) "AM" else "PM"
+}
 
     }
 
-    private fun moveToCurrentAMPM() {
-        val minute = c.get(Calendar.MINUTE)
-        Log.i("Minutes", c.get(Calendar.MINUTE).toString())
-        Log.i("AMPM", c.get(Calendar.AM_PM).toString()) // shows 0 when AM
-        Log.i("AM", c.get(Calendar.AM).toString()) // shows 1 when AM
-        Log.i("PM", c.get(Calendar.PM).toString()) // shows 2023 when AM
+ private fun moveToCurrentAMPM() {
+    val minute = c.get(Calendar.MINUTE)
+    Log.i("Minutes", c.get(Calendar.MINUTE).toString())
+    Log.i("AMPM", c.get(Calendar.AM_PM).toString()) // shows 0 when AM
 
-
-        if (c.get(Calendar.AM_PM) == 0) {
-            ampm = "AM"
-            binding.wheelPicker3.setSelectedItemPosition(0, true)
-            firstTimeAMPM = false
-        } else {
-            ampm = "PM"
-            binding.wheelPicker3.setSelectedItemPosition(1, true)
-            firstTimeAMPM = false
-        }
+    if (c.get(Calendar.AM_PM) == 0) {
+        ampm = "AM"
+        binding.numberPicker3.value = 0
+        firstTimeAMPM = false
+    } else {
+        ampm = "PM"
+        binding.numberPicker3.value = 1
+        firstTimeAMPM = false
     }
+}
+private fun moveToCurrentMinute() {
+    val minute = c.get(Calendar.MINUTE)
+    Log.i("Minutes", c.get(Calendar.MINUTE).toString())
 
-    private fun moveToCurrentMinute() {
-        val minute = c.get(Calendar.MINUTE)
-        Log.i("Minutes", c.get(Calendar.MINUTE).toString())
-        //Log.i("AMPM", c.get(Calendar.AM_PM).toString()) // shows 1 when PM both .AM and .AMPM
-        for (i in 0..59) {
-            Log.i("Time for", i.toString())
-            if (i == minute) {
-                minutes = minute
-                binding.wheelPicker2.setSelectedItemPosition(i, true)
-                firstTimeMinutes = false
-                break
-            }
-        }
-    }
+    minutes = minute
+    binding.numberPicker2.value = minute
+    firstTimeMinutes = false
+}
 
-    private fun moveToCurrentHour() {
-        val hour = c.get(Calendar.HOUR)
-        Log.i("Hour", c.get(Calendar.HOUR).toString())
+private fun moveToCurrentHour() {
+    val hour = c.get(Calendar.HOUR)
+    Log.i("Hour", c.get(Calendar.HOUR).toString())
 
-        for (i in 1..12) {
-            Log.i("Time for", i.toString())
-            if (i == hour) {
-                hours = hour
-                binding.wheelPicker.setSelectedItemPosition(i - 1, true)
-                firstTimeHour = false
-                break
-            }
-        }
-    }
+    hours = hour
+    binding.numberPicker1.value = hour
+    firstTimeHour = false
+}
+
+
 
 }

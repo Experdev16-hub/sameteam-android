@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sameteam.R
 import com.example.sameteam.databinding.BottomSheetCustomRepeatTaskBinding
 import com.example.sameteam.helper.Constants
@@ -27,8 +26,7 @@ import kotlin.collections.ArrayList
 
 
 class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogFragment(),
-    View.OnClickListener, WheelPicker.OnWheelChangeListener {
-
+    View.OnClickListener, NumberPicker.OnValueChangeListener 
     //Implemented in CreateTaskActivity
     interface CustomListener{
         fun onCustomSelected(list: ArrayList<String?>, dateString: String? , times: String?)
@@ -113,10 +111,13 @@ class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogF
         }
 
 
-        val selectedTF = ResourcesCompat.getFont(requireContext(), R.font.avenirnext_demibold)
-        binding.wheelPicker.typeface = selectedTF
-        binding.wheelPicker.data = listOf("Day", "Week", "Month", "Year")
-        binding.wheelPicker.setOnWheelChangeListener(this)
+// CHANGE TO:
+val selectedTF = ResourcesCompat.getFont(requireContext(), R.font.avenirnext_demibold)
+// NumberPicker doesn't support custom typeface directly
+binding.numberPicker.minValue = 0
+binding.numberPicker.maxValue = 3
+binding.numberPicker.displayedValues = arrayOf("Day", "Week", "Month", "Year")
+binding.numberPicker.setOnValueChangedListener(this)
 
 
         return binding.root
@@ -308,55 +309,44 @@ class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogF
         }
     }
 
-    override fun onWheelScrolled(offset: Int) {
-//        Log.d(TAG, "onWheelScrolled: $offset")
-    }
-
-    /**
-     * Wheel Scroll Change Listener
-     */
-    override fun onWheelSelected(position: Int) {
-        Log.d(TAG, "onWheelSelected: position $position")
-        wheelPosition = position
-        when (position) {
-            0 -> {
-                // Every Day is selected
-                binding.monthLayout.visibility = View.GONE
-                binding.weekLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-            }
-            1 -> {
-                // Week is selected
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-                binding.weekLayout.visibility = View.VISIBLE
-            }
-            2 -> {
-                // Month is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.VISIBLE
-            }
-            3 -> {
-                // Year is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.VISIBLE
-
-            }
-            else -> {
-                // By Default Every day is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-            }
+// REPLACE WITH THIS SINGLE METHOD FOR NUMBERPICKER:
+override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
+    Log.d(TAG, "onValueChange: position $newVal")
+    wheelPosition = newVal
+    when (newVal) {
+        0 -> {
+            // Every Day is selected
+            binding.monthLayout.visibility = View.GONE
+            binding.weekLayout.visibility = View.GONE
+            binding.yearLayout.visibility = View.GONE
         }
-
+        1 -> {
+            // Week is selected
+            binding.monthLayout.visibility = View.GONE
+            binding.yearLayout.visibility = View.GONE
+            binding.weekLayout.visibility = View.VISIBLE
+        }
+        2 -> {
+            // Month is selected
+            binding.weekLayout.visibility = View.GONE
+            binding.yearLayout.visibility = View.GONE
+            binding.monthLayout.visibility = View.VISIBLE
+        }
+        3 -> {
+            // Year is selected
+            binding.weekLayout.visibility = View.GONE
+            binding.monthLayout.visibility = View.GONE
+            binding.yearLayout.visibility = View.VISIBLE
+        }
+        else -> {
+            // By Default Every day is selected
+            binding.weekLayout.visibility = View.GONE
+            binding.monthLayout.visibility = View.GONE
+            binding.yearLayout.visibility = View.GONE
+        }
     }
+}
 
-    override fun onWheelScrollStateChanged(state: Int) {
-//        Log.d(TAG, "onWheelScrollStateChanged: $state")
-    }
 
     /**
      * The below method will check if week repeat option is selected but no weekday("M","T","W","F"...) is selected
