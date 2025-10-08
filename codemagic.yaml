@@ -1,0 +1,7 @@
+workflows:
+  android-debug:
+    name: Android Debug Build with Stacktrace
+    scripts:
+      - name: Build Debug APK with Stacktrace
+        script: |
+          sh gradlew assembleDebug --stacktrace --info
