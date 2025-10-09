@@ -14,8 +14,8 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://jitpack.io")
             credentials {
-                username = project.findProperty("Experdev16-hub") ?: ""
-                password = project.findProperty("jp_uqodage2dev35hq8amrugpornd") ?: ""
+                username = settings.findProperty("Experdev16-hub") ?: ""
+                password = settings.findProperty("jp_uqodage2dev35hq8amrugpornd") ?: ""
             }
         }
     }
