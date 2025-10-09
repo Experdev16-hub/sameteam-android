@@ -9,17 +9,19 @@ pluginManagement {
 }
 dependencyResolutionManagement {
     repositories {
-        google()
-        mavenCentral()
         maven {
             url = uri("https://jitpack.io")
             credentials {
-                username = settings.findProperty("jitpackUsername") ?: ""
-                password = settings.findProperty("jitpackPassword") ?: ""
+                username = "Experdev16-hub"
+                password = "yourToken"
+            }
+            authentication {
+                basic(BasicAuthentication)
             }
         }
     }
 }
+
 rootProject.name = "YourAppName"
 include(":app")
 
