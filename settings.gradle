@@ -1,2 +1,19 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        
+        maven {
+            url = uri("https://jitpack.io")
+            credentials {
+                username = "Experdev16-hub"         // ✅ Your GitHub username
+                password = "jp_uqodage2dev35hq8amrugpornd"    // ✅ Paste the token here
+            }
+        }
+    }
+}
+
+
+
 rootProject.name = "SameTeam"
 include ':app'
