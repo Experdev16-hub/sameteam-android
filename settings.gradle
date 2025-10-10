@@ -13,14 +13,15 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url "https://jitpack.io"
+            url 'https://jitpack.io'
             credentials {
-                username jp_q7cpr9b78sol2f4k3h1a8c2tl7
+                // Use the token defined in gradle.properties
+                username = 'Experdev16-hub'
+                password = project.findProperty('jitpack.token') ?: System.getenv('JITPACK_TOKEN')
             }
         }
     }
 }
-
 rootProject.name = "YourAppName"
 include(":app")
 
