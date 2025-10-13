@@ -7,21 +7,7 @@ pluginManagement {
         mavenCentral()
     }
 }
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url 'https://jitpack.io'
-            credentials {
-                // Use the token defined in gradle.properties
-                username = 'Experdev16-hub'
-                password = project.findProperty('jitpack.token') ?: System.getenv('JITPACK_TOKEN')
-            }
-        }
-    }
-}
+
 rootProject.name = "YourAppName"
 include(":app")
 
