@@ -307,4 +307,89 @@ dependencies {
 
 }
 
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.16"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    //CalendarView
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
+
+    //StackImages
+    implementation 'com.github.Mindinventory:OverlapImageGalleryView:1.0.2'
+
+    //WeekView
+//    implementation 'com.github.thellmund.Android-Week-View:core:5.2.4'
+
+    //For LocalDateTime
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
+
+
+    //QuickBlox
+    implementation "com.quickblox:quickblox-android-sdk-messages:4.0.3"
+    implementation "com.quickblox:quickblox-android-sdk-chat:4.0.3"
+    implementation "com.quickblox:quickblox-android-sdk-content:4.0.3"
+
+    implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:4.0.3"
+    implementation "com.quickblox:quickblox-android-sdk-conference:4.0.3"
+    implementation "com.quickblox:quickblox-android-sdk-customobjects:4.0.3"
+
+    //Coroutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
+
+    //lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
+    //S3 Bucket
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.13'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.13.7'
+
+
+
+    //Country code
+    implementation 'io.michaelrocks:libphonenumber-android:8.12.31'
+    implementation('com.futuremind.recyclerfastscroll:fastscroll:0.2.5', {
+        exclude group: 'com.android.support'
+    })
+
+    //Pagination
+    implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha01"
+    implementation "androidx.paging:paging-rxjava2-ktx:3.1.0-alpha01"
+
+    //Preference
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    //Show Image
+    implementation 'com.github.MikeOrtiz:TouchImageView:3.0.1' // Android X
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:32.8.0')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation "com.google.firebase:firebase-iid:21.1.0"
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Billing in-app purchase for Kotlin
+    implementation ('com.android.billingclient:billing:7.1.1')
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+
+    //InmutableList
+    implementation("com.google.guava:guava:33.4.0-jre")
+
+    //Spotlight
+    implementation 'com.github.takusemba:spotlight:2.0.5'
+
+    implementation 'com.github.HBiSoft:PickiT:2.0.5'
+
+    implementation 'com.github.QuadFlask:colorpicker:0.0.15'
+
+   implementation 'com.google.android.gms:play-services-ads:22.0.0'
+
+}
+
 
