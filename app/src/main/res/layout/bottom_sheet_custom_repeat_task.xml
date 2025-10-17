@@ -77,11 +77,7 @@
                 aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                 app:wheel_visible_item_count="3"
                 aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
-                app:wheel_indicator="true"
-                app:wheel_indicator_color="@color/grey"
-                app:wheel_indicator_size="@dimen/scale_1dp"
-                app:wheel_same_width="true" />
-
+                
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
