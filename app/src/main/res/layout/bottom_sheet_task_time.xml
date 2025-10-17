@@ -153,12 +153,7 @@
                             aigestudio:wheel_item_text_color="@color/black"
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                             aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/grey"
-                            app:wheel_indicator_size="@dimen/scale_1dp"
-                            app:wheel_same_width="true"
-                            app:wheel_visible_item_count="3" />
-
+                            
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -183,12 +178,7 @@
                             aigestudio:wheel_item_text_color="@color/black"
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                             aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/grey"
-                            app:wheel_indicator_size="@dimen/scale_1dp"
-                            app:wheel_same_width="true"
-                            app:wheel_visible_item_count="3" />
-
+                            
                         <com.aigestudio.wheelpicker.WheelPicker
                             android:id="@+id/wheelPicker3"
                             android:layout_width="@dimen/scale_70dp"
@@ -204,12 +194,7 @@
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                             aigestudio:wheel_selected_item_position="2"
                             aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
-                            app:wheel_indicator="true"
-                            app:wheel_indicator_color="@color/grey"
-                            app:wheel_indicator_size="@dimen/scale_1dp"
-                            app:wheel_same_width="true"
-                            app:wheel_visible_item_count="3" />
-
+                            
                     </LinearLayout>
 
                 </LinearLayout>
