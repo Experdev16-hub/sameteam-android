@@ -165,10 +165,10 @@ dependencies {
     // Replaced problematic JitPack dependencies with Maven Central alternatives
     
     // PRDownloader replacement - from Maven Central (NOT JitPack)
-    implementation 'com.ixuea:AndroidDownloader:4.0.1'
+  //  implementation 'com.ixuea:AndroidDownloader:4.0.1'
     
     // WheelPicker replacement - from Maven Central (NOT JitPack)  
-    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+   // implementation 'com.contrarywind:Android-PickerView:4.1.9'
     
     // Keep your existing fastscroll or use:
     
