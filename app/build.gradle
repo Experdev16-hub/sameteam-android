@@ -349,9 +349,9 @@ dependencies {
 
     //Country code
     implementation 'io.michaelrocks:libphonenumber-android:8.12.31'
-    implementation('com.futuremind.recyclerfastscroll:fastscroll:0.2.5', {
-        exclude group: 'com.android.support'
-    })
+    //implementation('com.futuremind.recyclerfastscroll:fastscroll:0.2.5', {
+       // exclude group: 'com.android.support'
+    //})
 
     //Pagination
     implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha01"
