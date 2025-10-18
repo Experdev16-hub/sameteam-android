@@ -64,7 +64,7 @@
                 android:layout_marginTop="@dimen/scale_20dp"/>
 
 
-            <com.aigestudio.wheelpicker.WheelPicker
+            <NumberPicker
                 android:id="@+id/wheelPicker"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
