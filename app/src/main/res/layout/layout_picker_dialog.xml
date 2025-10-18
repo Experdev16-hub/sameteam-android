@@ -74,17 +74,15 @@
         android:layout_below="@+id/rl_query_holder"
         android:dividerHeight="2dp" />
 
-    <com.futuremind.recyclerviewfastscroll.FastScroller
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fastscroll"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/recycler_countryDialog"
         android:layout_alignEnd="@+id/recycler_countryDialog"
         android:layout_alignTop="@+id/recycler_countryDialog"
-        android:orientation="vertical"
-        app:fastscroll__handleColor="@color/colorPrimary"
-        app:fastscroll__bubbleColor="@color/colorPrimary"
-        app:fastscroll__bubbleTextAppearance="@style/MyTextView" />
+        android:orientation="vertical" 
+        app:fastScrollEnabled="true"/>
 
     <TextView
         android:id="@+id/textView_noresult"
