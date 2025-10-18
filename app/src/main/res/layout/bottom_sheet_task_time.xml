@@ -140,7 +140,7 @@
                         android:orientation="horizontal"
                         android:visibility="visible">
 
-                        <com.aigestudio.wheelpicker.WheelPicker
+                        <NumberPicker
                             android:id="@+id/wheelPicker"
                             android:layout_width="@dimen/scale_70dp"
                             android:layout_height="@dimen/scale_150dp"
@@ -164,7 +164,7 @@
                             android:textSize="@dimen/text_size_20sp"
                             android:textStyle="bold" />
 
-                        <com.aigestudio.wheelpicker.WheelPicker
+                        <NumberPicker
                             android:id="@+id/wheelPicker2"
                             android:layout_width="@dimen/scale_70dp"
                             android:layout_height="@dimen/scale_150dp"
@@ -179,7 +179,7 @@
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                             aigestudio:wheel_selected_item_text_color="@color/colorPrimary"/>
                             
-                        <com.aigestudio.wheelpicker.WheelPicker
+                        <NumberPicker
                             android:id="@+id/wheelPicker3"
                             android:layout_width="@dimen/scale_70dp"
                             android:layout_height="@dimen/scale_150dp"
