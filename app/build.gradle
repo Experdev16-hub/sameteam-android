@@ -173,10 +173,10 @@ dependencies {
     // Keep your existing fastscroll or use:
     
     // PRDownloader replacement that works
-    implementation 'com.ixuea:AndroidDownloader:4.0.1'
+    //implementation 'com.ixuea:AndroidDownloader:4.0.1'
     
     // WheelPicker replacement that works  
-    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    //implementation 'com.contrarywind:Android-PickerView:4.1.9'
     
     // ... rest of your dependencies stay the same
     
