@@ -152,7 +152,7 @@
                             aigestudio:wheel_cyclic="true"
                             aigestudio:wheel_item_text_color="@color/black"
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
-                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"/>
                             
                         <TextView
                             android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                             aigestudio:wheel_cyclic="true"
                             aigestudio:wheel_item_text_color="@color/black"
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
-                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"/>
                             
                         <com.aigestudio.wheelpicker.WheelPicker
                             android:id="@+id/wheelPicker3"
@@ -193,7 +193,7 @@
                             aigestudio:wheel_item_text_color="@color/black"
                             aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                             aigestudio:wheel_selected_item_position="2"
-                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                            aigestudio:wheel_selected_item_text_color="@color/colorPrimary"/>
                             
                     </LinearLayout>
 
