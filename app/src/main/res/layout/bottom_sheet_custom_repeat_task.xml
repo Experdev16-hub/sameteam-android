@@ -76,7 +76,7 @@
                 aigestudio:wheel_item_text_color="@color/black"
                 aigestudio:wheel_item_text_size="@dimen/text_size_18sp"
                 app:wheel_visible_item_count="3"
-                aigestudio:wheel_selected_item_text_color="@color/colorPrimary"
+                aigestudio:wheel_selected_item_text_color="@color/colorPrimary"/>
                 
 
             <androidx.core.widget.NestedScrollView
