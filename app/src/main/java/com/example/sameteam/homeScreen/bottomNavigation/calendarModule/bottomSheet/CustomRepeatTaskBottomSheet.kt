@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import com.aigestudio.wheelpicker.WheelPicker
+//import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sameteam.R
 import com.example.sameteam.databinding.BottomSheetCustomRepeatTaskBinding
 import com.example.sameteam.helper.Constants
@@ -114,9 +114,9 @@ class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogF
 
 
         val selectedTF = ResourcesCompat.getFont(requireContext(), R.font.avenirnext_demibold)
-        binding.wheelPicker.typeface = selectedTF
-        binding.wheelPicker.data = listOf("Day", "Week", "Month", "Year")
-        binding.wheelPicker.setOnWheelChangeListener(this)
+        //binding.wheelPicker.typeface = selectedTF
+        //binding.wheelPicker.data = listOf("Day", "Week", "Month", "Year")
+        //binding.wheelPicker.setOnWheelChangeListener(this)
 
 
         return binding.root
