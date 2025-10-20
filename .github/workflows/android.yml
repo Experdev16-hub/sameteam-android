@@ -18,7 +18,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    - name: Make continue work by fixing broken code
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+        
+    - name: Fix broken code and skip KAPT
       run: |
         # Comment out ALL problematic imports
         find app/src/main/java -name "*.kt" -exec sed -i 's/import com\.downloader\./\/\/ import com.downloader./g' {} +
@@ -30,4 +33,19 @@ jobs:
         find app/src/main/java -name "*.kt" -exec sed -i 's/WheelPicker\./\/\/ WheelPicker./g' {} +
         find app/src/main/java -name "*.kt" -exec sed -i 's/FastScroll/\/\/ FastScroll/g' {} +
         
-        ./gradlew assembleDebug --continue 
+        # Build without KAPT
+        ./gradlew assembleDebug \
+          -x kaptGenerateStubsDebugKotlin \
+          -x kaptDebugKotlin \
+          -x kaptGenerateStubsClientDebugKotlin \
+          -x kaptClientDebugKotlin \
+          -x kaptGenerateStubsDevelopDebugKotlin \
+          -x kaptDevelopDebugKotlin \
+          --continue --stacktrace
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug
+        path: app/build/outputs/apk/debug/*.apk
+        retention-days: 30
