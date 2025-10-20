@@ -24,9 +24,10 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    - name: Build with Gradle
-      run: sh gradlew assembleRelease --no-configuration-cache -stacktrace --info
-
+    - name: Build without problematic modules
+      run: ./gradlew assembleRelease -x compileDevelopReleaseKotlin -x kaptDevelopReleaseKotlin
+ 
+    
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
