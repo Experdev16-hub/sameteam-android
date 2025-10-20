@@ -19,14 +19,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sameteam.R;
-import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
+//import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hbb20 on 11/1/16.
  */
-class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.CountryCodeViewHolder> implements SectionTitleProvider {
+class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.CountryCodeViewHolder> {
     List<CCPCountry> filteredCountries = null, masterCountries = null;
     TextView textView_noResult;
     CountryCodePicker codePicker;
@@ -198,7 +198,7 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
         return filteredCountries.size();
     }
 
-    @Override
+  /*  @Override
     public String getSectionTitle(int position) {
         CCPCountry ccpCountry = filteredCountries.get(position);
         if (preferredCountriesCount > position) {
@@ -209,7 +209,7 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
             return "☺"; //this should never be the case
         }
     }
-
+*/
     class CountryCodeViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout relativeLayout_main;
         TextView textView_name, textView_code;
