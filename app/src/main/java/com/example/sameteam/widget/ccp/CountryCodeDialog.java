@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sameteam.R;
-import com.futuremind.recyclerviewfastscroll.FastScroller;
+//import com.futuremind.recyclerviewfastscroll.FastScroller;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -176,7 +176,7 @@ class CountryCodeDialog {
         recyclerView_countryDialog.setAdapter(cca);
 
         //fast scroller
-        FastScroller fastScroller = dialog.findViewById(R.id.fastscroll);
+       /* FastScroller fastScroller = dialog.findViewById(R.id.fastscroll);
         fastScroller.setRecyclerView(recyclerView_countryDialog);
         if (codePicker.isShowFastScroller()) {
             if (codePicker.getFastScrollerBubbleColor() != 0) {
@@ -198,7 +198,7 @@ class CountryCodeDialog {
         } else {
             fastScroller.setVisibility(View.GONE);
         }
-
+*/
         dialog.setOnDismissListener(dialogInterface -> {
             hideKeyboard(context);
             if (codePicker.getDialogEventsListener() != null) {
