@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.downloader.OnCancelListener
 import com.downloader.OnDownloadListener
-import com.downloader.PRDownloader
+//import com.downloader.PRDownloader
 import com.example.sameteam.base.BaseActivity
 import com.example.sameteam.databinding.ActivityShowImageBinding
 import com.example.sameteam.helper.ImagePickerActivity
@@ -47,7 +47,7 @@ class ShowImageActivity : BaseActivity<ActivityShowImageBinding>() {
     lateinit var binding: ActivityShowImageBinding
     lateinit var showImageVM: ShowImageVM
     override fun initActivity(mBinding: ViewDataBinding) {
-        PRDownloader.initialize(getApplicationContext());
+       // PRDownloader.initialize(getApplicationContext());
 
         binding = mBinding as ActivityShowImageBinding
         showImageVM = getViewModel() as ShowImageVM
@@ -322,7 +322,7 @@ class ShowImageActivity : BaseActivity<ActivityShowImageBinding>() {
         val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         Log.e("10/07 Download File dir =-=-=-=-=>", dir.path.toString() ?: "")
 
-        PRDownloader.download(imageUrl, dir.path, fileName)
+      /*  PRDownloader.download(imageUrl, dir.path, fileName)
             .build()
             .setOnStartOrResumeListener {
 
@@ -366,7 +366,7 @@ class ShowImageActivity : BaseActivity<ActivityShowImageBinding>() {
                     }
                 }
 
-            })
+            })*/
     }
 
     fun getDownloadDir(context: Context): File? {
