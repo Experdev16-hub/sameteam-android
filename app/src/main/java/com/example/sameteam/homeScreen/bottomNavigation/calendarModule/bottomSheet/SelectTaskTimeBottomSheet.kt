@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import com.aigestudio.wheelpicker.WheelPicker
+//import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sameteam.R
 import com.example.sameteam.databinding.BottomSheetTaskTimeBinding
 import com.example.sameteam.helper.Constants
@@ -61,15 +61,15 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
 
 
         val selectedTF = ResourcesCompat.getFont(requireContext(), R.font.avenirnext_demibold)
-        binding.wheelPicker.typeface = selectedTF
-        binding.wheelPicker2.typeface = selectedTF
-        binding.wheelPicker3.typeface = selectedTF
-        binding.wheelPicker.data = (1..12).toList()
+        //binding.wheelPicker.typeface = selectedTF
+        //binding.wheelPicker2.typeface = selectedTF
+       // binding.wheelPicker3.typeface = selectedTF
+       // binding.wheelPicker.data = (1..12).toList()
 
         val temp = arrayListOf("00", "01", "02", "03", "04", "05", "06", "07", "08", "09")
         (10..59).forEach { temp.add(it.toString()) }
-        binding.wheelPicker2.data = temp
-        binding.wheelPicker3.data = listOf("AM", "PM")
+        //binding.wheelPicker2.data = temp
+       // binding.wheelPicker3.data = listOf("AM", "PM")
         return binding.root
     }
 
@@ -95,7 +95,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
         /**
          * Hours wheel picker
          */
-        binding.wheelPicker.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
+      /*  binding.wheelPicker.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
             override fun onWheelScrolled(offset: Int) {
                 if (firstTimeHour) {
                     moveToCurrentHour()
@@ -114,7 +114,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
         /**
          * Minutes wheel picker
          */
-        binding.wheelPicker2.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
+       binding.wheelPicker2.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
             override fun onWheelScrolled(offset: Int) {
                 if (firstTimeMinutes) {
                     moveToCurrentMinute()
@@ -133,7 +133,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
         /**
          * AM_PM wheel picker
          */
-        binding.wheelPicker3.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
+          binding.wheelPicker3.setOnWheelChangeListener(object : WheelPicker.OnWheelChangeListener {
             override fun onWheelScrolled(offset: Int) {
                 if (firstTimeAMPM)
                     moveToCurrentAMPM()
@@ -150,7 +150,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
             override fun onWheelScrollStateChanged(state: Int) {
 
             }
-        })
+        })*/
 
     }
 
