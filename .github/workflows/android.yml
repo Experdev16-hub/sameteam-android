@@ -54,27 +54,27 @@ jobs:
           fi
         done
         
-    - name: Build with smart skipping
+    - name: Build with correct task names
       run: |
-        # Build only what can be built
-        ./gradlew :app:mergeDebugResources :app:packageDebug --continue
+        # Build with EXACT task names for client flavor
+        ./gradlew :app:mergeClientDebugResources :app:packageClientDebug --continue
         
     - name: Upload APK
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/*.apk
+        name: app-client-debug
+        path: app/build/outputs/apk/client/debug/app-client-debug.apk
         retention-days: 30
         
     - name: Show build result
       if: always()
       run: |
-        if [ -f "app/build/outputs/apk/debug/app-debug.apk" ]; then
+        if [ -f "app/build/outputs/apk/client/debug/app-client-debug.apk" ]; then
           echo "✅ SUCCESS: APK built successfully!"
-          ls -la app/build/outputs/apk/debug/
+          ls -la app/build/outputs/apk/client/debug/
         else
           echo "❌ Build failed - no APK generated"
-          echo "Last few lines of build log:"
-          find . -name "*.log" -exec tail -20 {} \; 2>/dev/null || echo "No logs found"
+          echo "Trying to find any APK files:"
+          find app/build/outputs/apk/ -name "*.apk" 2>/dev/null || echo "No APK files found"
         fi
