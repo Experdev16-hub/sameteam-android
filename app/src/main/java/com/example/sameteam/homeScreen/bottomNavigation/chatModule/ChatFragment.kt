@@ -120,45 +120,44 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(), DialogsManager.Managin
     lateinit var receiver: MyReceiver
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    override fun onResume() {
-        super.onResume()
+override fun onResume() {
+    super.onResume()
 
-        chatFragmentVM.callMyProfile()
+    chatFragmentVM.callMyProfile()
 
-        if (QBChatService.getInstance().roster != null) {
-            contactsRoster = QBChatService.getInstance().roster
-            contactsRoster.subscriptionMode = QBRoster.SubscriptionMode.mutual
-            contactsRoster.addRosterListener(rosterListener)
-            contactsRoster.addSubscriptionListener(subscriptionListener)
-        }
-
-        if (ChatHelper.isLogged()) {
-    checkPlayServicesAvailable()
-    registerQbChatListeners()
-    // Always load fresh data on resume, don't rely on cached data
-    Handler(android.os.Looper.getMainLooper()).postDelayed({
-        loadDialogsFromQb(false, true)
-    }, 500) // Small delay to ensure fragment is fully resumed
-} else {
-    reloginToChat()
-}
-
-        
-        if(SharedPrefsHelper.hasQbUser())
-            currentQBUser = SharedPrefsHelper.getQbUser()
-
-        SharedPrefs.saveGroupName(MyApplication.getInstance(),"")
-        pushBroadcastReceiver = PushBroadcastReceiver()
-        val intentFilter  = IntentFilter()
-        intentFilter.addAction(ACTION_NEW_FCM_EVENT)
-        intentFilter.addAction(EXTRA_FCM_MESSAGE)
-        intentFilter.addAction(EMPTY_FCM_MESSAGE)
-        activity?.registerReceiver(
-            pushBroadcastReceiver,
-            intentFilter, RECEIVER_EXPORTED,
-        )
-
+    if (QBChatService.getInstance().roster != null) {
+        contactsRoster = QBChatService.getInstance().roster
+        contactsRoster.subscriptionMode = QBRoster.SubscriptionMode.mutual
+        contactsRoster.addRosterListener(rosterListener)
+        contactsRoster.addSubscriptionListener(subscriptionListener)
     }
+
+    if (ChatHelper.isLogged()) {
+        checkPlayServicesAvailable()
+        registerQbChatListeners()
+        if (QbDialogHolder.dialogsMap.isNotEmpty()) {
+            loadDialogsFromQb(true, true)
+        } else {
+            loadDialogsFromQb(false, true)
+        }
+    } else {
+        reloginToChat()
+    }
+
+    if(SharedPrefsHelper.hasQbUser())
+        currentQBUser = SharedPrefsHelper.getQbUser()
+
+    SharedPrefs.saveGroupName(MyApplication.getInstance(),"")
+    pushBroadcastReceiver = PushBroadcastReceiver()
+    val intentFilter  = IntentFilter()
+    intentFilter.addAction(ACTION_NEW_FCM_EVENT)
+    intentFilter.addAction(EXTRA_FCM_MESSAGE)
+    intentFilter.addAction(EMPTY_FCM_MESSAGE)
+    activity?.registerReceiver(
+        pushBroadcastReceiver,
+        intentFilter, RECEIVER_EXPORTED,
+    )
+}
 
 
     override fun initFragment(mBinding: ViewDataBinding) {
