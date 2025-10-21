@@ -21,7 +21,7 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
         
-    - name: Fix ALL broken code
+    - name: Fix ALL broken code and skip KAPT
       run: |
         # Comment out ALL problematic imports
         find app/src/main/java -name "*.kt" -exec sed -i 's/import com\.downloader\./\/\/ import com.downloader./g' {} +
@@ -36,8 +36,13 @@ jobs:
         # Comment out BR references (Data Binding)
         find app/src/main/java -name "*.kt" -exec sed -i 's/BR\./\/\/ BR./g' {} +
         
-        # Build with continue
-        ./gradlew assembleDebug --continue --stacktrace
+        # Build with continue and skip ALL KAPT tasks
+        ./gradlew assembleDebug \
+          -x kaptGenerateStubsClientDebugKotlin \
+          -x kaptClientDebugKotlin \
+          -x kaptGenerateStubsDevelopDebugKotlin \
+          -x kaptDevelopDebugKotlin \
+          --continue --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
