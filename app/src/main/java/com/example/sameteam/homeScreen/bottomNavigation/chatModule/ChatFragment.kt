@@ -85,7 +85,9 @@ import java.lang.IllegalArgumentException
 class ChatFragment : BaseFragment<FragmentChatBinding>(), DialogsManager.ManagingDialogsCallbacks {
 
     private val TAG = "ChatFragment"
-
+    private var isDialogsLoading = false
+    private var pendingLoadRequest = false
+    
     override fun layoutID() = R.layout.fragment_chat
 
     override fun viewModel() = ViewModelProvider(
@@ -368,89 +370,89 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(), DialogsManager.Managin
     }
 
 
-    private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean) {
-        binding.recView.visibility = View.GONE
-        binding.noDataLayout.visibility = View.GONE
-        binding.progressBar.visibility = View.VISIBLE
+private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean) {
+    if (isDialogsLoading) {
+        pendingLoadRequest = true
+        return
+    }
+    
+    isDialogsLoading = true
+    binding.recView.visibility = View.GONE
+    binding.noDataLayout.visibility = View.GONE
+    binding.progressBar.visibility = View.VISIBLE
 
+    val requestBuilder = QBRequestGetBuilder()
+    requestBuilder.limit = 100
 
-        val requestBuilder = QBRequestGetBuilder()
-        requestBuilder.limit = 100
-//        requestBuilder.skip = if (clearDialogHolder) {
-//            0
-//        } else {
-//            QbDialogHolder.dialogsMap.size
-//        }
+    searchMap.clear()
 
-        searchMap.clear()
-
-        ChatHelper.getDialogs(requestBuilder, object : QBEntityCallback<ArrayList<QBChatDialog>> {
-            override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
-                if (dialogs.size < 100) {
-                    hasMoreDialogs = false
-                }
-                if (clearDialogHolder) {
-                    QbDialogHolder.clear()
-                    hasMoreDialogs = true
-                }
-                QbDialogHolder.addDialogs(dialogs)
-                if (isAdded)
-                    updateDialogsAdapter()
-
-
-                for(dialog in dialogs){
-                    if(dialog.type != QBDialogType.PRIVATE){
-                        searchMap[dialog.name] = dialog
-                    }
-                    else{
-                        val newOccupants = dialog.occupants
-                        newOccupants.remove(currentQBUser?.id)
-                        if(!newOccupants.isNullOrEmpty()) {
-                            val qbUser = QbUsersDbManager.getUserById(newOccupants[0])
-                            searchMap[qbUser?.fullName.toString()] = dialog
+    ChatHelper.getDialogs(requestBuilder, object : QBEntityCallback<ArrayList<QBChatDialog>> {
+        override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
+            isDialogsLoading = false
+            
+            if (pendingLoadRequest) {
+                pendingLoadRequest = false
+                Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    loadDialogsFromQb(false, true)
+                }, 300)
+                return
+            }
+            
+            if (dialogs.size < 100) {
+                hasMoreDialogs = false
+            }
+            if (clearDialogHolder) {
+                QbDialogHolder.clear()
+                hasMoreDialogs = true
+            }
+            
+            QbDialogHolder.addDialogs(dialogs)
+            
+            for(dialog in dialogs){
+                if(dialog.type != QBDialogType.PRIVATE){
+                    searchMap[dialog.name] = dialog
+                } else {
+                    val newOccupants = ArrayList(dialog.occupants)
+                    newOccupants.remove(currentQBUser?.id)
+                    if(!newOccupants.isNullOrEmpty()) {
+                        val qbUser = QbUsersDbManager.getUserById(newOccupants[0])
+                        if (qbUser?.fullName != null) {
+                            searchMap[qbUser.fullName] = dialog
                         }
                     }
                 }
-
-
-//                val joinerTask = DialogJoinerAsyncTask(requireActivity(), dialogs)
-//                joinerTasksSet.add(joinerTask)
-//                joinerTask.execute()
-
-//                lifecycleScope.executeAsyncTask(
-//                    onPreExecute = {
-//
-//                    },
-//                    onPostExecute = {
-//
-//                    },
-//                    doInBackground = {
-//                        ChatHelper.join(dialogs)
-//                    }
-//                )
-
-                if (hasMoreDialogs) {
-                    Log.d(TAG, "onSuccess: ${hasMoreDialogs}")
-                    loadDialogsFromQb(true, false)
-                }
-
-                binding.recView.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
-
-                if(dialogs.size == 0){
-                    binding.recViewLayout.visibility = View.GONE
-                    binding.noDataLayout.visibility = View.VISIBLE
-                }
             }
 
-            override fun onError(e: QBResponseException) {
-                e.message?.let { shortToast(it) }
-                binding.recView.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
-            }
-        })
+            updateDialogsAdapter()
 
-    }
+            binding.recView.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+
+            if(dialogs.isEmpty()){
+                binding.recViewLayout.visibility = View.GONE
+                binding.noDataLayout.visibility = View.VISIBLE
+            } else {
+                binding.recViewLayout.visibility = View.VISIBLE
+                binding.noDataLayout.visibility = View.GONE
+            }
+        }
+
+        override fun onError(e: QBResponseException) {
+            isDialogsLoading = false
+            pendingLoadRequest = false
+            
+            e.message?.let { shortToast(it) }
+            binding.recView.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+            
+            if (QbDialogHolder.dialogsMap.isEmpty()) {
+                binding.recViewLayout.visibility = View.GONE
+                binding.noDataLayout.visibility = View.VISIBLE
+            }
+        }
+    })
+}
+    
 
     private fun initConnectionListener() {
         val rootView: View = binding.recView
