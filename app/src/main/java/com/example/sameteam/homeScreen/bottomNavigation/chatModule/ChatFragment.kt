@@ -288,19 +288,20 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(), DialogsManager.Managin
 
 
     override fun onPause() {
-        super.onPause()
-        ChatHelper.removeConnectionListener(chatConnectionListener)
+    super.onPause()
+    ChatHelper.removeConnectionListener(chatConnectionListener)
+    
+    isDialogsLoading = false
+    pendingLoadRequest = false
 
-        try {
-            //Register or UnRegister your broadcast receiver here
-//            context?.unregisterReceiver(receiver)
-            LocalBroadcastManager.getInstance(requireContext())
-                .unregisterReceiver(pushBroadcastReceiver)
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-        }
+    try {
+        activity?.unregisterReceiver(pushBroadcastReceiver)
+    } catch (e: IllegalArgumentException) {
+        Log.e(TAG, "Push receiver not registered: ${e.message}")
     }
 
+
+    
     override fun onStop() {
         super.onStop()
         unregisterQbChatListeners()
