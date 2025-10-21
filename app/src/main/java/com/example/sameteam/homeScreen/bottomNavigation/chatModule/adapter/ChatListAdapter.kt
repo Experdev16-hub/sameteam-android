@@ -151,11 +151,14 @@ class ChatListAdapter(var context: Context, var dialogs: List<QBChatDialog>) :
         return lastMessage
     }
 
-
-    fun updateList(newData: List<QBChatDialog>) {
+fun updateList(newData: List<QBChatDialog>) {
+    try {
         dialogs = newData
         notifyDataSetChanged()
+    } catch (e: Exception) {
+        Log.e(TAG, "Error updating chat list: ${e.message}")
     }
+}
 
 
     private fun getDialogLastMessageTime(seconds: Long): String {
