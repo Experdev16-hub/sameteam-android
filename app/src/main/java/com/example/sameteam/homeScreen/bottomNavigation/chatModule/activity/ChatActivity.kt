@@ -98,7 +98,7 @@ class ChatActivity : BaseActivity2(), QBMessageStatusListener,
     private lateinit var chatAdapter: ChatAdapter
     lateinit var qbChatDialog: QBChatDialog
     lateinit var binding: ActivityChatBinding
-
+    private var isChatLoading = false
     private var currentUser = QBUser()
 
     private var chatMessageListener: ChatMessageListener = ChatMessageListener()
@@ -783,21 +783,25 @@ class ChatActivity : BaseActivity2(), QBMessageStatusListener,
     }
 
     private fun reloginToChat() {
-        binding.progressBar.visibility = View.VISIBLE
+    if (isChatLoading) return
+    
+    isChatLoading = true
+    binding.progressBar.visibility = View.VISIBLE
 
-        ChatHelper.loginToChat(SharedPrefsHelper.getQbUser()!!, object : QBEntityCallback<Void> {
-            override fun onSuccess(aVoid: Void?, bundle: Bundle?) {
-                returnToChat()
-                binding.progressBar.visibility = View.GONE
-            }
+    ChatHelper.loginToChat(SharedPrefsHelper.getQbUser()!!, object : QBEntityCallback<Void> {
+        override fun onSuccess(aVoid: Void?, bundle: Bundle?) {
+            isChatLoading = false
+            returnToChat()
+            binding.progressBar.visibility = View.GONE
+        }
 
-            override fun onError(e: QBResponseException?) {
-                binding.progressBar.visibility = View.GONE
-                shortToast(getString(R.string.reconnect_failed))
-            }
-        })
+        override fun onError(e: QBResponseException?) {
+            isChatLoading = false
+            binding.progressBar.visibility = View.GONE
+            shortToast(getString(R.string.reconnect_failed))
+        }
+    })
     }
-
     private fun returnToChat() {
         qbChatDialog.initForChat(QBChatService.getInstance())
 
