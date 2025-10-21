@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Context.RECEIVER_EXPORTED
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
+import android.os.Build 
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -133,17 +133,17 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(), DialogsManager.Managin
         }
 
         if (ChatHelper.isLogged()) {
-            checkPlayServicesAvailable()
-            registerQbChatListeners()
-            if (QbDialogHolder.dialogsMap.isNotEmpty()) {
-                loadDialogsFromQb(true, true)
-            } else {
-                loadDialogsFromQb(false, true)
-            }
-        } else {
-            reloginToChat()
-        }
+    checkPlayServicesAvailable()
+    registerQbChatListeners()
+    // Always load fresh data on resume, don't rely on cached data
+    Handler(android.os.Looper.getMainLooper()).postDelayed({
+        loadDialogsFromQb(false, true)
+    }, 500) // Small delay to ensure fragment is fully resumed
+} else {
+    reloginToChat()
+}
 
+        
         if(SharedPrefsHelper.hasQbUser())
             currentQBUser = SharedPrefsHelper.getQbUser()
 
