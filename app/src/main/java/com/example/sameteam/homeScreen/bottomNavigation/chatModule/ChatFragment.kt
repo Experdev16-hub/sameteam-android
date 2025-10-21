@@ -435,7 +435,8 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
                 binding.recViewLayout.visibility = View.VISIBLE
                 binding.noDataLayout.visibility = View.GONE
             }
-        }
+        })
+    }
 
         override fun onError(e: QBResponseException) {
             isDialogsLoading = false
@@ -450,9 +451,7 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
                 binding.noDataLayout.visibility = View.VISIBLE
             }
         }
-    })
-}
-    
+    }
 
     private fun initConnectionListener() {
         val rootView: View = binding.recView
@@ -465,11 +464,20 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
     }
 
 
+
+
     private fun updateDialogsAdapter() {
+    if (!isAdded || isRemoving) {
+        return
+    }
+    
+    try {
         val listDialogs = ArrayList(QbDialogHolder.dialogsMap.values)
         chatListAdapter.updateList(listDialogs)
+    } catch (e: Exception) {
+        Log.e(TAG, "Error updating dialog adapter: ${e.message}")
     }
-
+    
     fun shortToast(msg: String) {
         Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show()
     }
