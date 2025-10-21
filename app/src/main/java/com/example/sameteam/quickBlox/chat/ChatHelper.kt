@@ -47,7 +47,9 @@ object ChatHelper {
     private var usersLoadedFromDialogs = ArrayList<QBUser>()
     private var usersLoadedFromMessage = ArrayList<QBUser>()
     private var usersLoadedFromMessages = ArrayList<QBUser>()
+    private var loginInProgress = false
 
+    
     init {
         //TODO Remove debug logs
         QBSettings.getInstance().logLevel = LogLevel.DEBUG
@@ -121,13 +123,29 @@ object ChatHelper {
             })
     }
 
-    fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
-        if (!qbChatService.isLoggedIn) {
-            qbChatService.login(user, callback)
-        } else {
-            callback.onSuccess(null, null)
-        }
+fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
+    if (loginInProgress) {
+        callback.onError(QBResponseException("Login already in progress"))
+        return
     }
+    
+    if (!qbChatService.isLoggedIn) {
+        loginInProgress = true
+        qbChatService.login(user, object : QBEntityCallback<Void> {
+            override fun onSuccess(result: Void?, bundle: Bundle?) {
+                loginInProgress = false
+                callback.onSuccess(result, bundle)
+            }
+
+            override fun onError(e: QBResponseException) {
+                loginInProgress = false
+                callback.onError(e)
+            }
+        })
+    } else {
+        callback.onSuccess(null, null)
+    }
+
 
     fun join(chatDialog: QBChatDialog, callback: QBEntityCallback<Void>) {
         val history = DiscussionHistory()
