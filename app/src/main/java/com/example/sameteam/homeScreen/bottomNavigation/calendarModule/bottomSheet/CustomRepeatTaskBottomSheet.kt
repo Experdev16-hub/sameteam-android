@@ -307,56 +307,10 @@ class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogF
         }
     }
 
-    override fun onWheelScrolled(offset: Int) {
-//        Log.d(TAG, "onWheelScrolled: $offset")
-    }
-
     /**
      * Wheel Scroll Change Listener
      */
-    override fun onWheelSelected(position: Int) {
-        Log.d(TAG, "onWheelSelected: position $position")
-        wheelPosition = position
-        when (position) {
-            0 -> {
-                // Every Day is selected
-                binding.monthLayout.visibility = View.GONE
-                binding.weekLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-            }
-            1 -> {
-                // Week is selected
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-                binding.weekLayout.visibility = View.VISIBLE
-            }
-            2 -> {
-                // Month is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.VISIBLE
-            }
-            3 -> {
-                // Year is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.VISIBLE
-
-            }
-            else -> {
-                // By Default Every day is selected
-                binding.weekLayout.visibility = View.GONE
-                binding.monthLayout.visibility = View.GONE
-                binding.yearLayout.visibility = View.GONE
-            }
-        }
-
-    }
-
-    override fun onWheelScrollStateChanged(state: Int) {
-//        Log.d(TAG, "onWheelScrollStateChanged: $state")
-    }
-
+    
     /**
      * The below method will check if week repeat option is selected but no weekday("M","T","W","F"...) is selected
      * for repeat it will show error
