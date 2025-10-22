@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-//import com.aigestudio.wheelpicker.WheelPicker
 import com.example.sameteam.R
 import com.example.sameteam.databinding.BottomSheetCustomRepeatTaskBinding
 import com.example.sameteam.helper.Constants
@@ -27,7 +26,7 @@ import kotlin.collections.ArrayList
 
 
 class CustomRepeatTaskBottomSheet(val localDate: LocalDate) : BottomSheetDialogFragment(),
-    View.OnClickListener, WheelPicker.OnWheelChangeListener {
+    View.OnClickListener {
 
     //Implemented in CreateTaskActivity
     interface CustomListener{
