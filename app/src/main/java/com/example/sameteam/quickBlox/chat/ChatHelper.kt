@@ -741,4 +741,4 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
     ) {
         QBUsers.getUsersByIDs(usersIDs, null).performAsync(callback)
     }
-}
+}}
