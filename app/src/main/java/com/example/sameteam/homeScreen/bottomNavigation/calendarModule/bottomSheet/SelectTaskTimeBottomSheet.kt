@@ -164,11 +164,11 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
 
         if (c.get(Calendar.AM_PM) == 0) {
             ampm = "AM"
-            binding.wheelPicker3.setSelectedItemPosition(0, true)
+            
             firstTimeAMPM = false
         } else {
             ampm = "PM"
-            binding.wheelPicker3.setSelectedItemPosition(1, true)
+            
             firstTimeAMPM = false
         }
     }
@@ -181,7 +181,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
             Log.i("Time for", i.toString())
             if (i == minute) {
                 minutes = minute
-                binding.wheelPicker2.setSelectedItemPosition(i, true)
+                
                 firstTimeMinutes = false
                 break
             }
@@ -196,7 +196,7 @@ class SelectTaskTimeBottomSheet(val location: String) : BottomSheetDialogFragmen
             Log.i("Time for", i.toString())
             if (i == hour) {
                 hours = hour
-                binding.wheelPicker.setSelectedItemPosition(i - 1, true)
+                
                 firstTimeHour = false
                 break
             }
