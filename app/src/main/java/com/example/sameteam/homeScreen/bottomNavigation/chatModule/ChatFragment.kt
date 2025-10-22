@@ -435,6 +435,7 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
                 binding.recViewLayout.visibility = View.VISIBLE
                 binding.noDataLayout.visibility = View.GONE
             }
+        }
         })
     }
 
@@ -700,5 +701,5 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
     override fun onNewDialogLoaded(chatDialog: QBChatDialog) {
         updateDialogsAdapter()
 
-    }
+    }}
 }
