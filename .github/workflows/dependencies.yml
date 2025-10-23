@@ -28,11 +28,6 @@ jobs:
       
     - name: Check Android dependencies
       run: ./gradlew :app:dependencies --configuration implementation
-      
-    - name: Check all configurations
-      run: |
-        ./gradlew :app:dependencies --configuration compileClasspath
-        ./gradlew :app:dependencies --configuration runtimeClasspath
         
     - name: Clean project
       run: ./gradlew clean
