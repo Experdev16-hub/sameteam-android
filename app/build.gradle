@@ -257,13 +257,13 @@ dependencies {
 
 
     //QuickBlox
-    implementation "com.quickblox:quickblox-android-sdk-messages:3.10.2"
-    implementation "com.quickblox:quickblox-android-sdk-chat:3.10.2"
-    implementation "com.quickblox:quickblox-android-sdk-content:3.10.2"
+    implementation "com.quickblox:quickblox-android-sdk-messages:3.9.2"
+    implementation "com.quickblox:quickblox-android-sdk-chat:3.9.2"
+    implementation "com.quickblox:quickblox-android-sdk-content:3.9.2"
 
-    implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:3.10.2"
-    implementation "com.quickblox:quickblox-android-sdk-conference:3.10.2"
-    implementation "com.quickblox:quickblox-android-sdk-customobjects:3.10.2"
+    implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:3.9.2"
+    implementation "com.quickblox:quickblox-android-sdk-conference:3.9.2"
+    implementation "com.quickblox:quickblox-android-sdk-customobjects:3.9.2"
 
     //Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
