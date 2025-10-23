@@ -1,3 +1,4 @@
+
 package com.example.sameteam.quickBlox.chat
 
 
@@ -152,7 +153,7 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
     } else {
         callback.onSuccess(null, null)
     }
-
+} // ADDED MISSING CLOSING BRACE
 
     fun join(chatDialog: QBChatDialog, callback: QBEntityCallback<Void>) {
         val history = DiscussionHistory()
@@ -479,86 +480,6 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
         loadUsersByIDsFromDialog(userIds, requestBuilder, callback)
     }
 
-    private fun loadUsersByIDsFromDialog(
-        userIDs: Collection<Int>,
-        requestBuilder: QBPagedRequestBuilder,
-        callback: QBEntityCallback<ArrayList<QBUser>>
-    ) {
-        QBUsers.getUsersByIDs(userIDs, requestBuilder)
-            .performAsync(object : QBEntityCallback<ArrayList<QBUser>> {
-                override fun onSuccess(qbUsers: ArrayList<QBUser>?, bundle: Bundle?) {
-                    if (qbUsers != null) {
-                        usersLoadedFromDialog.addAll(qbUsers)
-                        QbUsersDbManager.saveAllUsers(qbUsers, false)
-                        bundle?.let {
-                            val totalPages = it.get(TOTAL_PAGES_BUNDLE_PARAM) as Int
-                            val currentPage = it.get(CURRENT_PAGE_BUNDLE_PARAM) as Int
-                            if (totalPages > currentPage) {
-                                requestBuilder.page = currentPage + 1
-                                loadUsersByIDsFromDialog(userIDs, requestBuilder, callback)
-                            } else {
-                                callback.onSuccess(usersLoadedFromDialog, bundle)
-                            }
-                        }
-                    }
-                }
-
-                override fun onError(e: QBResponseException?) {
-                    callback.onError(e)
-                }
-            })
-    }
-
-    fun loadFileAsAttachment(
-        file: File,
-        callback: QBEntityCallback<QBAttachment>,
-        progressCallback: QBProgressCallback?
-    ) {
-        QBContent.uploadFileTask(file, false, null, progressCallback).performAsync(
-            object : QbEntityCallbackTwoTypeWrapper<QBFile, QBAttachment>(callback) {
-                override fun onSuccess(qbFile: QBFile, bundle: Bundle?) {
-                    var type = "file"
-                    if (qbFile.contentType.contains("image", ignoreCase = true)) {
-                        type = QBAttachment.IMAGE_TYPE
-                    } else if (qbFile.contentType.contains("video", ignoreCase = true)) {
-                        type = QBAttachment.VIDEO_TYPE
-                    }
-
-                    val attachment = QBAttachment(type)
-                    attachment.id = qbFile.uid
-                    attachment.size = qbFile.size.toDouble()
-                    attachment.name = qbFile.name
-                    attachment.contentType = qbFile.contentType
-                    callback.onSuccess(attachment, bundle)
-                }
-            })
-    }
-
-    private fun getUsersFromDialogs(
-        dialogs: ArrayList<QBChatDialog>,
-        callback: QBEntityCallback<ArrayList<QBChatDialog>>
-    ) {
-        val userIds = HashSet<Int>()
-        for (dialog in dialogs) {
-            userIds.addAll(dialog.occupants)
-            userIds.add(dialog.lastMessageUserId)
-        }
-
-        val requestBuilder = QBPagedRequestBuilder(USERS_PER_PAGE, 1)
-        usersLoadedFromDialogs.clear()
-        loadUsersByIDsFromDialogs(
-            userIds,
-            requestBuilder,
-            object : QBEntityCallback<ArrayList<QBUser>> {
-                override fun onSuccess(qbUsers: ArrayList<QBUser>?, b: Bundle?) {
-                    callback.onSuccess(dialogs, b)
-                }
-
-                override fun onError(e: QBResponseException?) {
-                    callback.onError(e)
-                }
-            })
-    }
 
     private fun loadUsersByIDsFromDialogs(
         userIDs: Collection<Int>,
@@ -748,4 +669,4 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
     ) {
         QBUsers.getUsersByIDs(usersIDs, null).performAsync(callback)
     }
-}}
+}
