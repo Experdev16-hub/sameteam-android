@@ -4,7 +4,6 @@ package com.example.sameteam.quickBlox.chat
 
 import com.quickblox.chat.model.QBChatDialog
 import com.quickblox.chat.model.QBChatMessage
-import com.quickblox.core.QBEntityCallback
 import com.quickblox.core.exception.QBResponseException
 import com.quickblox.core.request.QBRequestGetBuilder
 import com.quickblox.users.model.QBUser
@@ -21,12 +20,9 @@ import com.quickblox.chat.request.QBMessageGetBuilder
 import com.quickblox.content.QBContent
 import com.quickblox.content.model.QBFile
 import com.quickblox.core.LogLevel
-import com.quickblox.core.QBEntityCallback
 import com.quickblox.core.QBProgressCallback
-import com.quickblox.core.exception.QBResponseException
 import com.quickblox.core.helper.StringifyArrayList
 import com.quickblox.core.request.QBPagedRequestBuilder
-import com.quickblox.core.request.QBRequestGetBuilder
 import com.example.sameteam.quickBlox.callback.QbEntityCallbackTwoTypeWrapper
 import com.example.sameteam.quickBlox.callback.QbEntityCallbackWrapper
 import com.example.sameteam.quickBlox.db.QbUsersDbManager
@@ -34,7 +30,6 @@ import com.example.sameteam.quickBlox.util.SharedPrefsHelper
 import com.quickblox.chat.model.*
 import com.quickblox.core.request.QBRequestUpdateBuilder
 import com.quickblox.users.QBUsers
-import com.quickblox.users.model.QBUser
 import org.jivesoftware.smack.ConnectionListener
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPException
@@ -473,11 +468,11 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
         QBRestChatService.getChatDialogById(dialogId).performAsync(callback)
     }
 
-    fun getUsersFromDialog(dialog: QBChatDialog, callback: QBEntityCallback<ArrayList<QBUser>>) {
+    fun getUsersFromDialogs(dialog: QBChatDialog, callback: QBEntityCallback<ArrayList<QBUser>>) {
         val userIds = dialog.occupants
         val requestBuilder = QBPagedRequestBuilder(USERS_PER_PAGE, 1)
         usersLoadedFromDialog.clear()
-        loadUsersByIDsFromDialog(userIds, requestBuilder, callback)
+        loadUsersByIDsFromDialogs(userIds, requestBuilder, callback)
     }
 
 
