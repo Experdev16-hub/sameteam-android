@@ -258,7 +258,7 @@ dependencies {
 
     //QuickBlox
     implementation "com.quickblox:quickblox-android-sdk-messages:4.0.3"
-    implementation "com.quickblox:quickblox-android-sdk-chat:4.0.3
+    implementation "com.quickblox:quickblox-android-sdk-chat:4.0.3"
     implementation "com.quickblox:quickblox-android-sdk-content:4.0.3"
 
     implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:4.0.3"
