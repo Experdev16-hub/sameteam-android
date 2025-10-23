@@ -1,5 +1,12 @@
 package com.example.sameteam.quickBlox.chat
 
+
+import com.quickblox.chat.model.QBChatDialog
+import com.quickblox.chat.model.QBChatMessage
+import com.quickblox.core.QBEntityCallback
+import com.quickblox.core.exception.QBResponseException
+import com.quickblox.core.request.QBRequestGetBuilder
+import com.quickblox.users.model.QBUser
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
