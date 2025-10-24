@@ -467,18 +467,18 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
 
 
     private fun updateDialogsAdapter() {
-    if (!isAdded || isRemoving) {
+      if (!isAdded || isRemoving) {
         return
-    }
+      }
     
-    try {
+      try {
         val listDialogs = ArrayList(QbDialogHolder.dialogsMap.values)
         chatListAdapter.updateList(listDialogs)
-    } catch (e: Exception) {
+      } catch (e: Exception) {
         Log.e(TAG, "Error updating dialog adapter: ${e.message}")
+      }
     }
-    }
-    fun shortToast(msg: String) {
+    private fun shortToast(msg: String) {
         Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show()
     }
 
@@ -700,5 +700,5 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
     override fun onNewDialogLoaded(chatDialog: QBChatDialog) {
         updateDialogsAdapter()
 
-    }}
-}
+    }
+    }
