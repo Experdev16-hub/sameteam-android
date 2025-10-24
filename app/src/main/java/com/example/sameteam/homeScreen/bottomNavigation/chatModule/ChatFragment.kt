@@ -300,7 +300,7 @@ override fun onResume() {
     }
 
 
-    
+    }
     fun onStop() {
         super.onStop()
         unregisterQbChatListeners()
@@ -451,7 +451,8 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
                 binding.noDataLayout.visibility = View.VISIBLE
             }
         }
-    }
+    })
+}
 
     private fun initConnectionListener() {
         val rootView: View = binding.recView
@@ -478,6 +479,8 @@ private fun loadDialogsFromQb(silentUpdate: Boolean, clearDialogHolder: Boolean)
         Log.e(TAG, "Error updating dialog adapter: ${e.message}")
       }
     }
+
+    
     private fun shortToast(msg: String) {
         Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show()
     }
