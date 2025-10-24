@@ -125,7 +125,30 @@ object ChatHelper {
                 }
             })
     }
+fun loadFileAsAttachment(
+    file: File,
+    callback: QBEntityCallback<QBAttachment>,
+    progressCallback: QBProgressCallback?
+) {
+    QBContent.uploadFileTask(file, false, null, progressCallback).performAsync(
+        object : QbEntityCallbackTwoTypeWrapper<QBFile, QBAttachment>(callback) {
+            override fun onSuccess(qbFile: QBFile, bundle: Bundle?) {
+                var type = "file"
+                if (qbFile.contentType.contains("image", ignoreCase = true)) {
+                    type = QBAttachment.IMAGE_TYPE
+                } else if (qbFile.contentType.contains("video", ignoreCase = true)) {
+                    type = QBAttachment.VIDEO_TYPE
+                }
 
+                val attachment = QBAttachment(type)
+                attachment.id = qbFile.uid
+                attachment.size = qbFile.size.toDouble()
+                attachment.name = qbFile.name
+                attachment.contentType = qbFile.contentType
+                callback.onSuccess(attachment, bundle)
+            }
+        })
+}
 fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
     if (loginInProgress) {
         callback.onError(QBResponseException("Login already in progress"))
