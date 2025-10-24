@@ -15,8 +15,8 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.downloader.OnCancelListener
-import com.downloader.OnDownloadListener
+//import com.downloader.OnCancelListener
+//import com.downloader.OnDownloadListener
 //import com.downloader.PRDownloader
 import com.example.sameteam.base.BaseActivity
 import com.example.sameteam.databinding.ActivityShowImageBinding
