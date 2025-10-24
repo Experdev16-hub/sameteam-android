@@ -480,7 +480,7 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
         QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
             object : QbEntityCallbackWrapper<ArrayList<QBChatDialog>>(callback) {
                 override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
-                    getUsersFromDialogs(dialogs, callback)
+                    getUsersFromDialog(dialogs, callback)
                     // Not calling callback.onSuccess(...) because
                     // we want to load chat userList before triggering callback
                 }
@@ -491,7 +491,7 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
         QBRestChatService.getChatDialogById(dialogId).performAsync(callback)
     }
 
-    fun getUsersFromDialogs(dialog: QBChatDialog, callback: QBEntityCallback<ArrayList<QBUser>>) {
+    fun getUsersFromDialog(dialog: QBChatDialog, callback: QBEntityCallback<ArrayList<QBUser>>) {
         val userIds = dialog.occupants
         val requestBuilder = QBPagedRequestBuilder(USERS_PER_PAGE, 1)
         usersLoadedFromDialog.clear()
