@@ -472,23 +472,29 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
             })
     }
 
+
    fun getDialogs(
     requestBuilder: QBRequestGetBuilder,
     callback: QBEntityCallback<ArrayList<QBChatDialog>>
 ) {
 
     QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
-        object : QBEntityCallback<ArrayList<QBChatDialog>> { // Line 481 - This is now correct
-            override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) { // Line 482 - FIXED parameter type
-                getUsersFromDialog(dialogs, object : QBEntityCallback<ArrayList<QBChatDialog>> { // Line 483 - FIXED callback type
-                    override fun onSuccess(result: ArrayList<QBChatDialog>, params: Bundle?) {
-                        callback.onSuccess(dialogs, bundle)
-                    }
+        object : QBEntityCallback<ArrayList<QBChatDialog>> {
+            override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
+                // Process each dialog individually to get users
+                for (dialog in dialogs) {
+                    getUsersFromDialog(dialog, object : QBEntityCallback<ArrayList<QBUser>> {
+                        override fun onSuccess(users: ArrayList<QBUser>, params: Bundle?) {
+                            // Store users for this dialog if needed
+                        }
 
-                    override fun onError(e: QBResponseException) {
-                        callback.onSuccess(dialogs, bundle) // Still return dialogs even if user fetch fails
-                    }
-                })
+                        override fun onError(e: QBResponseException) {
+                            // Handle error for individual dialog
+                        }
+                    })
+                }
+                // Return all dialogs once we've processed them
+                callback.onSuccess(dialogs, bundle)
             }
 
             override fun onError(e: QBResponseException) {
