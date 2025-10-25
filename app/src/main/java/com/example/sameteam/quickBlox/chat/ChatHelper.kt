@@ -1,7 +1,7 @@
 
 package com.example.sameteam.quickBlox.chat
 
-
+import com.quickblox.core.QBEntityCallback
 import com.quickblox.chat.model.QBChatDialog
 import com.quickblox.chat.model.QBChatMessage
 import com.quickblox.core.exception.QBResponseException
@@ -473,18 +473,22 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
     }
 
     fun getDialogs(
-        requestBuilder: QBRequestGetBuilder,
-        callback: QBEntityCallback<ArrayList<QBChatDialog>>
-    ) {
+    requestBuilder: QBRequestGetBuilder,
+    callback: QBEntityCallback<ArrayList<QBChatDialog>>
+) {
 
-        QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
-            object : QbEntityCallbackWrapper<ArrayList<QBChatDialog>>(callback) {
-                override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
-                    getUsersFromDialog(dialogs, callback)
-                    // Not calling callback.onSuccess(...) because
-                    // we want to load chat userList before triggering callback
-                }
-            })
+    QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
+        object : QBEntityCallback<ArrayList<QBChatDialog>> {
+            override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) {
+                getUsersFromDialog(dialogs, callback)
+                // Not calling callback.onSuccess(...) because
+                // we want to load chat userList before triggering callback
+            }
+
+            override fun onError(e: QBResponseException) {
+                callback.onError(e)
+            }
+        })
     }
 
     fun getDialogById(dialogId: String, callback: QBEntityCallback<QBChatDialog>) {
