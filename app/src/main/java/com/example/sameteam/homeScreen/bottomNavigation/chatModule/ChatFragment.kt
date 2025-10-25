@@ -301,12 +301,12 @@ override fun onResume() {
 
 
     }
-    fun onStop() {
+    override fun onStop() {
         super.onStop()
         unregisterQbChatListeners()
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
         super.onDestroy()
         unregisterQbChatListeners()
         context?.unregisterReceiver(receiver)
