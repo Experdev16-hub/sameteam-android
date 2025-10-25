@@ -30,11 +30,16 @@ class OverlapAdapter(overlapLimit: Int,
 //        return CustomViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+    override fun bindItemViewHolder(holder: CustomViewHolder, position: Int) {
         val currentImageModel = getVisibleItemAt(position)!!
         //----bind data to view
         viewHolder.bind(currentImageModel)
     }
+    
+override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        // You can keep this empty or call the abstract method
+        bindItemViewHolder(holder, position)
+}
 
     override fun getItemCount() = visibleItems.size
 
