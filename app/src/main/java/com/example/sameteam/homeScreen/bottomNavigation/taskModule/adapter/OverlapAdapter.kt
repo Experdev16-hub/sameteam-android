@@ -33,7 +33,7 @@ class OverlapAdapter(overlapLimit: Int,
     override fun bindItemViewHolder(holder: CustomViewHolder, position: Int) {
         val currentImageModel = getVisibleItemAt(position)!!
         //----bind data to view
-        viewHolder.bind(currentImageModel)
+        holder.bind(currentImageModel)
     }
     
 override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
