@@ -472,24 +472,30 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
             })
     }
 
-    fun getDialogs(
+   fun getDialogs(
     requestBuilder: QBRequestGetBuilder,
     callback: QBEntityCallback<ArrayList<QBChatDialog>>
 ) {
 
     QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
-        object : QBEntityCallback<ArrayList<QBChatDialog>> {
-            override fun onSuccess(dialogs: QBChatDialog, bundle: Bundle?) {
-                getUsersFromDialog(dialogs, callback)
-                // Not calling callback.onSuccess(...) because
-                // we want to load chat userList before triggering callback
+        object : QBEntityCallback<ArrayList<QBChatDialog>> { // Line 481 - This is now correct
+            override fun onSuccess(dialogs: ArrayList<QBChatDialog>, bundle: Bundle?) { // Line 482 - FIXED parameter type
+                getUsersFromDialog(dialogs, object : QBEntityCallback<ArrayList<QBChatDialog>> { // Line 483 - FIXED callback type
+                    override fun onSuccess(result: ArrayList<QBChatDialog>, params: Bundle?) {
+                        callback.onSuccess(dialogs, bundle)
+                    }
+
+                    override fun onError(e: QBResponseException) {
+                        callback.onSuccess(dialogs, bundle) // Still return dialogs even if user fetch fails
+                    }
+                })
             }
 
             override fun onError(e: QBResponseException) {
                 callback.onError(e)
             }
         })
-    }
+   }
 
     fun getDialogById(dialogId: String, callback: QBEntityCallback<QBChatDialog>) {
         QBRestChatService.getChatDialogById(dialogId).performAsync(callback)
