@@ -479,7 +479,7 @@ fun loginToChat(user: QBUser, callback: QBEntityCallback<Void>) {
 
     QBRestChatService.getChatDialogs(null, requestBuilder).performAsync(
         object : QBEntityCallback<ArrayList<QBChatDialog>> {
-            override fun onSuccess(dialogs: QBChatDialog(), bundle: Bundle?) {
+            override fun onSuccess(dialogs: QBChatDialog, bundle: Bundle?) {
                 getUsersFromDialog(dialogs, callback)
                 // Not calling callback.onSuccess(...) because
                 // we want to load chat userList before triggering callback
