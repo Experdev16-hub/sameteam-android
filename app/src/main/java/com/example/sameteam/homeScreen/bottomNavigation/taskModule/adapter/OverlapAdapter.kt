@@ -19,15 +19,26 @@ import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 /**
  * This is to overlap users profile image in event card layout
  */
-class OverlapAdapter(overlapLimit: Int,
-                     overlapWidthInPercentage: Int) : OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(overlapLimit,overlapWidthInPercentage){
+class OverlapAdapter(
+    overlapLimit: Int,
+    overlapWidthInPercentage: Int
+) : OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(
+    overlapLimit,
+    overlapWidthInPercentage
+) {
 
     lateinit var context: Context
+
     override fun createItemViewHolder(parent: ViewGroup): CustomViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_image, parent, false)
         context = parent.context
-        return CustomViewHolder(DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.row_image,parent,false))
-//        return CustomViewHolder(view)
+        return CustomViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(context),
+                R.layout.row_image,
+                parent,
+                false
+            )
+        )
     }
 
     override fun bindItemViewHolder(holder: CustomViewHolder, position: Int) {
@@ -35,11 +46,10 @@ class OverlapAdapter(overlapLimit: Int,
         //----bind data to view
         holder.bind(currentImageModel)
     }
-    
-override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        // You can keep this empty or call the abstract method
+
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         bindItemViewHolder(holder, position)
-}
+    }
 
     override fun getItemCount() = visibleItems.size
 
@@ -47,7 +57,6 @@ override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         /**
          * bind model data to item
          */
-
         fun bind(overlapImageModel: OverlapImageModel) {
             if (isLastVisibleItemItem(absoluteAdapterPosition)) {
                 //----set text drawable to show count on last imageview
@@ -61,20 +70,18 @@ override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
                     .buildRound(text, Color.parseColor("#2F88D6"))
                 binding.imageView.setImageDrawable(drawable)
             } else {
-                if(overlapImageModel.imageUrl.isNullOrBlank()){
+                if (overlapImageModel.imageUrl.isNullOrBlank()) {
                     Glide.with(binding.imageView.context)
-                        .load(ContextCompat.getDrawable(context,R.drawable.profile_photo))
+                        .load(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
-                }
-                else{
+                } else {
                     Glide.with(binding.imageView.context)
                         .load(overlapImageModel.imageUrl)
                         .apply(RequestOptions.circleCropTransform().priority(Priority.HIGH))
-                        .error(ContextCompat.getDrawable(context,R.drawable.profile_photo))
-                        .placeholder(ContextCompat.getDrawable(context,R.drawable.profile_photo))
+                        .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 }
-
             }
         }
     }
