@@ -47,10 +47,7 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        bindItemViewHolder(holder, position)
-    }
-
+    
     override fun getItemCount() = visibleItems.size
 
     inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
