@@ -46,7 +46,9 @@ class OverlapAdapter(
         //----bind data to view
         holder.bind(currentImageModel)
     }
-
+override fun onBindViewHolder(p0: CustomViewHolder, p1: Int) {
+    bindItemViewHolder(p0, p1)
+}
     
     override fun getItemCount() = visibleItems.size
 
