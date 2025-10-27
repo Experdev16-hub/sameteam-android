@@ -1,3 +1,4 @@
+
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
 import android.content.Context
@@ -22,43 +23,37 @@ import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 class OverlapAdapter(
     overlapLimit: Int,
     overlapWidthInPercentage: Int
-) : OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(
-    overlapLimit,
-    overlapWidthInPercentage
-) {
+) : OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(overlapLimit, overlapWidthInPercentage) {
 
     lateinit var context: Context
-
+    
     override fun createItemViewHolder(parent: ViewGroup): CustomViewHolder {
         context = parent.context
-        return CustomViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(context),
-                R.layout.row_image,
-                parent,
-                false
-            )
-        )
+        return CustomViewHolder(DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.row_image, parent, false))
     }
 
     override fun bindItemViewHolder(holder: CustomViewHolder, position: Int) {
         val currentImageModel = getVisibleItemAt(position)!!
-        //----bind data to view
         holder.bind(currentImageModel)
     }
-override fun onBindViewHolder(p0: CustomViewHolder, p1: Int) {
-    bindItemViewHolder(p0, p1)
-}
-    
+
+    // This is the key fix - use the exact signature expected
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
+        bindItemViewHolder(holder, position)
+    }
+
+    // Add this to explicitly handle the platform clash
+    override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+    }
+
     override fun getItemCount() = visibleItems.size
 
-    inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
-        /**
-         * bind model data to item
-         */
+    class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
+        
         fun bind(overlapImageModel: OverlapImageModel) {
             if (isLastVisibleItemItem(absoluteAdapterPosition)) {
-                //----set text drawable to show count on last imageview
                 val text = "+" + (notVisibleItems.size + 1).toString()
                 val drawable = TextDrawable.builder()
                     .beginConfig()
@@ -71,14 +66,14 @@ override fun onBindViewHolder(p0: CustomViewHolder, p1: Int) {
             } else {
                 if (overlapImageModel.imageUrl.isNullOrBlank()) {
                     Glide.with(binding.imageView.context)
-                        .load(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .load(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 } else {
                     Glide.with(binding.imageView.context)
                         .load(overlapImageModel.imageUrl)
                         .apply(RequestOptions.circleCropTransform().priority(Priority.HIGH))
-                        .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
-                        .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .error(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
+                        .placeholder(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 }
             }
