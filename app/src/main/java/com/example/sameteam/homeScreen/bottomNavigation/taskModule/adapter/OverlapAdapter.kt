@@ -1,4 +1,3 @@
-
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
 import android.content.Context
@@ -37,24 +36,20 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
-    // This is the key fix - use the exact signature expected
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
         bindItemViewHolder(holder, position)
     }
 
-    // Add this to explicitly handle the platform clash
-    override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-    }
+    // REMOVE the onViewDetachedFromWindow override completely - don't override it at all
 
     override fun getItemCount() = visibleItems.size
 
-    class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
         
         fun bind(overlapImageModel: OverlapImageModel) {
-            if (isLastVisibleItemItem(absoluteAdapterPosition)) {
-                val text = "+" + (notVisibleItems.size + 1).toString()
+            // Use the parent class methods directly since we're in inner class
+            if (this@OverlapAdapter.isLastVisibleItemItem(absoluteAdapterPosition)) {
+                val text = "+" + (this@OverlapAdapter.notVisibleItems.size + 1).toString()
                 val drawable = TextDrawable.builder()
                     .beginConfig()
                     .textColor(Color.WHITE)
@@ -66,14 +61,14 @@ class OverlapAdapter(
             } else {
                 if (overlapImageModel.imageUrl.isNullOrBlank()) {
                     Glide.with(binding.imageView.context)
-                        .load(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
+                        .load(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 } else {
                     Glide.with(binding.imageView.context)
                         .load(overlapImageModel.imageUrl)
                         .apply(RequestOptions.circleCropTransform().priority(Priority.HIGH))
-                        .error(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
-                        .placeholder(ContextCompat.getDrawable(binding.imageView.context, R.drawable.profile_photo))
+                        .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 }
             }
