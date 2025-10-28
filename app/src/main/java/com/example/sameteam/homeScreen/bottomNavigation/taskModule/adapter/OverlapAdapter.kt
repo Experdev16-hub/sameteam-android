@@ -20,6 +20,7 @@ import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 /**
  * This is to overlap users profile image in event card layout
  */
+@Suppress("INHERITED_PLATFORM_MEMBERS_WITHOUT_JAVA_SUPERCLASS")
 class OverlapAdapter(
     overlapLimit: Int,
     overlapWidthInPercentage: Int
@@ -37,17 +38,12 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
-    // ONLY override onBindViewHolder, nothing else
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        bindItemViewHolder(holder, position)
-    }
-
+    // Remove ALL other overrides except these required ones
     override fun getItemCount() = visibleItems.size
 
     inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
         
         fun bind(overlapImageModel: OverlapImageModel) {
-            // Use this@OverlapAdapter to access parent class methods
             if (this@OverlapAdapter.isLastVisibleItemItem(absoluteAdapterPosition)) {
                 val text = "+" + (this@OverlapAdapter.notVisibleItems.size + 1).toString()
                 val drawable = TextDrawable.builder()
