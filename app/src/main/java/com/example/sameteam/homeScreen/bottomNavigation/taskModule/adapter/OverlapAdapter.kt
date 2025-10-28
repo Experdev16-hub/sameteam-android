@@ -1,3 +1,4 @@
+
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
 import android.content.Context
@@ -36,18 +37,17 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
+    // ONLY override onBindViewHolder, nothing else
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         bindItemViewHolder(holder, position)
     }
-
-    // REMOVE the onViewDetachedFromWindow override completely - don't override it at all
 
     override fun getItemCount() = visibleItems.size
 
     inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
         
         fun bind(overlapImageModel: OverlapImageModel) {
-            // Use the parent class methods directly since we're in inner class
+            // Use this@OverlapAdapter to access parent class methods
             if (this@OverlapAdapter.isLastVisibleItemItem(absoluteAdapterPosition)) {
                 val text = "+" + (this@OverlapAdapter.notVisibleItems.size + 1).toString()
                 val drawable = TextDrawable.builder()
