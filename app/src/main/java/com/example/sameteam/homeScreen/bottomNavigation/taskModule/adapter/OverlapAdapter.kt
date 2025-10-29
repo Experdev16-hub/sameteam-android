@@ -22,7 +22,10 @@ import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 class OverlapAdapter(
     overlapLimit: Int,
     overlapWidthInPercentage: Int
-) : OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(overlapLimit, overlapWidthInPercentage) {
+) : @JvmSuppressWildcards OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(
+    overlapLimit, 
+    overlapWidthInPercentage
+) {
 
     lateinit var context: Context
     
@@ -38,15 +41,6 @@ class OverlapAdapter(
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         bindItemViewHolder(holder, position)
-    }
-
-    override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
-    (this as OverlapRecyclerViewAdapter<OverlapImageModel, CustomViewHolder>).onViewDetachedFromWindow(holder)
-    }
-
-    // Also override any other potentially conflicting methods
-    override fun onViewAttachedToWindow(holder: CustomViewHolder) {
-        super.onViewAttachedToWindow(holder)
     }
 
     override fun getItemCount() = visibleItems.size
