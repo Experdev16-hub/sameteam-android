@@ -40,9 +40,8 @@ class OverlapAdapter(
         bindItemViewHolder(holder, position)
     }
 
-    // Add this explicit override to resolve the platform clash
     override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
-        super.onViewDetachedFromWindow(holder)
+    (this as OverlapRecyclerViewAdapter<OverlapImageModel, CustomViewHolder>).onViewDetachedFromWindow(holder)
     }
 
     // Also override any other potentially conflicting methods
