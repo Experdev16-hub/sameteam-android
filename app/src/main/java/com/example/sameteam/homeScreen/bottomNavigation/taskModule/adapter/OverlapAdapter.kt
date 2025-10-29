@@ -13,43 +13,89 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.sameteam.R
 import com.example.sameteam.databinding.RowImageBinding
 import com.example.sameteam.homeScreen.bottomNavigation.taskModule.model.OverlapImageModel
-import com.mindinventory.overlaprecylcerview.adapters.OverlapRecyclerViewAdapter
 import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 
 /**
- * This is to overlap users profile image in event card layout
+ * Custom overlap adapter to replace the buggy MindInventory library
+ * This shows overlapping profile images with a count on the last item
  */
 class OverlapAdapter(
-    overlapLimit: Int,
-    overlapWidthInPercentage: Int
-) : @JvmSuppressWildcards OverlapRecyclerViewAdapter<OverlapImageModel, OverlapAdapter.CustomViewHolder>(
-    overlapLimit, 
-    overlapWidthInPercentage
-) {
+    private val overlapLimit: Int,
+    private val overlapWidthInPercentage: Int
+) : RecyclerView.Adapter<OverlapAdapter.CustomViewHolder>() {
 
-    lateinit var context: Context
-    
-    override fun createItemViewHolder(parent: ViewGroup): CustomViewHolder {
-        context = parent.context
-        return CustomViewHolder(DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.row_image, parent, false))
+    private var visibleItems = mutableListOf<OverlapImageModel>()
+    private var notVisibleItems = mutableListOf<OverlapImageModel>()
+    private lateinit var context: Context
+
+    /**
+     * Set the items to display with overlap logic
+     */
+    fun setItems(allItems: List<OverlapImageModel>) {
+        visibleItems = if (allItems.size > overlapLimit) {
+            allItems.take(overlapLimit).toMutableList()
+        } else {
+            allItems.toMutableList()
+        }
+        notVisibleItems = if (allItems.size > overlapLimit) {
+            allItems.drop(overlapLimit).toMutableList()
+        } else {
+            mutableListOf()
+        }
+        notifyDataSetChanged()
     }
 
-    override fun bindItemViewHolder(holder: CustomViewHolder, position: Int) {
-        val currentImageModel = getVisibleItemAt(position)!!
-        holder.bind(currentImageModel)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+        context = parent.context
+        val binding = DataBindingUtil.inflate<RowImageBinding>(
+            LayoutInflater.from(context),
+            R.layout.row_image,
+            parent,
+            false
+        )
+        
+        // Apply overlap by setting negative margin
+        val layoutParams = binding.root.layoutParams as? ViewGroup.MarginLayoutParams
+        layoutParams?.marginStart = (-overlapWidthInPercentage).coerceAtMost(0)
+        binding.root.layoutParams = layoutParams
+        
+        return CustomViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        bindItemViewHolder(holder, position)
+        val isLastVisible = position == overlapLimit - 1 && notVisibleItems.isNotEmpty()
+        val currentItem = if (isLastVisible && visibleItems.isNotEmpty()) {
+            visibleItems[visibleItems.size - 1]
+        } else {
+            visibleItems.getOrNull(position)
+        }
+        holder.bind(currentItem, isLastVisible)
     }
 
-    override fun getItemCount() = visibleItems.size
+    override fun getItemCount(): Int {
+        return if (notVisibleItems.isNotEmpty()) {
+            overlapLimit // Show all visible items including the count item
+        } else {
+            visibleItems.size.coerceAtMost(overlapLimit)
+        }
+    }
+
+    /**
+     * Check if the current position is the last visible item that shows count
+     */
+    private fun isLastVisibleItem(position: Int): Boolean {
+        return position == overlapLimit - 1 && notVisibleItems.isNotEmpty()
+    }
 
     inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
         
-        fun bind(overlapImageModel: OverlapImageModel) {
-            if (this@OverlapAdapter.isLastVisibleItemItem(absoluteAdapterPosition)) {
-                val text = "+" + (this@OverlapAdapter.notVisibleItems.size + 1).toString()
+        /**
+         * Bind data to the view - shows either profile image or count
+         */
+        fun bind(overlapImageModel: OverlapImageModel?, isLastVisible: Boolean) {
+            if (isLastVisible) {
+                // Show count on the last image
+                val text = "+${notVisibleItems.size + 1}"
                 val drawable = TextDrawable.builder()
                     .beginConfig()
                     .textColor(Color.WHITE)
@@ -59,13 +105,14 @@ class OverlapAdapter(
                     .buildRound(text, Color.parseColor("#2F88D6"))
                 binding.imageView.setImageDrawable(drawable)
             } else {
-                if (overlapImageModel.imageUrl.isNullOrBlank()) {
+                // Show profile image
+                if (overlapImageModel?.imageUrl.isNullOrBlank()) {
                     Glide.with(binding.imageView.context)
                         .load(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
                 } else {
                     Glide.with(binding.imageView.context)
-                        .load(overlapImageModel.imageUrl)
+                        .load(overlapImageModel?.imageUrl)
                         .apply(RequestOptions.circleCropTransform().priority(Priority.HIGH))
                         .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
