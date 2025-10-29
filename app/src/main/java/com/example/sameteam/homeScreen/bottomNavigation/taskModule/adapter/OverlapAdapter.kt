@@ -19,7 +19,6 @@ import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 /**
  * This is to overlap users profile image in event card layout
  */
-@Suppress("INHERITED_PLATFORM_MEMBERS_WITHOUT_JAVA_SUPERCLASS")
 class OverlapAdapter(
     overlapLimit: Int,
     overlapWidthInPercentage: Int
@@ -37,9 +36,18 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
-    // ADD THIS BACK - it's required by the abstract class
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         bindItemViewHolder(holder, position)
+    }
+
+    // Add this explicit override to resolve the platform clash
+    override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+    }
+
+    // Also override any other potentially conflicting methods
+    override fun onViewAttachedToWindow(holder: CustomViewHolder) {
+        super.onViewAttachedToWindow(holder)
     }
 
     override fun getItemCount() = visibleItems.size
