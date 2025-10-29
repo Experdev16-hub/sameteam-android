@@ -1,4 +1,3 @@
-
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
 import android.content.Context
@@ -38,7 +37,11 @@ class OverlapAdapter(
         holder.bind(currentImageModel)
     }
 
-    // Remove ALL other overrides except these required ones
+    // ADD THIS BACK - it's required by the abstract class
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        bindItemViewHolder(holder, position)
+    }
+
     override fun getItemCount() = visibleItems.size
 
     inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
