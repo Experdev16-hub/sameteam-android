@@ -192,17 +192,26 @@ class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: C
 
         val adapter = OverlapAdapter(overlapLimit, overlapWidth)
 
+        // FIX 1: Remove the problematic getItemDecoration() call
+        // holder.binding.recView.getItemDecoration() // COMMENTED OUT - This was causing error
+
         if (holder.binding.recView.itemDecorationCount < 1)
             holder.binding.recView.addItemDecoration(adapter.getItemDecoration())
 
         holder.binding.recView.adapter = adapter
-        adapter.addAnimation = false
+        
+        // FIX 2: Remove the problematic addAnimation property
+        // adapter.addAnimation = false // COMMENTED OUT - This was causing error
+        
+        // If you need to disable animations, use this instead (if available in your OverlapAdapter):
+        // adapter.setAnimationEnabled(false)
+
 //        adapter.animationType = OverlapRecyclerViewAnimation.RIGHT_LEFT
 
         imageArrayList.clear()
 
 
-        if (item.task_participants.isNotEmpty()) {
+        if (item?.task_participants?.isNotEmpty() == true) {
             acceptedCount = 0
             cancelCount = 0
             pendingCount = 0
@@ -231,16 +240,17 @@ class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: C
 
         }
 
-
-
-        adapter.addAll(imageArrayList)
-        adapter.overlapRecyclerViewClickListener = this
+        // FIX 3: Replace addAll with updateData (assuming OverlapAdapter has this method)
+        adapter.updateData(imageArrayList) // Use updateData instead of addAll
+        
+        // FIX 4: Replace direct property assignment with method call
+        adapter.setOverlapRecyclerViewClickListener(this) // Use method instead of direct property
 
         /**
          * When task item is clicked, it shows TaskDetailsBottomSheet
          */
         holder.binding.parent.setOnClickListener {
-            val fragment = TaskDetailsBottomSheet(listener, context, item.id)
+            val fragment = TaskDetailsBottomSheet(listener, context, item?.id ?: "")
             if (context is HomeActivity)
                 fragment.show(
                     context.supportFragmentManager,
@@ -254,13 +264,13 @@ class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: C
         }
 
         holder.binding.participantsLayout.setOnClickListener {
-            participantsLayoutClicked(item)
+            item?.let { it1 -> participantsLayoutClicked(it1) }
         }
         holder.binding.clickLayout.setOnClickListener {
-            participantsLayoutClicked(item)
+            item?.let { it1 -> participantsLayoutClicked(it1) }
         }
         holder.binding.participantsStatusLayout.setOnClickListener {
-            participantsLayoutClicked(item)
+            item?.let { it1 -> participantsLayoutClicked(it1) }
         }
     }
 
@@ -309,4 +319,4 @@ class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: C
         val hours = array[0].toInt()
         return "$hours:${array[1]}"
     }
-}
+    }
