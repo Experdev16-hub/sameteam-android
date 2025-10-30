@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.sameteam.R
 import com.example.sameteam.databinding.RowImageBinding
 import com.example.sameteam.homeScreen.bottomNavigation.taskModule.model.OverlapImageModel
+import com.mindinventory.overlaprecylcerview.listeners.OverlapRecyclerViewClickListener
 import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 
 /**
@@ -45,6 +46,25 @@ class OverlapAdapter(
         notifyDataSetChanged()
     }
 
+    // FIX 1: Add this method - called from TaskListAdapter instead of addAll
+    fun updateData(newItems: List<OverlapImageModel>) {
+        setItems(newItems)
+    }
+
+    // FIX 2: Add this method - called from TaskListAdapter instead of direct property assignment
+    private var clickListener: OverlapRecyclerViewClickListener? = null
+    fun setOverlapRecyclerViewClickListener(listener: OverlapRecyclerViewClickListener) {
+        this.clickListener = listener
+    }
+
+    // FIX 3: Add this method - called from TaskListAdapter
+    fun getItemDecoration(): RecyclerView.ItemDecoration {
+        // Return a simple item decoration or create a custom one if needed
+        return object : RecyclerView.ItemDecoration() {
+            // You can add custom decoration logic here if needed
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         context = parent.context
         val binding = DataBindingUtil.inflate<RowImageBinding>(
@@ -69,7 +89,7 @@ class OverlapAdapter(
         } else {
             visibleItems.getOrNull(position)
         }
-        holder.bind(currentItem, isLastVisible)
+        holder.bind(currentItem, isLastVisible, position)
     }
 
     override fun getItemCount(): Int {
@@ -92,7 +112,7 @@ class OverlapAdapter(
         /**
          * Bind data to the view - shows either profile image or count
          */
-        fun bind(overlapImageModel: OverlapImageModel?, isLastVisible: Boolean) {
+        fun bind(overlapImageModel: OverlapImageModel?, isLastVisible: Boolean, position: Int) {
             if (isLastVisible) {
                 // Show count on the last image
                 val text = "+${notVisibleItems.size + 1}"
@@ -104,6 +124,11 @@ class OverlapAdapter(
                     .endConfig()
                     .buildRound(text, Color.parseColor("#2F88D6"))
                 binding.imageView.setImageDrawable(drawable)
+                
+                // FIX 4: Add click listener for numbered item
+                binding.root.setOnClickListener {
+                    clickListener?.onNumberedItemClick(position)
+                }
             } else {
                 // Show profile image
                 if (overlapImageModel?.imageUrl.isNullOrBlank()) {
@@ -117,6 +142,11 @@ class OverlapAdapter(
                         .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
                         .into(binding.imageView)
+                }
+                
+                // FIX 5: Add click listener for normal item
+                binding.root.setOnClickListener {
+                    clickListener?.onNormalItemClicked(position)
                 }
             }
         }
