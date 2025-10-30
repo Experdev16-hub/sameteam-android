@@ -1,322 +1,154 @@
 package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.request.RequestOptions
 import com.example.sameteam.R
-import com.example.sameteam.databinding.TaskDetailsCardLayoutBinding
-import com.example.sameteam.helper.getFormattedDate
-import com.example.sameteam.helper.getFormattedTime
-import com.example.sameteam.helper.utcTimestampToLocalDateTime
-import com.example.sameteam.homeScreen.HomeActivity
-import com.example.sameteam.homeScreen.bottomNavigation.calendarModule.model.TaskDetailsResponseModel
-import com.example.sameteam.homeScreen.bottomNavigation.taskModule.bottomSheet.ParticipantsBottomSheet
-import com.example.sameteam.homeScreen.bottomNavigation.taskModule.bottomSheet.TaskDetailsBottomSheet
-import com.example.sameteam.homeScreen.bottomNavigation.taskModule.interfaceses.OnBottomSheetDismissListener
+import com.example.sameteam.databinding.RowImageBinding
 import com.example.sameteam.homeScreen.bottomNavigation.taskModule.model.OverlapImageModel
-import com.example.sameteam.homeScreen.drawerNavigation.activity.MyEventsActivity
 import com.mindinventory.overlaprecylcerview.listeners.OverlapRecyclerViewClickListener
-import java.util.*
-import kotlin.collections.ArrayList
+import com.mindinventory.overlaprecylcerview.utils.TextDrawable
 
-class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: Context) :
-    PagingDataAdapter<TaskDetailsResponseModel.Data, TaskListAdapter.MyViewHolder>(
-        DataDifferentiator
-    ), OverlapRecyclerViewClickListener {
+/**
+ * Custom overlap adapter to replace the buggy MindInventory library
+ * This shows overlapping profile images with a count on the last item
+ */
+class OverlapAdapter(
+    private val overlapLimit: Int,
+    private val overlapWidthInPercentage: Int
+) : RecyclerView.Adapter<OverlapAdapter.CustomViewHolder>() {
 
-    private val TAG = "TaskListAdapter"
+    private var visibleItems = mutableListOf<OverlapImageModel>()
+    private var notVisibleItems = mutableListOf<OverlapImageModel>()
+    private lateinit var context: Context
+    private var clickListener: OverlapRecyclerViewClickListener? = null
 
-    //------limit number of items to be overlapped
-    private val overlapLimit = 8
+    /**
+     * Set the items to display with overlap logic
+     */
+    fun setItems(allItems: List<OverlapImageModel>) {
+        visibleItems = if (allItems.size > overlapLimit) {
+            allItems.take(overlapLimit).toMutableList()
+        } else {
+            allItems.toMutableList()
+        }
+        notVisibleItems = if (allItems.size > overlapLimit) {
+            allItems.drop(overlapLimit).toMutableList()
+        } else {
+            mutableListOf()
+        }
+        notifyDataSetChanged()
+    }
 
-    //------set value of item overlapping
-    private val overlapWidth = 30
-    private var acceptedCount = 0
-    private var pendingCount = 0
-    private var cancelCount = 0
-    private val imageArrayList: ArrayList<OverlapImageModel> = ArrayList()
+    // ADD THIS METHOD: This is called from TaskListAdapter
+    fun updateData(newItems: List<OverlapImageModel>) {
+        setItems(newItems)
+    }
 
-    class MyViewHolder(val binding: TaskDetailsCardLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    // ADD THIS METHOD: This is called from TaskListAdapter
+    fun setOverlapRecyclerViewClickListener(listener: OverlapRecyclerViewClickListener) {
+        this.clickListener = listener
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.task_details_card_layout,
-                parent,
-                false
-            )
+    // ADD THIS METHOD: This is called from TaskListAdapter
+    fun getItemDecoration(): RecyclerView.ItemDecoration {
+        // Return a simple item decoration or create a custom one if needed
+        return object : RecyclerView.ItemDecoration() {
+            // You can add custom decoration logic here if needed
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+        context = parent.context
+        val binding = DataBindingUtil.inflate<RowImageBinding>(
+            LayoutInflater.from(context),
+            R.layout.row_image,
+            parent,
+            false
         )
+        
+        // Apply overlap by setting negative margin
+        val layoutParams = binding.root.layoutParams as? ViewGroup.MarginLayoutParams
+        layoutParams?.marginStart = (-overlapWidthInPercentage).coerceAtMost(0)
+        binding.root.layoutParams = layoutParams
+        
+        return CustomViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        val item = getItem(position)
-
-        holder.binding.taskName.text = item?.name
-
-        holder.binding.textActivityCreator.text = item?.firstName + " " + item?.lastName
-        if (!item?.description.isNullOrBlank()) {
-            holder.binding.taskDesc.visibility = View.VISIBLE
-            holder.binding.taskDesc.text = item?.description
-        } else
-            holder.binding.taskDesc.visibility = View.GONE
-
-        if (!item?.location.isNullOrBlank()) {
-            holder.binding.location.text = item?.location
-            holder.binding.locationLayout.visibility = View.VISIBLE
-        } else
-            holder.binding.locationLayout.visibility = View.GONE
-
-        if (item?.event != null) {
-            holder.binding.eventName.text = item.event?.title
-            holder.binding.eventName.visibility = View.VISIBLE
-        } else
-            holder.binding.eventName.visibility = View.GONE
-
-        if (item?.team_name != null) {
-            holder.binding.teamNames.text = "Teams: ${item.team_name}"
-            holder.binding.teamNames.visibility = View.VISIBLE
-        } else
-            holder.binding.teamNames.visibility = View.GONE
-
-
-        if (item?.total_slots == 0 || item?.total_slots == null) {
-            holder.binding.slotLayout.visibility = View.GONE
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        val isLastVisible = isLastVisibleItem(position)
+        val currentItem = if (isLastVisible && visibleItems.isNotEmpty()) {
+            visibleItems[visibleItems.size - 1]
         } else {
-            holder.binding.slotLayout.visibility = View.VISIBLE
-            holder.binding.txtSlots.text =
-                "${item?.available_slots} of ${item?.total_slots} Slots Available"
+            visibleItems.getOrNull(position)
         }
+        holder.bind(currentItem, isLastVisible, position)
+    }
 
-        try {
-            if (item != null) {
-                if (item.event?.colour != null) {
-                    holder.binding.eventColor.imageTintList = ColorStateList.valueOf(
-                        Color.parseColor(
-                            item.event?.colour
-                        )
-                    )
+    override fun getItemCount(): Int {
+        return if (notVisibleItems.isNotEmpty()) {
+            overlapLimit // Show all visible items including the count item
+        } else {
+            visibleItems.size.coerceAtMost(overlapLimit)
+        }
+    }
+
+    /**
+     * Check if the current position is the last visible item that shows count
+     */
+    private fun isLastVisibleItem(position: Int): Boolean {
+        return position == overlapLimit - 1 && notVisibleItems.isNotEmpty()
+    }
+
+    inner class CustomViewHolder(val binding: RowImageBinding) : RecyclerView.ViewHolder(binding.root) {
+        
+        /**
+         * Bind data to the view - shows either profile image or count
+         */
+        fun bind(overlapImageModel: OverlapImageModel?, isLastVisible: Boolean, position: Int) {
+            if (isLastVisible) {
+                // Show count on the last image
+                val text = "+${notVisibleItems.size + 1}"
+                val drawable = TextDrawable.builder()
+                    .beginConfig()
+                    .textColor(Color.WHITE)
+                    .width(90)
+                    .height(90)
+                    .endConfig()
+                    .buildRound(text, Color.parseColor("#2F88D6"))
+                binding.imageView.setImageDrawable(drawable)
+                
+                // Set click listener for numbered item
+                binding.root.setOnClickListener {
+                    clickListener?.onNumberedItemClick(position)
+                }
+            } else {
+                // Show profile image
+                if (overlapImageModel?.imageUrl.isNullOrBlank()) {
+                    Glide.with(binding.imageView.context)
+                        .load(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .into(binding.imageView)
                 } else {
-                    holder.binding.eventColor.imageTintList =
-                        ColorStateList.valueOf(Color.parseColor("#ffffff"))
+                    Glide.with(binding.imageView.context)
+                        .load(overlapImageModel?.imageUrl)
+                        .apply(RequestOptions.circleCropTransform().priority(Priority.HIGH))
+                        .error(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .placeholder(ContextCompat.getDrawable(context, R.drawable.profile_photo))
+                        .into(binding.imageView)
                 }
-            } else {
-                holder.binding.eventColor.imageTintList =
-                    ColorStateList.valueOf(Color.parseColor("#ffffff"))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.e(TAG, "onBindViewHolder: Item color ${item?.event?.colour}")
-            holder.binding.eventColor.imageTintList =
-                ColorStateList.valueOf(Color.parseColor("#ffffff"))
-        }
-
-
-        val startLocalTimestamp = utcTimestampToLocalDateTime(item?.start_time_stamp.toString())
-        val startDate = startLocalTimestamp?.toLocalDate()?.let { getFormattedDate(it) }
-
-        holder.binding.start.text = startDate
-
-
-        if (item?.all_day == true) {
-            holder.binding.endTime.text = context.getString(R.string.all_day)
-        } else {
-            val endLocalTimestamp = utcTimestampToLocalDateTime(item?.end_time_stamp.toString())
-
-            if (startLocalTimestamp != null && endLocalTimestamp != null) {
-
-                val startTimeString =
-                    getProperString(getFormattedTime(startLocalTimestamp.toLocalTime()))
-                val endTimeString =
-                    getProperString(getFormattedTime(endLocalTimestamp.toLocalTime()))
-
-                holder.binding.endTime.text = "$startTimeString - $endTimeString"
-            }
-        }
-
-        /**
-         * If task has image url, show image
-         */
-        if (item?.image_url != null && item.image_url != "") {
-            holder.binding.taskImage.visibility = View.VISIBLE
-            holder.binding.initials.visibility = View.GONE
-
-            Glide.with(context)
-                .load(item.image_url)
-                .error(R.drawable.image_placeholder)
-                .placeholder(R.drawable.image_placeholder)
-                .circleCrop()
-                .into(holder.binding.taskImage)
-        } else {
-            /**
-             * If task does not has image url, show task name initials
-             */
-
-            holder.binding.taskImage.visibility = View.GONE
-            holder.binding.initials.visibility = View.VISIBLE
-
-            val textArray = item?.name?.split(" ")?.filter { it.isNotBlank() }?.toTypedArray()
-            if (textArray?.size!! < 2) {
-                if (textArray[0].length < 2) holder.binding.initials.text =
-                    textArray[0][0].toString().uppercase(Locale.getDefault())
-                else holder.binding.initials.text = textArray[0].substring(0, 2)
-                    .uppercase(Locale.getDefault())
-            } else {
-                holder.binding.initials.text =
-                    "${textArray[0][0].uppercaseChar()}${textArray[1][0].uppercaseChar()}"
-            }
-
-//        holder.binding.initials.background.setTint(Color.parseColor(tasks[position].color))
-
-        }
-
-
-        /**
-         * Adapter for loading stack(overlapping) images of users
-         */
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        holder.binding.recView.layoutManager = layoutManager
-
-        val adapter = OverlapAdapter(overlapLimit, overlapWidth)
-
-        // FIX 1: Remove the problematic getItemDecoration() call
-        // holder.binding.recView.getItemDecoration() // COMMENTED OUT - This was causing error
-
-        if (holder.binding.recView.itemDecorationCount < 1)
-            holder.binding.recView.addItemDecoration(adapter.getItemDecoration())
-
-        holder.binding.recView.adapter = adapter
-        
-        // FIX 2: Remove the problematic addAnimation property
-        // adapter.addAnimation = false // COMMENTED OUT - This was causing error
-        
-        // If you need to disable animations, use this instead (if available in your OverlapAdapter):
-        // adapter.setAnimationEnabled(false)
-
-//        adapter.animationType = OverlapRecyclerViewAnimation.RIGHT_LEFT
-
-        imageArrayList.clear()
-
-
-        if (item?.task_participants?.isNotEmpty() == true) {
-            acceptedCount = 0
-            cancelCount = 0
-            pendingCount = 0
-            holder.binding.participantsLayout.visibility =
-                View.GONE //Visibility set to Gone as needed to hide layout
-            for (participant in item.task_participants) {
-                if (participant.response == "accepted") {
-                    acceptedCount++
-                } else if (participant.response == "declined") {
-                    cancelCount++
-
-                } else if (participant.response == "pending") {
-                    pendingCount++
+                
+                // Set click listener for normal item
+                binding.root.setOnClickListener {
+                    clickListener?.onNormalItemClicked(position)
                 }
-                if (participant.user?.profile_picture.isNullOrBlank()) imageArrayList.add(
-                    OverlapImageModel("")
-                )
-                else imageArrayList.add(OverlapImageModel(participant.user?.profile_picture))
             }
-            holder.binding.txtAcceptedCount.text = acceptedCount.toString()
-            holder.binding.txtCancelCount.text = cancelCount.toString()
-            holder.binding.txtPendingCount.text = pendingCount.toString()
-        } else {
-            holder.binding.participantsLayout.visibility = View.GONE
-            holder.binding.participantsStatusLayout.visibility = View.GONE
-
-        }
-
-        // FIX 3: Replace addAll with updateData (assuming OverlapAdapter has this method)
-        adapter.updateData(imageArrayList) // Use updateData instead of addAll
-        
-        // FIX 4: Replace direct property assignment with method call
-        adapter.setOverlapRecyclerViewClickListener(this) // Use method instead of direct property
-
-        /**
-         * When task item is clicked, it shows TaskDetailsBottomSheet
-         */
-        holder.binding.parent.setOnClickListener {
-            val fragment = TaskDetailsBottomSheet(listener, context, item?.id ?: "")
-            if (context is HomeActivity)
-                fragment.show(
-                    context.supportFragmentManager,
-                    TaskDetailsBottomSheet::class.java.name
-                )
-            else if (context is MyEventsActivity)
-                fragment.show(
-                    context.supportFragmentManager,
-                    TaskDetailsBottomSheet::class.java.name
-                )
-        }
-
-        holder.binding.participantsLayout.setOnClickListener {
-            item?.let { it1 -> participantsLayoutClicked(it1) }
-        }
-        holder.binding.clickLayout.setOnClickListener {
-            item?.let { it1 -> participantsLayoutClicked(it1) }
-        }
-        holder.binding.participantsStatusLayout.setOnClickListener {
-            item?.let { it1 -> participantsLayoutClicked(it1) }
         }
     }
-
-    private fun participantsLayoutClicked(item: TaskDetailsResponseModel.Data) {
-        val fragment = ParticipantsBottomSheet(context, item.task_participants)
-        if (context is HomeActivity)
-            fragment.show(
-                context.supportFragmentManager,
-                ParticipantsBottomSheet::class.java.name
-            )
-        else if (context is MyEventsActivity)
-            fragment.show(
-                context.supportFragmentManager,
-                ParticipantsBottomSheet::class.java.name
-            )
-    }
-
-    override fun onNormalItemClicked(adapterPosition: Int) {
-
-    }
-
-    override fun onNumberedItemClick(adapterPosition: Int) {
-
-    }
-
-
-    object DataDifferentiator : DiffUtil.ItemCallback<TaskDetailsResponseModel.Data>() {
-        override fun areItemsTheSame(
-            oldItem: TaskDetailsResponseModel.Data,
-            newItem: TaskDetailsResponseModel.Data
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(
-            oldItem: TaskDetailsResponseModel.Data,
-            newItem: TaskDetailsResponseModel.Data
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    private fun getProperString(text: String): String {
-        val array = text.split(":").toTypedArray()
-        val hours = array[0].toInt()
-        return "$hours:${array[1]}"
-    }
-    }
+}l
