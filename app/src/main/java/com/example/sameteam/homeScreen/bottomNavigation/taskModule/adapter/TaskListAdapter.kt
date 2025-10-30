@@ -1,4 +1,4 @@
-howpackage com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
+package com.example.sameteam.homeScreen.bottomNavigation.taskModule.adapter
 
 import android.content.Context
 import android.graphics.Color
