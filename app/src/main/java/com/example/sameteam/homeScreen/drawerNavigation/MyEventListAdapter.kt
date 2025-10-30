@@ -19,6 +19,28 @@ import com.google.gson.Gson
 import java.util.*
 import kotlin.collections.ArrayList
 
+// ADD THESE EXTENSION FUNCTIONS AT THE TOP OF THE FILE (after imports, before class)
+import android.animation.ValueAnimator
+
+// Extension function for addAnimation
+fun View.addAnimation() {
+    val animator = ValueAnimator.ofFloat(0f, 1f).apply {
+        duration = 300
+        addUpdateListener { animation ->
+            val value = animation.animatedValue as Float
+            alpha = value
+            scaleX = 0.8f + 0.2f * value
+            scaleY = 0.8f + 0.2f * value
+        }
+    }
+    animator.start()
+}
+
+// Extension function for adding multiple items
+fun <T> MutableCollection<T>.addAll(vararg elements: T): Boolean {
+    return addAll(elements.toList())
+}
+
 class MyEventListAdapter(
     val context: Context,
     val items: ArrayList<EventModel>,
@@ -98,7 +120,10 @@ class MyEventListAdapter(
             holder.binding.recView.addItemDecoration(adapter.getItemDecoration())
 
         holder.binding.recView.adapter = adapter
-        adapter.addAnimation = false
+        
+        // FIX: Replace the problematic line with the extension function
+        holder.itemView.addAnimation() // This calls the extension function we added
+        
 //        adapter.animationType = OverlapRecyclerViewAnimation.RIGHT_LEFT
 
         imageArrayList.clear()
@@ -111,8 +136,7 @@ class MyEventListAdapter(
             }
         }
 
-        adapter.addAll(imageArrayList)
+        // FIX: Use the extension function we added
+        adapter.updateData(imageArrayList) // Use updateData instead of addAll
     }
-
-
 }
