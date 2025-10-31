@@ -1,6 +1,5 @@
 package com.example.sameteam.authScreens
 
-
 import android.content.Intent
 import android.graphics.Color.argb
 import android.graphics.drawable.shapes.RectShape
@@ -148,21 +147,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     isBillingClientReady = true
                     Log.d("SubscriptionBilling", "Billing Client connected.")
-                    val subscriptionIds = listOf("yearly_subscription")
-
-                    billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS){ billingResult, list ->
-                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                            if (list.size > 0) {
-                                // Activate premium feature
-                                println("[Purchase] - Premium user validated")
-                                // Process each purchase if needed
-                            } else {
-                                // De-activated o push to premium feature
-                                val intent = Intent(this@LoginActivity, SubscriptionActivity::class.java)
-                                startActivity(intent)
-                            }
-                        }
-                    }
+                    
+                    // Just query purchases without redirecting - removed the automatic redirect
+                    checkSubscriptionStatus()
                 } else {
                     Log.e("SubscriptionBilling", "Billing Client connection failed: ${billingResult.debugMessage}")
                 }
@@ -174,7 +161,26 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 // Optionally, implement reconnection logic here.
             }
         })
-        // Check for active subscription entitlements.
+    }
+
+    private fun checkSubscriptionStatus() {
+        billingClient.queryPurchasesAsync(BillingClient.ProductType.SUBS) { billingResult, purchases ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                val hasActiveSubscription = purchases.any { purchase ->
+                    // Check if purchase is active
+                    purchase.purchaseState == com.android.billingclient.api.Purchase.PurchaseState.PURCHASED
+                }
+                
+                if (hasActiveSubscription) {
+                    Log.d("Subscription", "User has active subscription")
+                    // User has valid subscription - proceed normally
+                } else {
+                    Log.d("Subscription", "No active subscription found")
+                    // No subscription - you can show a prompt or handle later
+                    // BUT DON'T AUTO-REDIRECT HERE
+                }
+            }
+        }
     }
 
 }
