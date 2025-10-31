@@ -7,46 +7,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-    - name: Make ALL QuickBlox methods and classes public
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: Check APK path
       run: |
-        # Remove 'private' from methods
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private fun loadChatHistory/fun loadChatHistory/g' {} +
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private fun getUsersFromDialog/fun getUsersFromDialog/g' {} +
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private fun checkPlayServicesAvailable/fun checkPlayServicesAvailable/g' {} +
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private fun loadDialogsFromQb/fun loadDialogsFromQb/g' {} +
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private fun registerQbChatListeners/fun registerQbChatListeners/g' {} +
-        
-        # Remove 'private' from listener classes
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private inner class AllDialogsMessageListener/inner class AllDialogsMessageListener/g' {} +
-        find app/src/main/java -name "*.kt" -exec sed -i 's/private inner class SystemMessagesListener/inner class SystemMessagesListener/g' {} +
-        
-    - name: Remove WheelPicker usage
-      run: |
-        # Comment out WheelPicker imports and usage
-        sed -i '/import.*WheelPicker/s/^/\/\//' app/src/main/java/com/example/sameteam/homeScreen/bottomNavigation/calendarModule/bottomSheet/CustomRepeatTaskBottomSheet.kt
-        sed -i '/WheelPicker/s/^/\/\//' app/src/main/java/com/example/sameteam/homeScreen/bottomNavigation/calendarModule/bottomSheet/CustomRepeatTaskBottomSheet.kt
-        
-        sed -i '/import.*WheelPicker/s/^/\/\//' app/src/main/java/com/example/sameteam/homeScreen/bottomNavigation/calendarModule/bottomSheet/SelectTaskTimeBottomSheet.kt
-        sed -i '/setSelectedItemPosition/s/^/\/\//' app/src/main/java/com/example/sameteam/homeScreen/bottomNavigation/calendarModule/bottomSheet/SelectTaskTimeBottomSheet.kt
-        
-    - name: Build with continue
-      run: ./gradlew :app:assembleClientDebug --continue
-        
+        echo "Available APK files:"
+        find app/build/outputs/apk -type f
+
     - name: Upload APK
-      if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: app-client-debug
-        path: app/build/outputs/apk/client/debug/app-client-debug.apk
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
