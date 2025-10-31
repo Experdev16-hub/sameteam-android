@@ -236,7 +236,8 @@ class TaskListAdapter(val listener: OnBottomSheetDismissListener, val context: C
          * When task item is clicked, it shows TaskDetailsBottomSheet
          */
         holder.binding.parent.setOnClickListener {
-            val fragment = TaskDetailsBottomSheet(listener, context, item?.id ?: "")
+
+            val fragment = TaskDetailsBottomSheet(listener, context, (item?.id as? Int) ?: 0)
             if (context is HomeActivity)
                 fragment.show(
                     context.supportFragmentManager,
